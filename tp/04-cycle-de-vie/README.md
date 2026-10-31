@@ -69,7 +69,7 @@ kill %1
 Lancez une **sonde** en arrière-plan (`&` à la fin) : elle interroge le site toutes les 0,2 s et note chaque code HTTP, un par ligne, dans un fichier.
 
 ```bash
-while true; do curl -s -m 2 -o /dev/null -w "%{http_code}\n" http://10.10.0.20:30080/; sleep 0.2; done > /tmp/sonde.log &
+while true; do curl -s -m 2 -o /dev/null -w "%{http_code}\n" http://10.10.0.30:30080/; sleep 0.2; done > /tmp/sonde.log &
 ```
 
 Dans `k8s/30-front.yaml` :
