@@ -78,7 +78,7 @@ Dans le terminal 1, lisez `tp/08-autoscaling/ouverture-billetterie.yaml`, puis l
 kubectl apply -f tp/08-autoscaling/ouverture-billetterie.yaml
 ```
 
-Observez pendant 3 à 4 minutes. Gardez aussi le site ouvert sur ClientWeb : le bandeau change de pod à chaque rafraîchissement.
+Observez pendant 3 à 4 minutes. Gardez aussi le site ouvert sur ClientWeb (ou l'adresse du tunnel, TP 02) : le bandeau change de pod à chaque rafraîchissement.
 
 **Questions :**
 

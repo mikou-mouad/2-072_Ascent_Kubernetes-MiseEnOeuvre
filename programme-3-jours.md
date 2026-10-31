@@ -154,7 +154,7 @@ Les deux modules s'entremêlent dans la journée : la sauvegarde automatique (co
 1. Pousser le dépôt et toutes les branches sur GitHub, le rendre accessible aux participants.
 2. Lancer le workflow `images` (onglet Actions) pour publier `festipass-back:1.0`, `festipass-front:1.0` et `festipass-front:1.1` sur `ghcr.io`, puis rendre les paquets publics.
    La version `festipass-front:1.2` **ne doit pas exister** : elle sert à la panne du TP 04.
-3. Prévoir 3 VM Ubuntu par participant (2 CPU, 4 Go de RAM minimum, idéalement 8 Go sur les workers), plus la machine **ClientWeb** pour le navigateur.
+3. Prévoir 3 VM Ubuntu par participant (2 CPU, 4 Go de RAM minimum, idéalement 8 Go sur les workers), plus la machine **ClientWeb** pour le navigateur. Sans ClientWeb, les participants ouvrent un tunnel sortant Cloudflare (`cloudflared`, sans compte) et utilisent le navigateur de leur poste : la commande est dans les TP 00 et 02.
 
 ## Correspondance avec le programme officiel
 

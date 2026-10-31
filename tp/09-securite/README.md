@@ -143,7 +143,7 @@ kubectl apply -f k8s/securite/30-networkpolicies.yaml
 kubectl get networkpolicies
 ```
 
-Vérifiez que le site fonctionne toujours depuis ClientWeb (achetez un pass), et que la sauvegarde aussi (`sauvegarde-reseau`).
+Vérifiez que le site fonctionne toujours depuis ClientWeb ou l'adresse du tunnel (achetez un pass), et que la sauvegarde aussi (`sauvegarde-reseau`).
 
 ### 5. L'auditrice repasse
 
