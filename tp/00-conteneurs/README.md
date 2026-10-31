@@ -49,13 +49,16 @@ docker images
 
 Depuis la machine **ClientWeb** (bouton **Ouvrir la console** de votre environnement de TP), ouvrez un navigateur sur `http://10.10.0.10:8000` et achetez deux pass.
 
-> **Pas de machine ClientWeb dans votre environnement ?** Ouvrez un tunnel **sortant** depuis le control plane, dans un second terminal :
+> **Pas de machine ClientWeb dans votre environnement ?** Ouvrez un tunnel **sortant** depuis le control plane. Il tourne en arrière-plan (`-d`) : le terminal reste libre.
 >
 > ```bash
-> docker run --rm --network host cloudflare/cloudflared:latest tunnel --no-autoupdate --url http://localhost:8000
+> docker run -d --name cf-tunnel --restart unless-stopped --network host \
+>   cloudflare/cloudflared:latest tunnel --no-autoupdate --url http://localhost:8000
+> sleep 10                                   # le temps que le tunnel obtienne son adresse
+> docker logs cf-tunnel 2>&1 | grep -o 'https://[a-z0-9-]*\.trycloudflare\.com'
 > ```
 >
-> Au bout de quelques secondes, la commande affiche une adresse `https://<mots-au-hasard>.trycloudflare.com` : ouvrez-la dans le navigateur de **votre poste**. Laissez ce terminal ouvert pendant tout le TP (Ctrl+C ferme le tunnel). L'adresse change à chaque lancement.
+> Ouvrez l'adresse affichée dans le navigateur de **votre poste**. Elle reste valable pendant tout le TP ; on supprime le tunnel à l'étape 9.
 
 **Questions :**
 
@@ -76,33 +79,39 @@ docker history ghcr.io/mikou-mouad/festipass-back:1.0 | head
 
 ### 4. Panne : le back s'arrête
 
-Ouvrez un **second terminal** sur le control plane et laissez tourner cette boucle, qui interroge le site toutes les 0,5 s :
+Lancez une **sonde** en arrière-plan (`&` à la fin) : elle interroge le site toutes les 0,5 s et note chaque code HTTP dans un fichier.
 
 ```bash
-while true; do curl -s -o /dev/null -w "%{http_code} " http://localhost:8000/api/version; sleep 0.5; done
+while true; do curl -s -o /dev/null -w "%{http_code} " http://localhost:8000/api/version; sleep 0.5; done > /tmp/sonde.log &
 ```
 
-Dans le premier terminal, simulez un plantage :
+Simulez un plantage, puis regardez ce qu'a vu la sonde :
 
 ```bash
 docker kill app-back-1
+sleep 10
 docker compose ps
+tail -c 120 /tmp/sonde.log; echo         # les derniers codes HTTP
 ```
 
-**Question 5 :** la boucle affiche `502`. Le conteneur redémarre-t-il seul ? Qui doit intervenir, et à 10h03 un vendredi, combien de temps cela prend-il ?
+**Question 5 :** la sonde affiche `502`. Le conteneur redémarre-t-il seul ? Qui doit intervenir, et à 10h03 un vendredi, combien de temps cela prend-il ?
 
 Relancez-le : `docker compose up -d`.
 
 ### 5. Mise à jour : le front passe en 1.1
 
-Yanis livre le front 1.1 (bandeau corail). Gardez la boucle du second terminal ouverte.
+Yanis livre le front 1.1 (bandeau corail). La sonde tourne toujours : on vide son fichier, on met à jour, puis on lit ce qu'elle a vu.
 
 ```bash
+> /tmp/sonde.log
 sed -i 's/festipass-front:1.0/festipass-front:1.1/' docker-compose.yml
 docker compose up -d front
+sleep 5
+cat /tmp/sonde.log; echo
+kill %1                                  # arrête la sonde
 ```
 
-**Question 6 :** la boucle a-t-elle affiché des erreurs (`000`) ? Pourquoi une mise à jour coupe-t-elle le service ici ?
+**Question 6 :** la sonde a-t-elle noté des erreurs (`000` ou `502`) ? Pourquoi une mise à jour coupe-t-elle le service ici ?
 
 ### 6. Le rush : plus de back ?
 
@@ -141,10 +150,11 @@ Complétez le tableau (on le corrige ensemble, il servira de fil rouge jusqu'au 
 ### 9. Nettoyage (obligatoire)
 
 Docker modifie les règles réseau (iptables) de la VM et gênerait Kubernetes. On le retire **avant** le TP 01.
-Si vous avez ouvert le tunnel Cloudflare, fermez-le d'abord (Ctrl+C dans son terminal) : on en ouvrira un nouveau dans le cluster au TP 02.
+Le tunnel Cloudflare disparaît avec lui : on en ouvrira un nouveau dans le cluster au TP 02.
 
 ```bash
 cd ~/festipass/app
+docker rm -f cf-tunnel 2>/dev/null       # le tunnel, s'il existe
 git checkout docker-compose.yml           # annule la modification de l'étape 5
 docker compose down -v
 sudo apt-get purge -y docker.io docker-compose-v2

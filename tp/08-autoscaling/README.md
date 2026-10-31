@@ -60,25 +60,14 @@ kubectl describe hpa back | tail -8
 
 ### 3. 10h00 : l'ouverture
 
-Ouvrez **trois terminaux** sur le control plane :
-
-```bash
-# Terminal 2 : l'HPA
-kubectl get hpa back -w
-```
-
-```bash
-# Terminal 3 : les pods du back et leur consommation
-watch -n 5 'kubectl top pods -l app=back; echo; kubectl get pods -l app=back -o wide'
-```
-
-Dans le terminal 1, lisez `tp/08-autoscaling/ouverture-billetterie.yaml`, puis lâchez les festivaliers :
+Lisez `tp/08-autoscaling/ouverture-billetterie.yaml`, puis lâchez les festivaliers et suivez tout sur un seul écran, rafraîchi toutes les 5 secondes : l'HPA, la consommation et la place de chaque pod du back.
 
 ```bash
 kubectl apply -f tp/08-autoscaling/ouverture-billetterie.yaml
+watch -n 5 'kubectl get hpa back; echo; kubectl top pods -l app=back; echo; kubectl get pods -l app=back -o wide'
 ```
 
-Observez pendant 3 à 4 minutes. Gardez aussi le site ouvert sur ClientWeb (ou l'adresse du tunnel, TP 02) : le bandeau change de pod à chaque rafraîchissement.
+Observez pendant 3 à 4 minutes, puis quittez `watch` avec Ctrl+C. Gardez aussi le site ouvert sur ClientWeb (ou l'adresse du tunnel, TP 02) : le bandeau change de pod à chaque rafraîchissement.
 
 **Questions :**
 
@@ -122,7 +111,11 @@ kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedul
 kubectl delete -f tp/08-autoscaling/ouverture-billetterie.yaml
 ```
 
-Observez le terminal 2 pendant 2 à 3 minutes.
+Suivez la descente pendant 2 à 3 minutes (Ctrl+C pour quitter) :
+
+```bash
+kubectl get hpa back -w
+```
 
 **Question 6 :** au bout de combien de temps le nombre de pods redescend-il ? Pourquoi l'HPA attend-il avant de réduire ?
 

@@ -66,10 +66,10 @@ kill %1
 
 ### 3. Mise à jour sans coupure : le front 1.1
 
-Ouvrez un **second terminal** sur le control plane et laissez tourner cette boucle : elle affiche le code HTTP du site toutes les 0,2 s.
+Lancez une **sonde** en arrière-plan (`&` à la fin) : elle interroge le site toutes les 0,2 s et note chaque code HTTP, un par ligne, dans un fichier.
 
 ```bash
-while true; do curl -s -o /dev/null -w "%{http_code} " http://10.10.0.20:30080/; sleep 0.2; done
+while true; do curl -s -o /dev/null -w "%{http_code}\n" http://10.10.0.20:30080/; sleep 0.2; done > /tmp/sonde.log &
 ```
 
 Dans `k8s/30-front.yaml` :
@@ -92,13 +92,15 @@ kubectl apply -f k8s/30-front.yaml
 kubectl rollout status deployment front
 kubectl rollout history deployment front
 kubectl get replicasets -l app=front
+sort /tmp/sonde.log | uniq -c               # combien de réponses, par code HTTP
+kill %1                                     # arrête la sonde
 ```
 
 Rechargez le site depuis ClientWeb (ou l'adresse du tunnel, TP 02) : le bandeau est passé au corail.
 
 **Questions :**
 
-2. La boucle a-t-elle affiché autre chose que `200` ? Comparez avec la mise à jour du TP 00.
+2. La sonde a-t-elle noté autre chose que `200` ? Comparez avec la mise à jour du TP 00.
 3. Combien de ReplicaSets existe-t-il pour le front ? À quoi sert l'ancien ?
 
 ### 4. La 1.2 : une image qui n'existe pas
