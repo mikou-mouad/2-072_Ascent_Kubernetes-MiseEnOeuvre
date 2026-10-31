@@ -1,0 +1,13 @@
+<section id="c6-solution" data-transition="fade" style="background:#F6F1E9;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Chapitre 6 · La solution</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Séparer les données du pod</h2>
+<table style="font-size:30px;color:#1B2631;font-family:'DM Sans', Arial, sans-serif">
+<tr><th style="width:30%">Besoin</th><th style="width:30%">Sans volume</th><th style="width:40%">Avec Kubernetes</th></tr>
+<tr><td>Garder les billets</td><td>Perdus avec le conteneur</td><td>Un PVC, lié à un volume (PV)</td></tr>
+<tr><td>Créer le disque</td><td>Camille, à la main</td><td>Une StorageClass, à la demande</td></tr>
+<tr><td>Retrouver sa base</td><td>Un pod au nom aléatoire</td><td>StatefulSet : postgres-0 et son volume</td></tr>
+<tr><td>Drainer un nœud</td><td>Base vide ailleurs</td><td>Le pod retrouve son volume</td></tr>
+</table>
+<p style="font-size:30px;line-height:1.4;color:#4A5A6A">Le pod reste jetable. <span style="color:#1B2631"><b>Le volume, lui, ne l'est pas.</b></span></p>
+<aside>Nuance importante pour la dernière ligne : avec un stockage local (local-path, notre cas), le volume reste sur son nœud, et le pod doit y revenir ; il attend en Pending pendant la maintenance. Avec un stockage réseau (Ceph, NFS, disques cloud), le volume suit le pod sur un autre nœud.</aside>
+</section>

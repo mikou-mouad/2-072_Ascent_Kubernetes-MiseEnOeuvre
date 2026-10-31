@@ -1,0 +1,23 @@
+<section id="c7-operateurs" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 7 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">CRD + contrôleur = opérateur</h2>
+<div style="display:flex;align-items:center;gap:20px">
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#E3F2EF;border:2px solid #E2D6C3;border-radius:14px;padding:18px;border-color:#2A9D8F"><p style="font-size:28px;font-weight:700;color:#1B2631">CRD</p><p style="font-size:23px;line-height:1.35;color:#4A5A6A">Un nouveau kind dans l'API : Installation, Cluster, Certificate…</p></div>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:56px;color:#2A9D8F">+</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#E3F2EF;border:2px solid #E2D6C3;border-radius:14px;padding:18px;border-color:#2A9D8F"><p style="font-size:28px;font-weight:700;color:#1B2631">Contrôleur</p><p style="font-size:23px;line-height:1.35;color:#4A5A6A">Une boucle qui surveille ces objets et agit.</p></div>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:56px;color:#2A9D8F">=</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#264653;border:2px solid #E2D6C3;border-radius:14px;padding:18px;border:none"><p style="font-size:28px;font-weight:700;color:#F1FAEE">Opérateur</p><p style="font-size:23px;line-height:1.35;color:#C9D6E3">Le savoir-faire d'un admin, automatisé.</p></div>
+</div>
+<div style="display:flex;gap:32px;align-items:stretch">
+<div style="width:820px;display:flex;flex-direction:column;gap:12px">
+<p style="font-size:28px;color:#4A5A6A"><span style="color:#1B2631"><b>Déjà chez vous</b></span> depuis le TP 01 : Calico</p>
+<div style="width:820px;background:#14212E;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:21px;line-height:1.5;color:#F1FAEE;white-space:nowrap">kubectl get crd | grep tigera<br>kubectl get installation default&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># votre objet</span><br>kubectl get pods -n tigera-operator # le contrôleur<br>kubectl get pods -n calico-system&#160;&#160;&#160;<span style="color:#8A9BAD"># ce qu'il gère</span></p></div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:18px"><h3 style="font-size:26px;font-weight:700;color:#1B2631">CloudNativePG</h3><p style="font-size:24px;line-height:1.4;color:#4A5A6A">PostgreSQL en cluster : réplicas, bascule, sauvegardes.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:18px"><h3 style="font-size:26px;font-weight:700;color:#1B2631">cert-manager</h3><p style="font-size:24px;line-height:1.4;color:#4A5A6A">Des certificats TLS créés et renouvelés.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:18px"><h3 style="font-size:26px;font-weight:700;color:#1B2631">Prometheus Operator</h3><p style="font-size:24px;line-height:1.4;color:#4A5A6A">La supervision décrite en YAML.</p></div>
+</div>
+</div>
+<aside>Au TP 01, custom-resources.yaml a créé un objet Installation : l'opérateur tigera l'a lu et a déployé tout Calico. Si on supprime un DaemonSet de calico-system, l'opérateur le recrée : c'est l'exercice du TP. Pour la sauvegarde de FestiPass en production, un opérateur comme CloudNativePG ferait bien mieux qu'un CronJob : sauvegardes continues, restauration à un instant donné.</aside>
+</section>

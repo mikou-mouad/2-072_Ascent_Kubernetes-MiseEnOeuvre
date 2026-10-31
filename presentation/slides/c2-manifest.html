@@ -1,0 +1,18 @@
+<section id="c2-manifest" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 2 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Anatomie d'un manifest</h2>
+<div style="display:flex;gap:32px;align-items:stretch">
+<div style="width:960px;background:#14212E;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:24px;line-height:1.45;color:#F1FAEE;white-space:nowrap"><span style="color:#FFD166">apiVersion</span>: v1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># groupe/version de l'API</span><br><span style="color:#FFD166">kind</span>: Pod&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># le type d'objet</span><br><span style="color:#FFD166">metadata</span>:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># son identité</span><br>&#160;&#160;name: hello<br>&#160;&#160;namespace: festipass<br>&#160;&#160;labels:<br>&#160;&#160;&#160;&#160;app: hello<br><span style="color:#FFD166">spec</span>:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># l'état voulu : vous l'écrivez</span><br>&#160;&#160;containers:<br>&#160;&#160;- name: hello<br>&#160;&#160;&#160;&#160;image: busybox:1.36<br>&#160;&#160;&#160;&#160;command: ["sleep", "3600"]<br><span style="color:#8FC1F0">status</span>: {}&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># l'état réel : Kubernetes l'écrit</span></p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:24px">
+<h3 style="font-size:28px;font-weight:700">Les apiVersion à connaître</h3>
+<p style="font-size:24px;color:#4A5A6A"><span style="font-family:'JetBrains Mono', monospace;color:#E76F51">v1</span> Pod, Service, ConfigMap, Secret, Namespace</p>
+<p style="font-size:24px;color:#4A5A6A"><span style="font-family:'JetBrains Mono', monospace;color:#E76F51">apps/v1</span> Deployment, StatefulSet, DaemonSet</p>
+<p style="font-size:24px;color:#4A5A6A"><span style="font-family:'JetBrains Mono', monospace;color:#E76F51">batch/v1</span> Job, CronJob</p>
+</div>
+<p style="font-size:26px;font-weight:700;color:#2A9D8F">NE PAS ÉCRIRE DE MÉMOIRE</p>
+<div style="width:672px;background:#14212E;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:22px;line-height:1.45;color:#F1FAEE;white-space:nowrap">kubectl explain deployment.spec<br>kubectl api-resources<br>kubectl run hello --image=busybox:1.36 \<br>&#160;&#160;--dry-run=client -o yaml &gt; pod.yaml<br>kubectl apply -f pod.yaml</p></div>
+</div>
+</div>
+<aside>Les quatre champs de premier niveau sont toujours là. status est rempli par Kubernetes : on ne l'écrit jamais (kubectl get pod -o yaml le montre). kubectl explain est la documentation intégrée, champ par champ (--recursive pour tout voir). --dry-run=client -o yaml génère un squelette correct qu'on complète : c'est la méthode recommandée, y compris à l'examen CKA.</aside>
+</section>

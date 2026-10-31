@@ -1,0 +1,14 @@
+<section id="c0-solution" data-transition="fade" style="background:#F6F1E9;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Chapitre 0 · La solution</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">On décrit l'état voulu, Kubernetes s'en charge</h2>
+<table style="font-size:30px;color:#1B2631;font-family:'DM Sans', Arial, sans-serif">
+<tr><th style="width:26%">Situation</th><th style="width:37%">Sur une VM</th><th style="width:37%">Avec Kubernetes</th></tr>
+<tr><td>Le rush de 10h00</td><td>La VM sature</td><td>Des copies du back, sur plusieurs nœuds</td></tr>
+<tr><td>Un conteneur plante</td><td>Yanis le redémarre à la main</td><td>Redémarrage automatique</td></tr>
+<tr><td>Une mise à jour</td><td>On arrête, on remplace, on relance</td><td>Rolling update, sans coupure</td></tr>
+<tr><td>La machine tombe</td><td>Tout tombe</td><td>Les pods repartent sur un autre nœud</td></tr>
+<tr><td>Les billets vendus</td><td>Sur le disque de la VM</td><td>Un volume persistant, détaché du pod</td></tr>
+<tr><td>Mots de passe</td><td>Dans docker-compose.yml</td><td>Un Secret, hors du dépôt</td></tr>
+</table>
+<aside>Insister sur le modèle déclaratif : on ne dit pas « lance ce conteneur », on dit « je veux 3 copies de ce conteneur ». Chaque ligne du tableau correspond à un chapitre de la formation : on les cochera à l'épilogue.</aside>
+</section>

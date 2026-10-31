@@ -1,0 +1,16 @@
+<section id="c0-ecosysteme" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 0 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Kubernetes dans l'écosystème Cloud</h2>
+<div style="display:flex;gap:24px;align-items:center;background:#E3F2EF;border-left:6px solid #2A9D8F;border-radius:12px;padding:22px 28px">
+<x-icon name="Star" style="color:#2A9D8F;width:48px;height:48px"></x-icon>
+<p style="font-size:28px;line-height:1.4;color:#4A5A6A">Né chez Google, confié en 2015 à la <span style="color:#1B2631"><b>CNCF</b></span> (Cloud Native Computing Foundation), qui héberge aussi containerd, Prometheus, Helm, Calico…</p>
+</div>
+<div style="display:flex;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#EFE6D8;border-radius:16px;padding:26px"><h3 style="font-size:30px;font-weight:700;color:#1B2631">Offres managées</h3><p style="font-size:26px;font-weight:700;color:#E76F51">EKS · AKS · GKE</p><p style="font-size:24px;line-height:1.4;color:#4A5A6A">AWS, Azure, Google. Le control plane est géré pour vous.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#264653;border-radius:16px;padding:26px"><h3 style="font-size:30px;font-weight:700;color:#F1FAEE">kubeadm</h3><p style="font-size:26px;font-weight:700;color:#FFD166">notre choix</p><p style="font-size:24px;line-height:1.4;color:#C9D6E3">L'outil officiel pour monter son propre cluster, sur ses machines.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#EFE6D8;border-radius:16px;padding:26px"><h3 style="font-size:30px;font-weight:700;color:#1B2631">Sur un poste</h3><p style="font-size:26px;font-weight:700;color:#E76F51">Minikube · kind</p><p style="font-size:24px;line-height:1.4;color:#4A5A6A">Un cluster jetable, en local, pour développer et tester.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#EFE6D8;border-radius:16px;padding:26px"><h3 style="font-size:30px;font-weight:700;color:#1B2631">Distributions</h3><p style="font-size:26px;font-weight:700;color:#E76F51">OpenShift · Rancher</p><p style="font-size:24px;line-height:1.4;color:#4A5A6A">Kubernetes avec des outils et du support en plus.</p></div>
+</div>
+<p style="font-size:30px;line-height:1.4;color:#4A5A6A">Partout <span style="color:#1B2631"><b>la même API</b></span> : ce que vous apprenez ici fonctionne sur EKS, AKS ou GKE.</p>
+<aside>Pourquoi kubeadm en formation : on voit toutes les pièces (control plane, certificats, CNI), ce qui est masqué sur une offre managée. Le festival a choisi ses propres VM chez son hébergeur. Question à poser : qui utilise déjà une offre managée ? Les différences portent surtout sur le stockage, le réseau d'entrée et l'authentification.</aside>
+</section>

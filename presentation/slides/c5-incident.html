@@ -1,0 +1,15 @@
+<section id="c5-incident" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Chapitre 5 · L'incident</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:80px;font-weight:600;line-height:1.08;color:#F1FAEE">« Le test de charge de la recette a fait tomber la prod »</h2>
+<div style="display:flex;gap:64px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:12px;min-width:max-content">
+<x-icon name="Clock" style="color:#FFD166;width:56px;height:56px"></x-icon>
+<p style="font-family:'JetBrains Mono', monospace;font-size:40px;line-height:1.3;color:#FFD166">Mardi<br>15h20</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:28px">
+<p style="font-size:34px;line-height:1.5;color:#C9D6E3">Yanis lance un calcul de statistiques dans le namespace de recette, sur le même cluster. Sans aucune limite, il prend toute la RAM d'un worker. Pour survivre, le kubelet expulse des pods : <span style="color:#F1FAEE"><b>ceux de la prod.</b></span> Et personne ne sait dire quels pods appartiennent à quoi.</p>
+<p style="font-family:'Fraunces', Georgia, serif;font-style:italic;font-size:38px;line-height:1.4;color:#F1FAEE;border-left:4px solid #FFD166;padding:0 0 0 28px">« Personne ne m'avait dit qu'un test pouvait couper les ventes. » — Léa</p>
+</div>
+</div>
+<aside>Deux leçons : sans requests ni limits, un pod peut prendre toute la machine ; sans labels cohérents, impossible de trier les pods. Un namespace sépare les noms, pas les ressources : il faut des quotas. Demander : chez vous, qui a le droit de lancer quoi sur le cluster de prod ?</aside>
+</section>

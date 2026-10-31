@@ -1,0 +1,17 @@
+<section id="c9-rbac" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 9 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">RBAC : qui peut faire quoi</h2>
+<div style="display:flex;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:22px"><h3 style="font-size:28px;font-weight:700;color:#1B2631">Authentification · « Qui es-tu ? »</h3><p style="font-size:24px;line-height:1.4;color:#4A5A6A">Un certificat client (kubeconfig) ou un token de ServiceAccount. Kubernetes ne stocke pas d'utilisateurs.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#E3F2EF;border-radius:16px;padding:22px"><h3 style="font-size:28px;font-weight:700;color:#1B2631">Autorisation · « En as-tu le droit ? »</h3><p style="font-size:24px;line-height:1.4;color:#4A5A6A">RBAC : tout est refusé, sauf ce qui est accordé. Role ou ClusterRole, lié par un RoleBinding.</p></div>
+</div>
+<div style="display:flex;gap:32px;align-items:stretch">
+<div style="width:1010px;background:#14212E;border-radius:16px;padding:22px 26px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:19px;line-height:1.38;color:#F1FAEE;white-space:nowrap">apiVersion: rbac.authorization.k8s.io/v1<br>kind: Role<br>metadata: {name: developpeur, namespace: festipass}<br>rules:<br>- apiGroups: ["", "apps"]<br>&#160;&#160;resources: [pods, pods/log, deployments, services, configmaps]<br>&#160;&#160;verbs: [get, list, watch, update, patch]<br>---<br>apiVersion: rbac.authorization.k8s.io/v1<br>kind: RoleBinding<br>metadata: {name: yanis-developpeur, namespace: festipass}<br>subjects: [{kind: User, name: <span style="color:#FFD166">yanis</span>, apiGroup: rbac.authorization.k8s.io}]<br>roleRef: {kind: Role, name: developpeur, apiGroup: rbac.authorization.k8s.io}</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:700;color:#2A9D8F">VÉRIFIER</p>
+<div style="background:#14212E;border-radius:16px;padding:20px 24px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:20px;line-height:1.45;color:#F1FAEE;white-space:nowrap">kubectl auth can-i get pods \<br>&#160;&#160;-n festipass --as yanis<br><span style="color:#8FC1F0">yes</span><br>kubectl auth can-i get secrets \<br>&#160;&#160;-n festipass --as yanis<br><span style="color:#FFD166">no</span></p></div>
+<p style="font-size:24px;line-height:1.4;color:#4A5A6A">Pas de secrets dans la liste : Yanis <span style="color:#1B2631"><b>ne lit plus le mot de passe</b></span>.</p>
+</div>
+</div>
+<aside>Le nom d'utilisateur vient du CN du certificat client : au TP, on signe un certificat pour yanis avec la CA du cluster. Role et RoleBinding : un namespace. ClusterRole et ClusterRoleBinding : tout le cluster (nœuds, PV…). On peut aussi lier un ClusterRole par un RoleBinding pour le réutiliser dans un seul namespace (ex. le ClusterRole view). --as permet à un admin de tester les droits d'un autre.</aside>
+</section>

@@ -1,0 +1,18 @@
+<section id="branches" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Le dépôt des TP</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Une branche par TP, chacune part de la précédente</h2>
+<div style="display:flex;align-items:center;gap:12px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;background:#EFE6D8;color:#1B2631;padding:12px 16px;border-radius:12px">tp-00</p><x-shape kind="arrow-right" style="background:#E76F51;width:34px;height:20px"></x-shape><p style="font-family:'JetBrains Mono', monospace;font-size:24px;background:#EFE6D8;color:#1B2631;padding:12px 16px;border-radius:12px">tp-01</p><x-shape kind="arrow-right" style="background:#E76F51;width:34px;height:20px"></x-shape><p style="font-family:'JetBrains Mono', monospace;font-size:24px;background:#EFE6D8;color:#1B2631;padding:12px 16px;border-radius:12px">tp-02</p><x-shape kind="arrow-right" style="background:#E76F51;width:34px;height:20px"></x-shape><p style="font-family:'JetBrains Mono', monospace;font-size:24px;background:#EFE6D8;color:#1B2631;padding:12px 16px;border-radius:12px">tp-03</p><x-shape kind="arrow-right" style="background:#E76F51;width:34px;height:20px"></x-shape>
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;color:#4A5A6A">…</p><x-shape kind="arrow-right" style="background:#E76F51;width:34px;height:20px"></x-shape><p style="font-family:'JetBrains Mono', monospace;font-size:24px;background:#EFE6D8;color:#1B2631;padding:12px 16px;border-radius:12px">tp-09</p><x-shape kind="arrow-right" style="background:#E76F51;width:34px;height:20px"></x-shape>
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;background:#2A9D8F;color:#F1FAEE;padding:12px 16px;border-radius:12px">solution-finale</p>
+</div>
+<div style="display:flex;gap:40px">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:30px;line-height:1.45;color:#4A5A6A"><span style="color:#1B2631"><b>Branche tp-NN</b></span> = l'application au début du TP NN, son énoncé (tp/NN-*/) et sa correction (solutions/NN-*/).</p>
+<p style="font-size:30px;line-height:1.45;color:#4A5A6A"><span style="color:#1B2631"><b>La correction</b></span> ne dévoile rien du TP suivant.</p>
+<p style="font-size:30px;line-height:1.45;color:#4A5A6A"><span style="color:#1B2631"><b>Bloqué ?</b></span> On consulte la correction, ou on repart de la branche du TP suivant.</p>
+</div>
+<div style="width:900px;background:#14212E;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:24px;line-height:1.55;color:#F1FAEE;white-space:nowrap"><span style="color:#8A9BAD"># une fois, sur le control plane</span><br>git clone https://github.com/<br>&#160;&#160;mikou-mouad/2-072_Ascent_Kubernetes-MiseEnOeuvre.git<br>&#160;&#160;~/festipass<br>cd ~/festipass &amp;&amp; git checkout tp-00-conteneurs<br><br><span style="color:#8A9BAD"># au début de chaque TP suivant</span><br>cd ~/festipass &amp;&amp; git fetch<br>git stash -u<br>git checkout <span style="color:#FFD166">tp-03-configuration</span></p></div>
+</div>
+<aside>Montrer le dépôt sur GitHub : app/ (le code de FestiPass), tp/ (les énoncés), solutions/NN-*/ (la correction de chaque TP : fichiers corrigés et réponses aux questions). git stash -u met de côté votre travail, y compris les fichiers non suivis : rien n'est perdu. La correction est volontairement accessible : chacun avance à son rythme.</aside>
+</section>

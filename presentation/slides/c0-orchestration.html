@@ -1,0 +1,36 @@
+<section id="c0-orchestration" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 0 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Ce qu'un orchestrateur fait à votre place</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px">
+<div style="display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:26px">
+<div style="display:flex;gap:14px;align-items:center"><x-icon name="Server" style="color:#2A9D8F;width:44px;height:44px"></x-icon><h3 style="font-size:32px;font-weight:700">Placement</h3></div>
+<p style="font-size:26px;line-height:1.4;color:#4A5A6A">Choisit un nœud qui a la place pour chaque conteneur.</p>
+<p style="font-size:24px;line-height:1.35;color:#E76F51">le back sur worker1, la base sur worker2</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:26px">
+<div style="display:flex;gap:14px;align-items:center"><x-icon name="Refresh" style="color:#2A9D8F;width:44px;height:44px"></x-icon><h3 style="font-size:32px;font-weight:700">Redémarrage</h3></div>
+<p style="font-size:26px;line-height:1.4;color:#4A5A6A">Relance ce qui meurt, remplace ce qui ne répond plus.</p>
+<p style="font-size:24px;line-height:1.35;color:#E76F51">le back planté repart seul</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:26px">
+<div style="display:flex;gap:14px;align-items:center"><x-icon name="Chart" style="color:#2A9D8F;width:44px;height:44px"></x-icon><h3 style="font-size:32px;font-weight:700">Scaling</h3></div>
+<p style="font-size:26px;line-height:1.4;color:#4A5A6A">Ajoute ou retire des copies identiques.</p>
+<p style="font-size:24px;line-height:1.35;color:#E76F51">8 pods du back à 10h00, 2 le soir</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:26px">
+<div style="display:flex;gap:14px;align-items:center"><x-icon name="Activity" style="color:#2A9D8F;width:44px;height:44px"></x-icon><h3 style="font-size:32px;font-weight:700">Mises à jour</h3></div>
+<p style="font-size:26px;line-height:1.4;color:#4A5A6A">Remplace les copies une par une, revient en arrière si besoin.</p>
+<p style="font-size:24px;line-height:1.35;color:#E76F51">le front 1.1 en ligne sans coupure</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:26px">
+<div style="display:flex;gap:14px;align-items:center"><x-icon name="Cloud" style="color:#2A9D8F;width:44px;height:44px"></x-icon><h3 style="font-size:32px;font-weight:700">Réseau de services</h3></div>
+<p style="font-size:26px;line-height:1.4;color:#4A5A6A">Un nom et une adresse stables devant des copies qui changent.</p>
+<p style="font-size:24px;line-height:1.35;color:#E76F51">le front appelle http://back:8080</p>
+</div>
+<div style="display:flex;flex-direction:column;justify-content:center;gap:12px;background:#264653;border-radius:16px;padding:26px">
+<p style="font-family:'Fraunces', Georgia, serif;font-size:36px;line-height:1.25;color:#F1FAEE">Vous décrivez l'état voulu.</p>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:36px;line-height:1.25;color:#FFD166">Il s'occupe du reste.</p>
+</div>
+</div>
+<aside>Une machine seule ne sait rien faire de tout ça : c'est un humain (Yanis, à 10h03) qui le fait. Kubernetes n'est pas le seul orchestrateur (Nomad, Docker Swarm, ECS…), mais c'est devenu le standard. Chacune de ces cases sera un TP.</aside>
+</section>

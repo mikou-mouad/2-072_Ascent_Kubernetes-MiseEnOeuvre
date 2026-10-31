@@ -1,0 +1,32 @@
+<section id="c6-pvc" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 6 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">PV, PVC et StorageClass</h2>
+<div style="display:flex;align-items:center;gap:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#1D3557;border:2px solid #E2D6C3;border-radius:14px;padding:18px;border:none"><p style="font-size:28px;font-weight:700;color:#F1FAEE">Pod postgres-0</p><p style="font-size:23px;line-height:1.35;color:#C9D6E3">monte le volume dans /var/lib/postgresql/data</p></div>
+<p style="font-size:22px;color:#2A9D8F;font-weight:700">utilise</p><x-shape kind="arrow-right" style="background:#2A9D8F;width:44px;height:26px"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#E3F2EF;border:2px solid #E2D6C3;border-radius:14px;padding:18px;border-color:#2A9D8F"><p style="font-size:28px;font-weight:700;color:#1B2631">PVC</p><p style="font-size:23px;line-height:1.35;color:#4A5A6A">la demande : 1Gi, ReadWriteOnce</p></div>
+<p style="font-size:22px;color:#2A9D8F;font-weight:700">lié à</p><x-shape kind="arrow-right" style="background:#2A9D8F;width:44px;height:26px"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#FFFFFF;border:2px solid #E2D6C3;border-radius:14px;padding:18px"><p style="font-size:28px;font-weight:700;color:#1B2631">PV</p><p style="font-size:23px;line-height:1.35;color:#4A5A6A">le volume réel, sur un disque d'un nœud</p></div>
+<x-shape kind="arrow-left" style="background:#E76F51;width:44px;height:26px"></x-shape><p style="font-size:22px;color:#E76F51;font-weight:700">crée</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#EFE6D8;border:2px solid #E2D6C3;border-radius:14px;padding:18px"><p style="font-size:28px;font-weight:700;color:#1B2631">StorageClass</p><p style="font-size:23px;line-height:1.35;color:#4A5A6A">local-path, classe par défaut</p></div>
+</div>
+<div style="display:flex;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:24px">
+<h3 style="font-size:30px;font-weight:700">Provisionnement</h3>
+<p style="font-size:25px;line-height:1.4;color:#4A5A6A"><span style="color:#1B2631"><b>Statique</b></span> : l'admin crée les PV à l'avance.</p>
+<p style="font-size:25px;line-height:1.4;color:#4A5A6A"><span style="color:#1B2631"><b>Dynamique</b></span> : la StorageClass crée le PV quand un PVC arrive.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:24px">
+<h3 style="font-size:30px;font-weight:700">accessModes</h3>
+<p style="font-size:25px;line-height:1.4;color:#4A5A6A"><span style="color:#1B2631"><b>ReadWriteOnce</b></span> : un seul nœud à la fois.</p>
+<p style="font-size:25px;line-height:1.4;color:#4A5A6A"><span style="color:#1B2631"><b>ReadWriteMany</b></span> : plusieurs nœuds, stockage réseau.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:24px">
+<h3 style="font-size:30px;font-weight:700">reclaimPolicy</h3>
+<p style="font-size:25px;line-height:1.4;color:#4A5A6A"><span style="color:#1B2631"><b>Delete</b></span> : le PV part avec le PVC.</p>
+<p style="font-size:25px;line-height:1.4;color:#4A5A6A"><span style="color:#1B2631"><b>Retain</b></span> : on garde les données, nettoyage à la main.</p>
+</div>
+</div>
+<div style="background:#14212E;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:22px;line-height:1.5;color:#F1FAEE;white-space:nowrap">kubectl get storageclass&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># (default) devant local-path</span><br>kubectl get pvc,pv -n festipass&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># STATUS : Bound</span></p></div>
+<aside>Le développeur écrit le PVC (« j'ai besoin de 1 Gi »), l'admin fournit la StorageClass (« voici comment créer des disques »). Notre cluster n'a pas de stockage réseau : local-path-provisioner crée un dossier sur le nœud. Il est installé au début du TP 06. Delete est la politique par défaut en provisionnement dynamique : supprimer le PVC efface les billets. Il existe aussi ReadOnlyMany et ReadWriteOncePod.</aside>
+</section>

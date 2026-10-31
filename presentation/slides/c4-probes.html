@@ -1,0 +1,26 @@
+<section id="c4-probes" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 4 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Trois probes, trois questions</h2>
+<div style="display:flex;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#EFE6D8;border-radius:16px;padding:26px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:26px;font-weight:700;color:#2A9D8F">startupProbe</p>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:32px;font-style:italic;line-height:1.25">« As-tu fini de démarrer ? »</p>
+<p style="font-size:25px;line-height:1.4;color:#4A5A6A">Tant qu'elle échoue, les deux autres attendent. Trop longtemps : redémarrage.</p>
+<p style="font-size:23px;line-height:1.35;color:#E76F51">pour les démarrages lents</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#EFE6D8;border-radius:16px;padding:26px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:26px;font-weight:700;color:#2A9D8F">readinessProbe</p>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:32px;font-style:italic;line-height:1.25">« Peux-tu recevoir du trafic ? »</p>
+<p style="font-size:25px;line-height:1.4;color:#4A5A6A">Échec : le pod sort du Service. Il n'est pas redémarré.</p>
+<p style="font-size:23px;line-height:1.35;color:#E76F51">bloque aussi un rolling update</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#EFE6D8;border-radius:16px;padding:26px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:26px;font-weight:700;color:#2A9D8F">livenessProbe</p>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:32px;font-style:italic;line-height:1.25">« Es-tu encore vivant ? »</p>
+<p style="font-size:25px;line-height:1.4;color:#4A5A6A">Échec : le kubelet redémarre le conteneur.</p>
+<p style="font-size:23px;line-height:1.35;color:#E76F51">trop sévère : CrashLoopBackOff</p>
+</div>
+</div>
+<div style="background:#14212E;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:22px;line-height:1.42;color:#F1FAEE;white-space:nowrap">readinessProbe:<br>&#160;&#160;httpGet: {path: /readyz, port: http}&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># la base répond ?</span><br>&#160;&#160;periodSeconds: 5<br>livenessProbe:<br>&#160;&#160;httpGet: {path: /healthz, port: http}&#160;&#160;&#160;<span style="color:#8A9BAD"># le processus répond ?</span><br>&#160;&#160;initialDelaySeconds: 10</p></div>
+<aside>Le /readyz du back interroge PostgreSQL : si la base tombe, les pods du back sortent du Service au lieu de renvoyer des erreurs. Ne jamais faire dépendre la liveness d'une dépendance externe : si la base tombe, tous les back redémarreraient en boucle. Types de probes : httpGet, tcpSocket, exec, grpc.</aside>
+</section>
