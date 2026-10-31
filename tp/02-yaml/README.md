@@ -165,9 +165,9 @@ Le Service est de type **NodePort** : le site répond sur le port `30080` de **c
 
 | Nœud | INTERNAL-IP |
 |------|-------------|
-| controlplane | 10.10.0.20 |
-| worker1 | 10.10.0.30 |
-| worker2 | 10.10.0.40 |
+| control-plane | 10.10.0.20 |
+| worker-1 | 10.10.0.30 |
+| worker-2 | 10.10.0.40 |
 
 Depuis la machine **ClientWeb**, ouvrez `http://10.10.0.30:30080` et achetez des pass. Partout où un énoncé écrit `<IP d'un nœud>`, utilisez l'une de ces adresses.
 
