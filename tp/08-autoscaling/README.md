@@ -39,7 +39,7 @@ kubectl get deploy back -o jsonpath='{.spec.template.spec.containers[0].resource
 Faites générer le manifest par kubectl :
 
 ```bash
-kubectl autoscale deployment back --cpu-percent=60 --min=2 --max=10 \
+kubectl autoscale deployment back --cpu=60% --min=2 --max=10 \
   --dry-run=client -o yaml > k8s/50-hpa.yaml
 ```
 
