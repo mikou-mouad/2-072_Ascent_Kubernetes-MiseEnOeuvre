@@ -199,9 +199,6 @@ kubectl run test --rm -it --image=public.ecr.aws/docker/library/busybox:1.36 --r
 curl -sI http://10.10.0.20:31690 | head -1
 curl -sI http://10.10.0.30:31690 | head -1
 curl -sI http://10.10.0.40:31690 | head -1
-
-# Nettoyage : PAS PENDANT LE TP 01, qui réutilise ce déploiement nginx (il le supprime à la fin)
-kubectl delete svc nginx && kubectl delete deployment nginx
 ```
 
 **Critères de réussite :** tous les nœuds sont `Ready`, la page d'accueil nginx est renvoyée par le test busybox, et les trois nœuds répondent `HTTP/1.1 200 OK`.
@@ -235,5 +232,5 @@ Le cluster est prêt tel quel. Gardez les éléments suivants pour le TP corresp
 
 1. Faire un snapshot des 3 VM maintenant, comme point de restauration propre.
 2. Réserver ou fixer les adresses IP des 3 nœuds.
-3. Supprimer les objets de test nginx.
+3. Supprimer les objets de test nginx (dernière étape du TP 01).
 4. Vérifier la RAM des workers (4 Go minimum, 8 Go idéalement).
