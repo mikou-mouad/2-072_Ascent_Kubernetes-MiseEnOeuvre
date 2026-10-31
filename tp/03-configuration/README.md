@@ -1,6 +1,6 @@
 # TP 03 – « Le mot de passe de la base est sur GitHub »
 
-**Durée :** 1 h 25 · **Branche :** `tp-03-configuration` · **Correction :** `solutions/03-configuration/`, dans cette branche
+**Durée :** 1 h 15 (20 min avant le déjeuner, 55 min après) · **Branche :** `tp-03-configuration` · **Correction :** `solutions/03-configuration/`, dans cette branche
 
 ## L'incident
 

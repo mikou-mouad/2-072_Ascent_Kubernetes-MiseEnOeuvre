@@ -1,6 +1,6 @@
 # TP 00 – FestiPass « comme l'an dernier »
 
-**Durée :** 45 min · **Branche :** `tp-00-conteneurs` · **Correction :** `solutions/00-conteneurs/`, dans cette branche
+**Durée :** 1 h · **Branche :** `tp-00-conteneurs` · **Correction :** `solutions/00-conteneurs/`, dans cette branche
 
 ## L'incident
 
@@ -120,7 +120,7 @@ Rechargez la page.
 
 ### 8. Ce qu'on attend d'un orchestrateur
 
-En binôme, complétez le tableau (on le corrige ensemble, il servira de fil rouge jusqu'au dernier jour) :
+Complétez le tableau (on le corrige ensemble, il servira de fil rouge jusqu'au dernier jour) :
 
 | Problème constaté | Ce qu'il faudrait |
 |-------------------|-------------------|
