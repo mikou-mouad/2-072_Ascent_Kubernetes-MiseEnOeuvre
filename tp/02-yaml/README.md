@@ -171,6 +171,18 @@ Le Service est de type **NodePort** : le site répond sur le port `30080` de **c
 
 Depuis la machine **ClientWeb**, ouvrez `http://10.10.0.20:30080` et achetez des pass. Partout où un énoncé écrit `<IP d'un nœud>`, utilisez l'une de ces adresses.
 
+> **Pas de machine ClientWeb dans votre environnement ?** Docker a été retiré au TP 00 : le tunnel sortant tourne maintenant **dans le cluster**, sous forme de Deployment (il survit aux redémarrages de pods et aux drains des TP suivants). On le place dans le namespace `default`, hors de l'application :
+>
+> ```bash
+> kubectl -n default create deployment tunnel --image=cloudflare/cloudflared:latest \
+>   -- cloudflared tunnel --no-autoupdate --url http://front.festipass.svc.cluster.local:8080
+> kubectl -n default rollout status deployment tunnel
+> sleep 10                  # le temps que le tunnel obtienne son adresse
+> kubectl -n default logs deploy/tunnel | grep -o 'https://[a-z0-9-]*\.trycloudflare\.com'
+> ```
+>
+> Ouvrez l'adresse affichée dans le navigateur de **votre poste** : c'est votre « ClientWeb » jusqu'à la fin de la formation. Si le pod du tunnel redémarre, l'adresse change : relancez la commande `logs` pour la retrouver. Le tunnel passe par le Service `front` : pour tester le NodePort lui-même, utilisez `curl` depuis le control plane (`curl -s http://10.10.0.10:30080/ | head -5`).
+
 **Question 9 :** pourquoi le site répond-il aussi sur `10.10.0.10`, alors qu'aucun pod du front ne tourne sur le control plane ?
 
 ### B5. Scaling et auto-réparation
