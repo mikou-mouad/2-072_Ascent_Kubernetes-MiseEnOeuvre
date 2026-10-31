@@ -72,9 +72,12 @@ spec:
               args:
                 - |
                   set -e
-                  FICHIER=/sauvegardes/festipass-$(date +%Y%m%d-%H%M%S).sql.gz
-                  pg_dump festipass | gzip > "$FICHIER"
-                  echo "Sauvegarde : $FICHIER"
+                  SQL=/sauvegardes/festipass-$(date +%Y%m%d-%H%M%S).sql
+                  # pas de « pg_dump | gzip » : le code de retour serait celui de gzip,
+                  # et un pg_dump en échec donnerait une sauvegarde vide… « réussie »
+                  pg_dump festipass > "$SQL" || { rm -f "$SQL"; exit 1; }
+                  gzip "$SQL"
+                  echo "Sauvegarde : $SQL.gz"
                   ls -lh /sauvegardes
                   # on garde les 7 dernières
                   ls -1t /sauvegardes/*.sql.gz | tail -n +8 | xargs -r rm -f
