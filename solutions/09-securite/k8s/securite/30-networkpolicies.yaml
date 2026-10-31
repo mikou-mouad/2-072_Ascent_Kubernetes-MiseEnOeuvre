@@ -1,0 +1,68 @@
+# 1. Par défaut, plus aucun pod de festipass n'accepte de connexion entrante.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: refus-par-defaut
+  namespace: festipass
+spec:
+  podSelector: {}
+  policyTypes: ["Ingress"]
+---
+# 2. Le front accepte tout le monde sur 8080 (les festivaliers arrivent par le NodePort).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: front-depuis-partout
+  namespace: festipass
+spec:
+  podSelector:
+    matchLabels:
+      app: front
+  policyTypes: ["Ingress"]
+  ingress:
+    - ports:
+        - port: 8080
+          protocol: TCP
+---
+# 3. Le back n'accepte que le front.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: back-depuis-front
+  namespace: festipass
+spec:
+  podSelector:
+    matchLabels:
+      app: back
+  policyTypes: ["Ingress"]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: front
+      ports:
+        - port: 8080
+          protocol: TCP
+---
+# 4. PostgreSQL n'accepte que le back et la sauvegarde.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: postgres-depuis-back-et-sauvegarde
+  namespace: festipass
+spec:
+  podSelector:
+    matchLabels:
+      app: postgres
+  policyTypes: ["Ingress"]
+  ingress:
+    - from:                       # deux éléments dans « from » : l'un OU l'autre
+        - podSelector:
+            matchLabels:
+              app: back
+        - podSelector:
+            matchLabels:
+              app: sauvegarde
+      ports:
+        - port: 5432
+          protocol: TCP

@@ -14,7 +14,7 @@ metadata:
     festipass.fr/equipe: developpement
     festipass.fr/contact: yanis@festipass.example
 spec:
-  replicas: 2
+  # pas de « replicas » : c'est l'HPA (50-hpa.yaml) qui décide du nombre de pods
   selector:
     matchLabels:
       app: back

@@ -1,0 +1,31 @@
+# Yanis, développeur : il observe tout dans festipass, il peut livrer (rollout), il ne lit pas les Secrets.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: developpeur
+  namespace: festipass
+rules:
+  - apiGroups: [""]                       # le groupe « core » : pods, services…
+    resources: ["pods", "pods/log", "services", "configmaps", "events", "persistentvolumeclaims"]
+    verbs: ["TODO"]                       # lecture seule : 3 verbes
+  - apiGroups: ["apps"]
+    resources: ["deployments", "replicasets", "statefulsets"]
+    verbs: ["TODO"]                       # lecture seule
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["TODO"]                       # modifier un Deployment (set image, rollout restart / undo) : 2 verbes
+  # TODO : lecture seule des horizontalpodautoscalers (groupe autoscaling) et des jobs / cronjobs (groupe batch)
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: yanis-developpeur
+  namespace: festipass
+subjects:
+  - kind: User
+    name: TODO
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: TODO
+  apiGroup: rbac.authorization.k8s.io
