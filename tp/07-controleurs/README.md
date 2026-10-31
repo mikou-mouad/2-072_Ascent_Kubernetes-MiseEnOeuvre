@@ -1,6 +1,6 @@
 # TP 07 – « Personne n'a fait la sauvegarde cette nuit »
 
-**Durée :** 1 h · **Branche :** `tp-07-controleurs` · **Correction :** `solutions/07-controleurs/`, dans cette branche
+**Durée :** 45 min (35 min avant le déjeuner, 10 min après) · **Branche :** `tp-07-controleurs` · **Correction :** `solutions/07-controleurs/`, dans cette branche
 
 ## L'incident
 
@@ -75,7 +75,7 @@ Achetez un pass, puis relancez une seconde sauvegarde (`sauvegarde-manuelle-2`).
 
 **Question 3 :** un Job terminé a-t-il encore un pod ? Dans quel état ? Pourquoi le garder ?
 
-### 4. Une sauvegarde qui échoue
+### 4. Une sauvegarde qui échoue (si vous avez le temps)
 
 Simulons un mot de passe erroné : créez un Job à partir du CronJob, mais en changeant le mot de passe :
 

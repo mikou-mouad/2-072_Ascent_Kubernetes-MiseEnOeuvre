@@ -1,6 +1,6 @@
 # TP 09 – « Depuis n'importe quel pod, je lis votre base »
 
-**Durée :** 1 h (10 min avant la pause, 50 min après) · **Branche :** `tp-09-securite` · **Correction :** `solutions/09-securite/`, dans cette branche
+**Durée :** 55 min · **Branche :** `tp-09-securite` · **Correction :** `solutions/09-securite/`, dans cette branche
 
 ## L'incident
 
@@ -26,7 +26,7 @@ kubectl apply -R -f k8s/
 
 ## Étapes
 
-### 1. Ce que voit un pod (avant la pause)
+### 1. Ce que voit un pod
 
 Rejouez l'audit : un pod quelconque, dans un autre namespace, avec un client PostgreSQL.
 
