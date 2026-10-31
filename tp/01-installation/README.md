@@ -18,10 +18,6 @@
 ## Étapes
 
 Suivez le [guide d'installation](../../guide-installation-cluster.md), sections 2 à 7.
-
-> **Attention, section 7 du guide : ne lancez pas le nettoyage** (`kubectl delete svc nginx && kubectl delete deployment nginx`).
-> Le déploiement `nginx` de test sert aux étapes 5 à 7 de ce TP (scheduler, cordon, drain). On le supprime à l'étape 8.
-> Vous l'avez déjà supprimé ? Recréez-le : `kubectl create deployment nginx --image=public.ecr.aws/docker/library/nginx:1.27 --replicas=2`.
 À chaque étape, répondez aux questions ci-dessous (on les corrige ensemble).
 
 > Le TP 00 s'est terminé par le redémarrage du control plane. Si vous ne l'avez pas fait, retirez Docker maintenant (TP 00, étape 9).
@@ -56,7 +52,7 @@ kubectl get nodes
 
 ### 4. Validation (section 7)
 
-Réalisez les tests de la section 7, **sans faire le nettoyage final** : on garde le déploiement nginx pour l'étape suivante.
+Réalisez les tests de la section 7. Gardez le déploiement `nginx` et son Service : ils servent aux étapes 5 à 7, on les supprime à l'étape 8.
 
 - [ ] 3 nœuds `Ready`
 - [ ] la page nginx est renvoyée par le test busybox (DNS + réseau des services)
@@ -165,9 +161,17 @@ kubectl get nodes -L festipass/scene
 15. Quels labels worker2 a-t-il perdus ? Pourquoi ? Remettez-les (étape 6).
 16. Pourquoi générer une nouvelle commande `join` plutôt que de reprendre celle du matin ? Que contient-elle en plus du token ?
 
-### 8. Point de restauration
+### 8. Nettoyage
 
-- Supprimez les objets de test : `kubectl delete service,deployment nginx --ignore-not-found`.
+Les objets de test ont servi : supprimez-les.
+
+```bash
+kubectl delete svc nginx && kubectl delete deployment nginx
+kubectl get all                     # il ne reste que le Service kubernetes
+```
+
+### 9. Point de restauration
+
 - Prenez un **snapshot des 3 VM**. Vous y reviendrez en cas de problème pendant la formation.
 
 ## Bonus
