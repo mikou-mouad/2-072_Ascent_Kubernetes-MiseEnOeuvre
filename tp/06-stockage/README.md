@@ -1,6 +1,6 @@
 # TP 06 – « Maintenance d'un nœud : tous les billets vendus ont disparu »
 
-**Durée :** 1 h · **Branche :** `tp-06-stockage` · **Correction :** `solutions/06-stockage/`, dans cette branche
+**Durée :** 50 min · **Branche :** `tp-06-stockage` · **Correction :** `solutions/06-stockage/`, dans cette branche
 
 ## L'incident
 
