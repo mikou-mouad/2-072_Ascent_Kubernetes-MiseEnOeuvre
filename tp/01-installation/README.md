@@ -85,9 +85,9 @@ kubectl scale deployment nginx --replicas=2
 **Lire un nœud :**
 
 ```bash
-kubectl describe node worker1 | sed -n '/Capacity/,/Allocated resources/p'
+kubectl describe node worker-1 | sed -n '/Capacity/,/Allocated resources/p'
 kubectl get nodes --show-labels
-kubectl describe node controlplane | grep -A2 Taints
+kubectl describe node control-plane | grep -A2 Taints
 ```
 
 11. Quelle différence entre `Capacity` et `Allocatable` ?
@@ -96,69 +96,69 @@ kubectl describe node controlplane | grep -A2 Taints
 **Donner un rôle et des labels aux workers :**
 
 ```bash
-kubectl label node worker1 worker2 node-role.kubernetes.io/worker=
-kubectl label node worker1 festipass/scene=plage
-kubectl label node worker2 festipass/scene=remparts
+kubectl label node worker-1 worker-2 node-role.kubernetes.io/worker=
+kubectl label node worker-1 festipass/scene=plage
+kubectl label node worker-2 festipass/scene=remparts
 kubectl get nodes -L festipass/scene
 ```
 
-**Maintenance d'un nœud :** Camille doit appliquer les mises à jour de sécurité de worker2.
+**Maintenance d'un nœud :** Camille doit appliquer les mises à jour de sécurité de worker-2.
 
 ```bash
 kubectl scale deployment nginx --replicas=4
-kubectl get pods -o wide                      # répartis sur worker1 et worker2
+kubectl get pods -o wide                      # répartis sur worker-1 et worker-2
 
-kubectl cordon worker2                        # plus de nouveaux pods sur worker2
+kubectl cordon worker-2                        # plus de nouveaux pods sur worker-2
 kubectl get nodes                             # SchedulingDisabled
 kubectl scale deployment nginx --replicas=6
-kubectl get pods -o wide                      # les nouveaux vont tous sur worker1
+kubectl get pods -o wide                      # les nouveaux vont tous sur worker-1
 
-kubectl drain worker2 --ignore-daemonsets     # évacue worker2
-kubectl get pods -o wide                      # tous sur worker1
+kubectl drain worker-2 --ignore-daemonsets     # évacue worker-2
+kubectl get pods -o wide                      # tous sur worker-1
 ```
 
-13. Que sont devenus les pods `calico-node` et `kube-proxy` de worker2 ? Pourquoi faut-il `--ignore-daemonsets` ?
+13. Que sont devenus les pods `calico-node` et `kube-proxy` de worker-2 ? Pourquoi faut-il `--ignore-daemonsets` ?
 
 La maintenance est finie :
 
 ```bash
-kubectl uncordon worker2
+kubectl uncordon worker-2
 kubectl get pods -o wide
 ```
 
-14. Les pods nginx reviennent-ils seuls sur worker2 ? Comment les rééquilibrer ?
+14. Les pods nginx reviennent-ils seuls sur worker-2 ? Comment les rééquilibrer ?
 
 ### 7. Retirer puis réintégrer un worker
 
-Le disque de worker2 doit être changé : Camille le retire du cluster, puis le réintègre.
+Le disque de worker-2 doit être changé : Camille le retire du cluster, puis le réintègre.
 
 Sur le **control plane** :
 
 ```bash
-kubectl drain worker2 --ignore-daemonsets
-kubectl delete node worker2
+kubectl drain worker-2 --ignore-daemonsets
+kubectl delete node worker-2
 kubectl get nodes
 ```
 
-Sur **worker2** : effacez tout ce que `kubeadm join` avait configuré.
+Sur **worker-2** : effacez tout ce que `kubeadm join` avait configuré.
 
 ```bash
 sudo kubeadm reset -f
 sudo rm -rf /etc/cni/net.d
 ```
 
-Sur le **control plane**, générez une nouvelle commande d'adhésion, puis lancez-la avec `sudo` sur **worker2** :
+Sur le **control plane**, générez une nouvelle commande d'adhésion, puis lancez-la avec `sudo` sur **worker-2** :
 
 ```bash
 kubeadm token create --print-join-command
 ```
 
 ```bash
-kubectl get nodes -w                 # Ctrl+C quand worker2 est Ready
+kubectl get nodes -w                 # Ctrl+C quand worker-2 est Ready
 kubectl get nodes -L festipass/scene
 ```
 
-15. Quels labels worker2 a-t-il perdus ? Pourquoi ? Remettez-les (étape 6).
+15. Quels labels worker-2 a-t-il perdus ? Pourquoi ? Remettez-les (étape 6).
 16. Pourquoi générer une nouvelle commande `join` plutôt que de reprendre celle du matin ? Que contient-elle en plus du token ?
 
 ### 8. Nettoyage
