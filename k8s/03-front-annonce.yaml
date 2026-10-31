@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: front-annonce
+  namespace: festipass
+data:
+  annonce.txt: |
+    Billetterie ouverte vendredi à 10h00 · 6 billets maximum par personne

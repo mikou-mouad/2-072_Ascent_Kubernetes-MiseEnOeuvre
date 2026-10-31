@@ -21,19 +21,25 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: back-config
           env:
-            - name: DB_HOST
-              value: postgres
-            - name: DB_NAME
-              value: festipass
             - name: DB_USER
-              value: festipass
+              valueFrom:
+                secretKeyRef:
+                  name: festipass-db
+                  key: POSTGRES_USER
             - name: DB_PASSWORD
-              value: embruns-2026
-            - name: FESTIVAL
-              value: Festival des Embruns
+              valueFrom:
+                secretKeyRef:
+                  name: festipass-db
+                  key: POSTGRES_PASSWORD
             - name: CLE_SIGNATURE
-              value: cle-de-dev
+              valueFrom:
+                secretKeyRef:
+                  name: back-signature
+                  key: CLE_SIGNATURE
           livenessProbe:
             httpGet:
               path: /healthz

@@ -26,6 +26,14 @@ spec:
               path: /healthz
               port: http
             periodSeconds: 5
+          volumeMounts:
+            - name: annonce
+              mountPath: /usr/share/nginx/html/config
+              readOnly: true
+      volumes:
+        - name: annonce
+          configMap:
+            name: front-annonce
 ---
 apiVersion: v1
 kind: Service

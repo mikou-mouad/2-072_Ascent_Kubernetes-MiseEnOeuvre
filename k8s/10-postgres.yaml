@@ -1,4 +1,3 @@
-# Fourni complet : lisez-le avant de l'appliquer.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -25,10 +24,9 @@ spec:
           env:
             - name: POSTGRES_DB
               value: festipass
-            - name: POSTGRES_USER
-              value: festipass
-            - name: POSTGRES_PASSWORD
-              value: embruns-2026
+          envFrom:
+            - secretRef:
+                name: festipass-db
           readinessProbe:
             exec:
               command: ["pg_isready", "-U", "festipass", "-d", "festipass"]
