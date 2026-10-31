@@ -1,6 +1,6 @@
 # TP 02 – YAML, Pod, Deployment, Service : FestiPass arrive sur le cluster
 
-**Durée :** 2 h 10 (partie A : 50 min le jour 1, partie B : 1 h 20 le jour 2) · **Branche :** `tp-02-yaml` · **Correction :** `solutions/02-yaml/`, dans cette branche
+**Durée :** 2 h (partie A : 1 h, partie B : 1 h) · **Branche :** `tp-02-yaml` · **Correction :** `solutions/02-yaml/`, dans cette branche
 
 ## L'incident
 
@@ -28,7 +28,7 @@ Toutes les commandes se lancent depuis `~/festipass`.
 
 ---
 
-## Partie A – Premiers pas en YAML (jour 1, 50 min)
+## Partie A – Premiers pas en YAML (1 h)
 
 ### A1. Réparer le manifest de Yanis
 
@@ -103,7 +103,7 @@ Nettoyage : `kubectl delete -f tp/02-yaml/hello-deploy.yaml`.
 
 ---
 
-## Partie B – FestiPass sur le cluster (jour 2, 1 h 20)
+## Partie B – FestiPass sur le cluster (1 h)
 
 ### Ce qu'on migre
 
@@ -166,10 +166,10 @@ Le Service est de type **NodePort** : le site répond sur le port `30080` de **c
 | Nœud | INTERNAL-IP |
 |------|-------------|
 | controlplane | 10.10.0.10 |
-| worker1 | 10.10.0.11 |
-| worker2 | 10.10.0.12 |
+| worker1 | 10.10.0.20 |
+| worker2 | 10.10.0.30 |
 
-Depuis la machine **ClientWeb**, ouvrez `http://10.10.0.11:30080` et achetez des pass. Partout où un énoncé écrit `<IP d'un nœud>`, utilisez l'une de ces adresses.
+Depuis la machine **ClientWeb**, ouvrez `http://10.10.0.20:30080` et achetez des pass. Partout où un énoncé écrit `<IP d'un nœud>`, utilisez l'une de ces adresses.
 
 **Question 9 :** pourquoi le site répond-il aussi sur `10.10.0.10`, alors qu'aucun pod du front ne tourne sur le control plane ?
 

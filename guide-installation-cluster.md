@@ -10,8 +10,8 @@ Les sections 2 et 3 s'exécutent sur **tous les nœuds**, les suivantes comme in
 | Nœud         | Rôle          | Adresse IP                                |
 |--------------|---------------|-------------------------------------------|
 | controlplane | Control plane | 10.10.0.10                                |
-| worker1      | Worker        | 10.10.0.11                                |
-| worker2      | Worker        | 10.10.0.12 (à adapter à l'adresse réelle) |
+| worker1      | Worker        | 10.10.0.20                                |
+| worker2      | Worker        | 10.10.0.30 (à adapter à l'adresse réelle) |
 
 | Composant             | Choix                                                                 |
 |-----------------------|-----------------------------------------------------------------------|
@@ -168,8 +168,8 @@ kubectl run test --rm -it --image=public.ecr.aws/docker/library/busybox:1.36 --r
 
 # NodePort sur chaque nœud (remplacer 31690 par votre port)
 curl -sI http://10.10.0.10:31690 | head -1
-curl -sI http://10.10.0.11:31690 | head -1
-curl -sI http://10.10.0.12:31690 | head -1
+curl -sI http://10.10.0.20:31690 | head -1
+curl -sI http://10.10.0.30:31690 | head -1
 
 # Nettoyage
 kubectl delete svc nginx && kubectl delete deployment nginx

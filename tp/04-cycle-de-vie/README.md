@@ -1,6 +1,6 @@
 # TP 04 – « La version 1.2 est cassée, et personne ne sait pourquoi »
 
-**Durée :** 1 h 10 · **Branche :** `tp-04-cycle-de-vie` · **Correction :** `solutions/04-cycle-de-vie/`, dans cette branche
+**Durée :** 1 h 25 (metrics-server avant la pause, le reste après) · **Branche :** `tp-04-cycle-de-vie` · **Correction :** `solutions/04-cycle-de-vie/`, dans cette branche
 
 ## L'incident
 
@@ -69,7 +69,7 @@ kill %1
 Ouvrez un **second terminal** sur le control plane et laissez tourner cette boucle : elle affiche le code HTTP du site toutes les 0,2 s.
 
 ```bash
-while true; do curl -s -o /dev/null -w "%{http_code} " http://10.10.0.11:30080/; sleep 0.2; done
+while true; do curl -s -o /dev/null -w "%{http_code} " http://10.10.0.20:30080/; sleep 0.2; done
 ```
 
 Dans `k8s/30-front.yaml` :
