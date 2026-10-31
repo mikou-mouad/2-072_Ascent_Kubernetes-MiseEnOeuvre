@@ -37,12 +37,14 @@ Ports à ouvrir entre les nœuds : TCP 6443, 2379-2380, 10250, 30000-32767 (Node
 > ```bash
 > unset PROMPT_COMMAND
 > PS1='\u@\h:\w\$ '
+> PS0=''
 > ```
 >
 > C'est à retaper à chaque nouvelle session SSH (et après chaque redémarrage), sauf si vous l'ajoutez une fois pour toutes à la fin de `~/.bashrc`, sur chaque machine :
 >
 > ```bash
 > echo 'unset PROMPT_COMMAND; PS1="\u@\h:\w\$ "' >> ~/.bashrc
+> echo 'PS0=""' >> ~/.bashrc
 > source ~/.bashrc
 > ```
 >
@@ -55,7 +57,7 @@ Ports à ouvrir entre les nœuds : TCP 6443, 2379-2380, 10250, 30000-32767 (Node
 > Ajoutez la même ligne à la fin du fichier trouvé (remplacez `<fichier>` par son nom ; `sudo` est nécessaire pour un fichier de `/etc`) :
 >
 > ```bash
-> echo 'unset PROMPT_COMMAND; PS1="\u@\h:\w\$ "' | sudo tee -a <fichier>
+> echo 'unset PROMPT_COMMAND; PS1="\u@\h:\w\$ "; PS0=""' | sudo tee -a <fichier>
 > ```
 
 > **Docker a été installé au TP 00 sur le control plane ?** Il doit avoir été désinstallé, et la VM redémarrée (dernière étape du TP 00) : Docker modifie les règles iptables et gêne le réseau des pods.
@@ -215,7 +217,7 @@ kubectl delete svc nginx && kubectl delete deployment nginx
 | Le NodePort ne répond que sur un nœud | Pare-feu bloquant le trafic Calico (UDP 4789, TCP 179, TCP 5473).                          |
 | `wget: bad address`                   | CoreDNS ne tourne pas. Vérifier `kubectl get pods -n kube-system`.                        |
 | Échecs étranges entre nœuds           | Le MTU est de 9000 sur ces VM. Vérifier que tous les nœuds utilisent le même MTU.         |
-| Logs « shell integration » à chaque ligne | Prompt mal configuré : `unset PROMPT_COMMAND` puis `PS1='\u@\h:\w\$ '`, ou à la fin de `~/.bashrc` ; s'ils reviennent, chercher le fichier qui redéfinit `PROMPT_COMMAND` (section 2). |
+| Logs « shell integration » à chaque ligne | Prompt mal configuré : `unset PROMPT_COMMAND`, `PS1='\u@\h:\w\$ '` et `PS0=''`, ou à la fin de `~/.bashrc` ; s'ils reviennent, chercher le fichier qui redéfinit `PROMPT_COMMAND` (section 2). |
 | `kubectl: localhost:8080 refused`     | Pas de kubeconfig sur cette machine. Exécuter kubectl sur le control plane.               |
 
 ## 9. Avant de commencer les TP
