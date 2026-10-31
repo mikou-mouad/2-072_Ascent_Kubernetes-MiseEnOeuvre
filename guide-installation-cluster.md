@@ -32,6 +32,23 @@ Ports à ouvrir entre les nœuds : TCP 6443, 2379-2380, 10250, 30000-32767 (Node
 
 ## 2. Préparer les 3 nœuds
 
+> **Le terminal affiche des logs « shell integration » à chaque ligne ?** C'est le prompt de la session qui est mal configuré, pas un problème de la VM. Corrigez-le pour la session en cours :
+>
+> ```bash
+> unset PROMPT_COMMAND
+> PS1='\u@\h:\w\$ '
+> ```
+>
+> C'est à retaper à chaque nouvelle session SSH (et après chaque redémarrage), sauf si vous l'ajoutez une fois pour toutes à la fin de `~/.bashrc`, sur chaque machine :
+>
+> ```bash
+> cat >> ~/.bashrc <<'EOF'
+> unset PROMPT_COMMAND
+> PS1='\u@\h:\w\$ '
+> EOF
+> source ~/.bashrc
+> ```
+
 > **Docker a été installé au TP 00 sur le control plane ?** Il doit avoir été désinstallé, et la VM redémarrée (dernière étape du TP 00) : Docker modifie les règles iptables et gêne le réseau des pods.
 
 ### 2.1 Désactiver le swap, charger les modules noyau, configurer sysctl
@@ -189,6 +206,7 @@ kubectl delete svc nginx && kubectl delete deployment nginx
 | Le NodePort ne répond que sur un nœud | Pare-feu bloquant le trafic Calico (UDP 4789, TCP 179, TCP 5473).                          |
 | `wget: bad address`                   | CoreDNS ne tourne pas. Vérifier `kubectl get pods -n kube-system`.                        |
 | Échecs étranges entre nœuds           | Le MTU est de 9000 sur ces VM. Vérifier que tous les nœuds utilisent le même MTU.         |
+| Logs « shell integration » à chaque ligne | Prompt mal configuré : `unset PROMPT_COMMAND` puis `PS1='\u@\h:\w\$ '`, ou à la fin de `~/.bashrc` (section 2). |
 | `kubectl: localhost:8080 refused`     | Pas de kubeconfig sur cette machine. Exécuter kubectl sur le control plane.               |
 
 ## 9. Avant de commencer les TP

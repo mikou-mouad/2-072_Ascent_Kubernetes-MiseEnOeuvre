@@ -21,6 +21,23 @@ On rejoue l'application telle qu'elle tournait l'an dernier : **une VM, Docker C
 Ce TP se fait sur le **control plane** (`10.10.0.20`), **avant** l'installation du cluster.
 À la fin du TP, Docker est désinstallé et la VM redémarrée : le TP 01 part d'une machine propre.
 
+> **Le terminal affiche des logs « shell integration » à chaque ligne ?** C'est le prompt de la session qui est mal configuré, pas un problème de la VM. Corrigez-le pour la session en cours :
+>
+> ```bash
+> unset PROMPT_COMMAND
+> PS1='\u@\h:\w\$ '
+> ```
+>
+> C'est à retaper à chaque nouvelle session SSH (et après chaque redémarrage), sauf si vous l'ajoutez une fois pour toutes à la fin de `~/.bashrc`, sur chaque machine :
+>
+> ```bash
+> cat >> ~/.bashrc <<'EOF'
+> unset PROMPT_COMMAND
+> PS1='\u@\h:\w\$ '
+> EOF
+> source ~/.bashrc
+> ```
+
 ## Étapes
 
 ### 1. Installer Docker et récupérer le dépôt
