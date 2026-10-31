@@ -30,6 +30,13 @@ kubectl apply -R -f k8s/
 
 Rejouez l'audit : un pod quelconque, dans un autre namespace, avec un client PostgreSQL.
 
+Le pirate tourne dans la recette, dont le budget est limité (TP 05) : vérifiez qu'il reste de la place, en supprimant le calcul de statistiques s'il tourne encore.
+
+```bash
+kubectl -n festipass-recette delete deployment stats --ignore-not-found
+kubectl -n festipass-recette describe resourcequota budget
+```
+
 ```bash
 kubectl run pirate -n festipass-recette --rm -it --restart=Never \
   --image=public.ecr.aws/docker/library/postgres:16 -- bash
