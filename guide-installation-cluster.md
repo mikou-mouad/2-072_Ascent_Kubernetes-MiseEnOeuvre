@@ -9,9 +9,9 @@ Les sections 2 et 3 s'exécutent sur **tous les nœuds**, les suivantes comme in
 
 | Nœud         | Rôle          | Adresse IP                                |
 |--------------|---------------|-------------------------------------------|
-| controlplane | Control plane | 10.10.0.20                                |
-| worker1      | Worker        | 10.10.0.30                                |
-| worker2      | Worker        | 10.10.0.40 (à adapter à l'adresse réelle) |
+| control-plane | Control plane | 10.10.0.20                                |
+| worker-1      | Worker        | 10.10.0.30                                |
+| worker-2      | Worker        | 10.10.0.40 (à adapter à l'adresse réelle) |
 | ClientWeb    | Poste avec navigateur, hors cluster | 10.10.0.10            |
 
 | Composant             | Choix                                                                 |
@@ -137,7 +137,7 @@ ping -c 2 10.10.0.20         # depuis chaque worker vers le control plane
 
 ## 4. Initialiser le control plane
 
-À exécuter **uniquement sur controlplane**.
+À exécuter **uniquement sur control-plane**.
 
 ```bash
 sudo kubeadm init \
@@ -171,7 +171,7 @@ Utilisez `create` et non `apply` : les CRD sont trop volumineuses pour `apply`.
 
 ## 6. Joindre les workers
 
-Exécutez la commande sauvegardée sur **worker1** et **worker2**.
+Exécutez la commande sauvegardée sur **worker-1** et **worker-2**.
 
 ```bash
 sudo kubeadm join 10.10.0.20:6443 --token <token> \
