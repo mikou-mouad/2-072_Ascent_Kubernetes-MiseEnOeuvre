@@ -38,7 +38,7 @@
 <div style="display:flex;gap:24px">
 <p style="font-size:28px;color:#1D3557;background:#FFD166;padding:10px 24px;border-radius:40px;font-weight:700">10 chapitres</p>
 <p style="font-size:28px;color:#F1FAEE;border:2px solid #FFD166;padding:10px 24px;border-radius:40px">10 TP</p>
-<p style="font-size:28px;color:#F1FAEE;border:2px solid #FFD166;padding:10px 24px;border-radius:40px">74 % de pratique</p>
+<p style="font-size:28px;color:#F1FAEE;border:2px solid #FFD166;padding:10px 24px;border-radius:40px">75 % de pratique</p>
 </div>
 <aside>Accueil, tour de table : niveau de chacun en conteneurs et en Linux, attentes. Présenter le fil rouge : FestiPass, la billetterie d'un festival, qui quitte sa VM unique pour Kubernetes avant l'ouverture des ventes. Chaque chapitre part d'un incident.</aside>
 </section>
@@ -106,7 +106,7 @@
 <div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FBF8F3;padding:36px;border-radius:20px;border:2px solid #E2D6C3">
 <x-icon data-g="&lt;/&gt;" style="color:#2A9D8F;width:56px;height:56px"></x-icon>
 <h3 style="font-size:36px;font-weight:700">3. Le concept</h3>
-<p style="font-size:28px;line-height:1.4;color:#4A5A6A">Schémas et YAML, 15 à 30 min</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5A6A">Schémas et YAML, 15 à 45 min</p>
 </div>
 <x-shape kind="arrow-right" style="background:#E76F51;width:56px;height:30px"></x-shape>
 <div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#264653;padding:36px;border-radius:20px">
@@ -116,7 +116,7 @@
 </div>
 </div>
 <p style="font-size:32px;line-height:1.4;color:#4A5A6A">L'application déployée au TP 02 sert jusqu'au dernier TP : <span style="color:#1B2631"><b>chaque TP repart de l'état laissé par le précédent.</b></span></p>
-<aside>74 % du temps est en TP. La théorie reste courte : on montre le problème, le concept, puis on pratique. Pour certains chapitres, l'incident mène directement au concept, sans slide « solution ».</aside>
+<aside>75 % du temps est en TP. La théorie reste courte : on montre le problème, le concept, puis on pratique. Pour certains chapitres, l'incident mène directement au concept, sans slide « solution ». Chaque participant travaille seul, sur son propre cluster.</aside>
 </section>
 <section id="programme" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Le programme</p>
@@ -124,27 +124,26 @@
 <div style="display:flex;gap:32px">
 <div style="flex:1;display:flex;flex-direction:column;gap:18px;background:#EFE6D8;padding:36px;border-radius:20px">
 <p style="font-size:28px;font-weight:700;color:#E76F51">JOUR 1</p>
-<h3 style="font-family:'Fraunces', Georgia, serif;font-size:44px;font-weight:600;line-height:1.15">De la VM au cluster</h3>
+<h3 style="font-family:'Fraunces', Georgia, serif;font-size:44px;font-weight:600;line-height:1.15">Conteneurs et mise en place du cluster</h3>
 <ul style="font-size:27px;line-height:1.6;color:#4A5A6A">
 <li>0. Conteneurs et orchestration</li>
-<li>1. Installer le cluster</li>
-<li>2. YAML, Pod, Deployment</li>
+<li>1. Installer et gérer le cluster</li>
 </ul>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:18px;background:#EFE6D8;padding:36px;border-radius:20px">
 <p style="font-size:28px;font-weight:700;color:#E76F51">JOUR 2</p>
-<h3 style="font-family:'Fraunces', Georgia, serif;font-size:44px;font-weight:600;line-height:1.15">FestiPass sur le cluster</h3>
+<h3 style="font-family:'Fraunces', Georgia, serif;font-size:44px;font-weight:600;line-height:1.15">YAML et gestion des ressources</h3>
 <ul style="font-size:27px;line-height:1.6;color:#4A5A6A">
-<li>2. Déployer FestiPass (suite)</li>
+<li>2. YAML, Pod, Deployment, Service</li>
 <li>3. ConfigMap et Secret</li>
 <li>4. Mises à jour, surveillance</li>
-<li>5. Bonnes pratiques</li>
 </ul>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:18px;background:#EFE6D8;padding:36px;border-radius:20px">
 <p style="font-size:28px;font-weight:700;color:#E76F51">JOUR 3</p>
-<h3 style="font-family:'Fraunces', Georgia, serif;font-size:44px;font-weight:600;line-height:1.15">Prêts pour vendredi 10h00</h3>
+<h3 style="font-family:'Fraunces', Georgia, serif;font-size:44px;font-weight:600;line-height:1.15">Bonnes pratiques et gestion avancée</h3>
 <ul style="font-size:27px;line-height:1.6;color:#4A5A6A">
+<li>5. Bonnes pratiques</li>
 <li>6. Stockage persistant</li>
 <li>7. Contrôleurs, opérateurs</li>
 <li>8. Autoscaling</li>
@@ -152,8 +151,8 @@
 </ul>
 </div>
 </div>
-<p style="font-size:28px;color:#4A5A6A">Horaires : 9h00 – 12h30 et 13h30 – 16h30 · pauses à 10h30 et 15h00</p>
-<aside>Le détail minute par minute est dans programme-3-jours.md du dépôt. Le chapitre 2 est à cheval sur les jours 1 et 2 : la partie A du TP 02 (YAML, premiers objets) se fait le jour 1, le déploiement de FestiPass le jour 2 au matin.</aside>
+<p style="font-size:28px;color:#4A5A6A">Horaires : 9h00 – 12h30 et 13h30 – 16h30 · pauses à 10h00 et 15h00</p>
+<aside>Le détail minute par minute est dans programme-3-jours.md du dépôt. Une journée = 6 h = deux modules du programme officiel : Introduction et Installation le jour 1, YAML et Gestion des ressources le jour 2, Bonnes pratiques et Gestion avancée le jour 3. 75 % du temps est en TP. Chaque participant travaille seul, sur son propre cluster.</aside>
 </section>
 <section id="branches" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Le dépôt des TP</p>
@@ -177,14 +176,14 @@
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Le lab</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Quatre machines par participant</h2>
 <div style="display:flex;align-items:center;gap:28px">
-<div style="width:380px;display:flex"><div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#1D3557;border-radius:16px;padding:24px"><p style="font-size:32px;font-weight:700;color:#F1FAEE">ClientWeb</p><p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#FFD166">10.10.0.50</p><p style="font-size:24px;line-height:1.35;color:#C9D6E3">le navigateur : FestiPass sur http://10.10.0.11:30080</p></div></div>
+<div style="width:380px;display:flex"><div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#1D3557;border-radius:16px;padding:24px"><p style="font-size:32px;font-weight:700;color:#F1FAEE">ClientWeb</p><p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#FFD166">10.10.0.50</p><p style="font-size:24px;line-height:1.35;color:#C9D6E3">le navigateur : FestiPass sur http://10.10.0.20:30080</p></div></div>
 <x-shape kind="arrow-right" style="background:#E76F51;width:70px;height:36px"></x-shape>
 <div style="flex:1;display:flex;flex-direction:column;gap:16px;border:3px solid #2A9D8F;border-radius:20px;padding:24px">
 <p style="font-size:24px;font-weight:700;color:#2A9D8F">LE CLUSTER · 3 VM UBUNTU</p>
 <div style="display:flex;gap:16px">
 <div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#E3F2EF;border-radius:16px;padding:24px"><p style="font-size:32px;font-weight:700;color:#1B2631">controlplane</p><p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">10.10.0.10</p><p style="font-size:24px;line-height:1.35;color:#4A5A6A">kubectl, le dépôt ~/festipass</p></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#EFE6D8;border-radius:16px;padding:24px"><p style="font-size:32px;font-weight:700;color:#1B2631">worker1</p><p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">10.10.0.11</p><p style="font-size:24px;line-height:1.35;color:#4A5A6A">les pods de FestiPass</p></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#EFE6D8;border-radius:16px;padding:24px"><p style="font-size:32px;font-weight:700;color:#1B2631">worker2</p><p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">10.10.0.12</p><p style="font-size:24px;line-height:1.35;color:#4A5A6A">les pods de FestiPass</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#EFE6D8;border-radius:16px;padding:24px"><p style="font-size:32px;font-weight:700;color:#1B2631">worker1</p><p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">10.10.0.20</p><p style="font-size:24px;line-height:1.35;color:#4A5A6A">les pods de FestiPass</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#EFE6D8;border-radius:16px;padding:24px"><p style="font-size:32px;font-weight:700;color:#1B2631">worker2</p><p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">10.10.0.30</p><p style="font-size:24px;line-height:1.35;color:#4A5A6A">les pods de FestiPass</p></div>
 </div>
 </div>
 </div>
@@ -193,11 +192,11 @@
 <div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:26px"><h3 style="font-size:30px;font-weight:700;color:#1B2631">On teste</h3><p style="font-size:26px;line-height:1.4;color:#4A5A6A">dans le navigateur de ClientWeb, comme un festivalier.</p></div>
 <div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:26px"><h3 style="font-size:30px;font-weight:700;color:#1B2631">Le cluster</h3><p style="font-size:26px;line-height:1.4;color:#4A5A6A">Kubernetes v1.34 · containerd · Calico · 2 CPU et 4 à 8 Go de RAM par nœud.</p></div>
 </div>
-<aside>Vérifier dès maintenant l'accès SSH aux 3 VM et l'accès à ClientWeb. Les adresses IP peuvent varier selon l'environnement : chacun note les siennes. Le cluster est construit au TP 01 avec le guide guide-installation-cluster.md.</aside>
+<aside>Vérifier dès maintenant l'accès SSH aux 3 VM et l'accès à ClientWeb. Chaque participant a ses propres machines et travaille seul sur son cluster. Les adresses IP peuvent varier selon l'environnement : chacun note les siennes. Le cluster est construit au TP 01 avec le guide guide-installation-cluster.md.</aside>
 </section>
 <section id="j1-debut" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Jour 1 · 9h00</p>
-<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">De la VM au cluster</h2>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Conteneurs et mise en place du cluster</h2>
 <div style="display:flex;gap:40px">
 <div style="width:560px;display:flex;flex-direction:column;gap:16px;background:#1D3557;border-radius:20px;padding:32px">
 <p style="font-size:26px;font-weight:700;color:#FFD166">OÙ EN EST FESTIPASS</p>
@@ -207,14 +206,15 @@
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:12px">
 <p style="font-size:26px;font-weight:700;color:#2A9D8F">AUJOURD'HUI</p>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h15</p><p style="font-size:28px">Ch. 0 · Conteneurs et orchestration, TP 00</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">10h45</p><p style="font-size:28px">Ch. 1 · Il nous faut un cluster</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">11h05</p><p style="font-size:28px">TP 01 : installer le cluster (jusqu'à 15h00)</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">15h15</p><p style="font-size:28px">Ch. 2 · YAML, Pod, Deployment, Service</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">15h40</p><p style="font-size:28px">TP 02, partie A : premiers manifests</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h00</p><p style="font-size:28px">Accueil, tour de table, FestiPass</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h15</p><p style="font-size:28px">Ch. 0 · Conteneurs et orchestration</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">10h15</p><p style="font-size:28px">TP 00 : FestiPass comme l'an dernier</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">11h15</p><p style="font-size:28px">Ch. 1 · Il nous faut un cluster</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">11h45</p><p style="font-size:28px">TP 01 : installer le cluster</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">15h15</p><p style="font-size:28px">TP 01 : gérer les nœuds (jusqu'à 16h30)</p></div>
 </div>
 </div>
-<aside>Horaires : 9h00 – 12h30, 13h30 – 16h30, pauses à 10h30 et 15h00. Ce soir, chacun a un cluster de 3 nœuds et sait écrire un Pod et un Deployment. FestiPass arrive sur le cluster demain matin.</aside>
+<aside>Horaires : 9h00 – 12h30, 13h30 – 16h30, pauses à 10h00 et 15h00. Ce soir, chacun a son propre cluster de 3 nœuds, sait le gérer (labels, taints, drain, retrait et réintégration d'un worker) et a fait un snapshot de ses VM. FestiPass arrive sur le cluster demain matin, avec le YAML.</aside>
 </section>
 <section id="c0-incident" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Chapitre 0 · L'incident</p>
@@ -324,13 +324,21 @@
 <p style="font-size:30px;line-height:1.4;color:#4A5A6A">Partout <span style="color:#1B2631"><b>la même API</b></span> : ce que vous apprenez ici fonctionne sur EKS, AKS ou GKE.</p>
 <aside>Pourquoi kubeadm en formation : on voit toutes les pièces (control plane, certificats, CNI), ce qui est masqué sur une offre managée. Le festival a choisi ses propres VM chez son hébergeur. Question à poser : qui utilise déjà une offre managée ? Les différences portent surtout sur le stockage, le réseau d'entrée et l'authentification.</aside>
 </section>
+<section id="pause-j1-matin" data-transition="fade" style="background:#E76F51;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
+<x-icon data-g="☕" style="color:#F1FAEE;width:110px;height:110px"></x-icon>
+<p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFE3D8;text-align:center">Jour 1 · 10h00</p>
+<h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause café</h1>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 10h15</p>
+<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : FestiPass comme l'an dernier (TP 00).</p>
+<aside>Pendant la pause, vérifier que chacun accède en SSH à ses 3 VM et à ClientWeb : le TP 00 commence au retour, le TP 01 juste avant midi.</aside>
+</section>
 <section id="c0-tp" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:560px 1fr;gap:72px;align-items:center">
 <div style="display:flex;flex-direction:column;gap:24px">
 <x-icon data-g="⚒" style="color:#FFD166;width:72px;height:72px"></x-icon>
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 00</h2>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">FestiPass comme l'an dernier</p>
-<p style="font-size:30px;line-height:1.35;color:#C9D6E3">45 min · docker compose</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h · docker compose</p>
 <p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-00-conteneurs</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:32px">
@@ -351,14 +359,6 @@
 </div>
 </div>
 <aside>Énoncé : tp/00-conteneurs/README.md. Correction : solutions/00-conteneurs/, dans la branche du TP. En fin de TP, construire au tableau la liste de ce qui manque (redémarrage, copies, mise à jour sans coupure, données, secrets) : c'est le sommaire des chapitres suivants.</aside>
-</section>
-<section id="pause-j1-matin" data-transition="fade" style="background:#E76F51;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
-<x-icon data-g="☕" style="color:#F1FAEE;width:110px;height:110px"></x-icon>
-<p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFE3D8;text-align:center">Jour 1 · 10h30</p>
-<h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause café</h1>
-<p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 10h45</p>
-<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : Camille doit monter un cluster (chapitre 1).</p>
-<aside>Pendant la pause, vérifier que tout le monde accède en SSH aux 3 VM : le TP 01 commence dans 20 minutes.</aside>
 </section>
 <section id="c1-incident" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Chapitre 1 · L'incident</p>
@@ -396,12 +396,12 @@
 <x-shape kind="arrow-right" style="background:#2A9D8F;width:60px;height:30px"></x-shape>
 <div style="display:flex;flex-direction:column;gap:16px;width:470px">
 <div style="background:#EFE6D8;border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px">
-<p style="font-size:26px;font-weight:700;color:#E76F51">WORKER1 · 10.10.0.11</p>
+<p style="font-size:26px;font-weight:700;color:#E76F51">WORKER1 · 10.10.0.20</p>
 <p style="font-size:26px">kubelet · containerd · kube-proxy</p>
 <div style="display:flex;gap:10px"><p style="font-size:24px;background:#E76F51;color:#F1FAEE;padding:6px 14px;border-radius:20px">front</p><p style="font-size:24px;background:#E76F51;color:#F1FAEE;padding:6px 14px;border-radius:20px">back</p></div>
 </div>
 <div style="background:#EFE6D8;border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px">
-<p style="font-size:26px;font-weight:700;color:#E76F51">WORKER2 · 10.10.0.12</p>
+<p style="font-size:26px;font-weight:700;color:#E76F51">WORKER2 · 10.10.0.30</p>
 <p style="font-size:26px">kubelet · containerd · kube-proxy</p>
 <div style="display:flex;gap:10px"><p style="font-size:24px;background:#E76F51;color:#F1FAEE;padding:6px 14px;border-radius:20px">back</p><p style="font-size:24px;background:#E76F51;color:#F1FAEE;padding:6px 14px;border-radius:20px">postgres</p></div>
 </div>
@@ -461,15 +461,15 @@
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 1 · Le concept</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Gérer les nœuds</h2>
 <div style="display:flex;gap:32px;align-items:stretch">
-<div style="width:920px;background:#14212E;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:24px;line-height:1.45;color:#F1FAEE;white-space:nowrap">kubectl get nodes -o wide<br>kubectl label node worker1 <span style="color:#FFD166">disque=ssd</span><br>kubectl get nodes -L disque<br><br>kubectl cordon worker2&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># plus de nouveaux pods</span><br>kubectl drain worker2 --ignore-daemonsets \<br>&#160;&#160;--delete-emptydir-data&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># vide le nœud</span><br>kubectl uncordon worker2&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># retour en service</span><br><br>kubectl describe node controlplane | grep Taints<br>&#160;&#160;<span style="color:#8FC1F0">node-role.kubernetes.io/control-plane:NoSchedule</span><br>kubectl describe node worker1&#160;&#160;&#160;<span style="color:#8A9BAD"># Capacity, Allocatable</span></p></div>
+<div style="width:920px;background:#14212E;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:24px;line-height:1.45;color:#F1FAEE;white-space:nowrap">kubectl get nodes -o wide<br>kubectl label node worker1 <span style="color:#FFD166">disque=ssd</span><br>kubectl get nodes -L disque<br><br>kubectl cordon worker2&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># plus de nouveaux pods</span><br>kubectl drain worker2 --ignore-daemonsets \<br>&#160;&#160;--delete-emptydir-data&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># vide le nœud</span><br>kubectl uncordon worker2&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># retour en service</span><br>kubectl delete node worker2&#160;&#160;<span style="color:#8A9BAD"># retirer (après drain)</span><br>sudo kubeadm reset&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#8A9BAD"># sur worker2, puis join</span><br><br>kubectl describe node controlplane | grep Taints<br>&#160;&#160;<span style="color:#8FC1F0">node-role.kubernetes.io/control-plane:NoSchedule</span><br>kubectl describe node worker1&#160;&#160;&#160;<span style="color:#8A9BAD"># Capacity, Allocatable</span></p></div>
 <div style="flex:1;display:flex;flex-direction:column;gap:12px">
 <div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:20px"><h3 style="font-size:27px;font-weight:700;color:#1B2631">Label</h3><p style="font-size:24px;line-height:1.4;color:#4A5A6A">Une étiquette sur le nœud, pour choisir où placer un pod.</p></div>
-<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:20px"><h3 style="font-size:27px;font-weight:700;color:#1B2631">cordon · drain · uncordon</h3><p style="font-size:24px;line-height:1.4;color:#4A5A6A">La maintenance : fermer, vider, rouvrir.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:20px"><h3 style="font-size:27px;font-weight:700;color:#1B2631">cordon · drain · uncordon</h3><p style="font-size:24px;line-height:1.4;color:#4A5A6A">La maintenance : fermer, vider, rouvrir. Ou retirer le nœud, puis le réintégrer.</p></div>
 <div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:20px"><h3 style="font-size:27px;font-weight:700;color:#1B2631">Taint</h3><p style="font-size:24px;line-height:1.4;color:#4A5A6A">Repousse les pods : le control plane refuse les pods ordinaires.</p></div>
 <div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:20px"><h3 style="font-size:27px;font-weight:700;color:#1B2631">Capacity · Allocatable</h3><p style="font-size:24px;line-height:1.4;color:#4A5A6A">Ce que le nœud possède, ce qu'il laisse aux pods.</p></div>
 </div>
 </div>
-<aside>drain expulse les pods proprement : ceux d'un Deployment sont recréés ailleurs. Garder cette commande en tête : c'est un drain qui déclenchera l'incident du chapitre 6. La taint du control plane explique pourquoi les pods de FestiPass n'y atterrissent jamais ; on la retirera au TP 08 pour gagner de la capacité. Allocatable = Capacity moins ce que le système et le kubelet se réservent.</aside>
+<aside>drain expulse les pods proprement : ceux d'un Deployment sont recréés ailleurs. Garder cette commande en tête : c'est un drain qui déclenchera l'incident du chapitre 6. Au TP, on retire worker2 du cluster (drain, delete node, kubeadm reset sur le worker), puis on le réintègre avec la commande donnée par kubeadm token create --print-join-command. On arrête aussi le scheduler (kube-scheduler.yaml sorti de /etc/kubernetes/manifests) : les nouveaux pods restent Pending. La taint du control plane explique pourquoi les pods de FestiPass n'y atterrissent jamais ; on la retirera au TP 08 pour gagner de la capacité. Allocatable = Capacity moins ce que le système et le kubelet se réservent.</aside>
 </section>
 <section id="c1-tp" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:560px 1fr;gap:72px;align-items:center">
 <div style="display:flex;flex-direction:column;gap:24px">
@@ -477,7 +477,7 @@
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 01</h2>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">Installer le cluster</p>
-<p style="font-size:30px;line-height:1.35;color:#C9D6E3">2 h 55 sur la journée · guide d'installation</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">3 h 30 sur la journée · guide d'installation</p>
 <p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-01-installation</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:32px">
@@ -485,35 +485,80 @@
 <h3 style="font-size:36px;font-weight:700;color:#FFD166">Vous allez</h3>
 <ul style="font-size:30px;line-height:1.45;color:#F1FAEE">
 <li>préparer les 3 nœuds : swap, modules, sysctl, containerd</li>
-<li>kubeadm init, puis Calico</li>
-<li>joindre worker1 et worker2, tester le réseau</li>
+<li>kubeadm init, Calico, join, tests réseau</li>
+<li>arrêter le scheduler : les nouveaux pods restent Pending</li>
 <li>labelliser, drainer puis rendre un nœud</li>
+<li>retirer un worker du cluster, puis le réintégrer</li>
 </ul>
 </div>
 <div style="display:flex;flex-direction:column;gap:14px;background:#1C3540;border-radius:18px;padding:28px">
 <h3 style="font-size:36px;font-weight:700;color:#FFD166">C'est réussi quand</h3>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">3 nœuds Ready</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">3 nœuds Ready, dont le worker réintégré</p></div>
 <div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">un pod joint un service nginx par son nom</p></div>
 <div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">HTTP 200 sur le NodePort des 3 nœuds</p></div>
 </div>
 </div>
-<aside>Le TP se poursuit jusqu'à 15h00, coupé par le déjeuner. Pendant les temps d'attente (apt, téléchargement des images), poser les questions de l'énoncé : swap, br_netfilter, driver cgroup, apt-mark hold. En fin de TP, faire un snapshot des 3 VM. Correction : solutions/01-installation/, dans la branche du TP.</aside>
+<aside>Le TP occupe le reste de la journée : préparation des nœuds avant le déjeuner ; kubeadm init, Calico, join, tests réseau et le control plane sans scheduler jusqu'à 15h00 ; gestion des nœuds après la pause. Sans scheduler : déplacer /etc/kubernetes/manifests/kube-scheduler.yaml hors du dossier, constater qu'un nouveau pod reste Pending, puis le remettre. Retirer un worker : kubectl drain, kubectl delete node, kubeadm reset sur le worker, kubeadm token create --print-join-command sur controlplane, puis kubeadm join. Pendant les temps d'attente (apt, images), poser les questions de l'énoncé : swap, br_netfilter, driver cgroup, apt-mark hold. En fin de TP, faire un snapshot des 3 VM. Correction : solutions/01-installation/, dans la branche du TP.</aside>
 </section>
 <section id="dej-j1" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
 <x-icon data-g="⌂" style="color:#FFD166;width:110px;height:110px"></x-icon>
 <p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFD166;text-align:center">Jour 1 · 12h30</p>
 <h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause déjeuner</h1>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 13h30</p>
-<p style="font-size:30px;color:#C9D6E3;text-align:center">Au retour : on finit le cluster (Calico, join, gestion des nœuds).</p>
-<aside>Faire le point avant la pause : kubeadm init doit être passé chez tout le monde. Ceux qui sont en avance peuvent lire la section 7 du guide.</aside>
+<p style="font-size:30px;color:#C9D6E3;text-align:center">Au retour : kubeadm init, Calico, join (TP 01).</p>
+<aside>Faire le point avant la pause : la préparation des 3 nœuds (swap, modules, sysctl, containerd, paquets) doit être terminée chez tout le monde. Au retour : kubeadm init, Calico, join, tests réseau, puis le control plane sans scheduler.</aside>
 </section>
 <section id="pause-j1-aprem" data-transition="fade" style="background:#E76F51;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
 <x-icon data-g="☕" style="color:#F1FAEE;width:110px;height:110px"></x-icon>
 <p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFE3D8;text-align:center">Jour 1 · 15h00</p>
 <h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause café</h1>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 15h15</p>
-<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : Yanis découvre le YAML (chapitre 2).</p>
-<aside>Avant la pause : 3 nœuds Ready chez tout le monde. Sinon, aider pendant la pause : le TP 02 en a besoin.</aside>
+<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : gérer les nœuds (fin du TP 01).</p>
+<aside>Avant la pause : 3 nœuds Ready chez tout le monde et le scheduler remis en place. Sinon, aider pendant la pause. Après la pause : labels, taints, cordon, drain, retrait et réintégration d'un worker, snapshot des VM.</aside>
+</section>
+<section id="fin-j1" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Fin du jour 1 · 16h30</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1;color:#F1FAEE">FestiPass a un cluster</h2>
+<div style="display:flex;gap:40px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2A4A73;border-radius:20px;padding:32px">
+<p style="font-size:26px;font-weight:700;color:#FFD166">AUJOURD'HUI</p>
+<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Pourquoi une seule machine ne suffit pas</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Un cluster kubeadm de 3 nœuds</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Gérer les nœuds : drain, retrait, retour</p></div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#264653;border-radius:20px;padding:32px">
+<p style="font-size:26px;font-weight:700;color:#FFD166">DEMAIN, CHEZ FESTIPASS</p>
+<p style="font-size:30px;line-height:1.4;color:#F1FAEE">Yanis découvre le YAML.</p>
+<p style="font-size:30px;line-height:1.4;color:#F1FAEE">FestiPass arrive sur le cluster.</p>
+<p style="font-size:30px;line-height:1.4;color:#F1FAEE">Le mot de passe de la base fuit.</p>
+<p style="font-size:30px;line-height:1.4;color:#F1FAEE">La version 1.2 ne démarre pas.</p>
+</div>
+</div>
+<p style="font-size:30px;color:#C9D6E3">Avant de partir : un tour de table, ce qui était clair et ce qui l'était moins.</p>
+<aside>Laisser les VM allumées : on repart demain du cluster d'aujourd'hui (snapshot fait en fin de TP 01). Demain, le chapitre 2 commence à 9h10 : le YAML, puis le déploiement de FestiPass. Un cluster cassé : restaurer le snapshot.</aside>
+</section>
+<section id="j2-debut" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Jour 2 · 9h00</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">YAML et gestion des ressources</h2>
+<div style="display:flex;gap:40px">
+<div style="width:560px;display:flex;flex-direction:column;gap:16px;background:#1D3557;border-radius:20px;padding:32px">
+<p style="font-size:26px;font-weight:700;color:#FFD166">OÙ EN EST FESTIPASS</p>
+<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:36px;height:36px"></x-icon><p style="font-size:28px;line-height:1.35;color:#F1FAEE">Cluster de 3 nœuds Ready</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:36px;height:36px"></x-icon><p style="font-size:28px;line-height:1.35;color:#F1FAEE">Nœuds gérés, snapshot des VM</p></div>
+<p style="font-size:28px;line-height:1.4;color:#F1FAEE">FestiPass n'y tourne pas encore.</p>
+<p style="font-size:28px;line-height:1.4;color:#FFD166">Et Yanis n'a jamais écrit de YAML.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<p style="font-size:26px;font-weight:700;color:#2A9D8F">AUJOURD'HUI</p>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h00</p><p style="font-size:28px">Récapitulatif et quiz du jour 1</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h10</p><p style="font-size:28px">Ch. 2 · YAML, Pod, Deployment, Service</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h35</p><p style="font-size:28px">TP 02 : premiers manifests, puis FestiPass</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">11h50</p><p style="font-size:28px">Ch. 3 · ConfigMap et Secret, TP 03</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">14h25</p><p style="font-size:28px">Ch. 4 · Mises à jour et surveillance</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">14h50</p><p style="font-size:28px">TP 04 : boîte à outils kubectl, rollback</p></div>
+</div>
+</div>
+<aside>Récapitulatif rapide du jour 1 (10 min) : quiz oral sur l'architecture et la gestion des nœuds. Vérifier que tous les clusters ont redémarré correctement (kubectl get nodes). Un cluster cassé : restaurer le snapshot fait en fin de TP 01. Un participant en retard sur le dépôt repart de la branche tp-02-yaml.</aside>
 </section>
 <section id="c2-incident" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Chapitre 2 · L'incident</p>
@@ -602,7 +647,7 @@
 </div>
 </div>
 </div>
-<aside>Le selector du Deployment doit correspondre aux labels du template, et le Service utilise les mêmes. DB_HOST vaut postgres : c'est le nom du Service de la base, résolu par le DNS du cluster. targetPort: http renvoie au port nommé du conteneur. Faire remarquer le mot de passe en clair dans le manifest… on y revient demain au chapitre 3. Les probes sont détaillées au chapitre 4.</aside>
+<aside>Le selector du Deployment doit correspondre aux labels du template, et le Service utilise les mêmes. DB_HOST vaut postgres : c'est le nom du Service de la base, résolu par le DNS du cluster. targetPort: http renvoie au port nommé du conteneur. Faire remarquer le mot de passe en clair dans le manifest… on y revient avant midi au chapitre 3. Les probes sont détaillées au chapitre 4.</aside>
 </section>
 <section id="c2-tp" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:560px 1fr;gap:72px;align-items:center">
 <div style="display:flex;flex-direction:column;gap:24px">
@@ -610,7 +655,7 @@
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 02</h2>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">YAML, Pod, Deployment, Service</p>
-<p style="font-size:30px;line-height:1.35;color:#C9D6E3">Partie A : 50 min ce soir<br>Partie B : 1 h 20 demain matin</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">2 h · partie A puis partie B</p>
 <p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-02-yaml</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:32px">
@@ -618,98 +663,27 @@
 <h3 style="font-size:36px;font-weight:700;color:#FFD166">Vous allez</h3>
 <ul style="font-size:30px;line-height:1.45;color:#F1FAEE">
 <li>réparer un YAML cassé, avec kubectl explain</li>
-<li>générer puis écrire un Pod</li>
-<li>comparer un Pod seul et un Deployment</li>
-<li>demain : déployer FestiPass, NodePort 30080, scaler</li>
+<li>écrire un Pod, le comparer à un Deployment</li>
+<li>déployer FestiPass : PostgreSQL, back, front</li>
+<li>ouvrir le NodePort 30080, scaler, supprimer un pod</li>
 </ul>
 </div>
 <div style="display:flex;flex-direction:column;gap:14px;background:#1C3540;border-radius:18px;padding:28px">
 <h3 style="font-size:36px;font-weight:700;color:#FFD166">C'est réussi quand</h3>
 <div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">kubectl apply accepte vos fichiers</p></div>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">vous savez pourquoi le pod seul n'est pas recréé</p></div>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">demain : un pass vendu sur le port 30080</p></div>
-</div>
-</div>
-<aside>Énoncé pas à pas, avec des manifests à compléter (TODO) : il sert aussi de mise à niveau YAML. Ce soir, s'arrêter à la fin de la partie A. Correction : solutions/02-yaml/, dans la branche du TP.</aside>
-</section>
-<section id="fin-j1" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
-<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Fin du jour 1 · 16h30</p>
-<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1;color:#F1FAEE">FestiPass a un cluster</h2>
-<div style="display:flex;gap:40px">
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2A4A73;border-radius:20px;padding:32px">
-<p style="font-size:26px;font-weight:700;color:#FFD166">AUJOURD'HUI</p>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Pourquoi une seule machine ne suffit pas</p></div>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Un cluster kubeadm de 3 nœuds</p></div>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Vos premiers manifests : Pod, Deployment</p></div>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#264653;border-radius:20px;padding:32px">
-<p style="font-size:26px;font-weight:700;color:#FFD166">DEMAIN, CHEZ FESTIPASS</p>
-<p style="font-size:30px;line-height:1.4;color:#F1FAEE">FestiPass arrive sur le cluster.</p>
-<p style="font-size:30px;line-height:1.4;color:#F1FAEE">Le mot de passe de la base fuit.</p>
-<p style="font-size:30px;line-height:1.4;color:#F1FAEE">La version 1.2 ne démarre pas.</p>
-<p style="font-size:30px;line-height:1.4;color:#F1FAEE">La recette fait tomber la prod.</p>
-</div>
-</div>
-<p style="font-size:30px;color:#C9D6E3">Avant de partir : un tour de table, ce qui était clair et ce qui l'était moins.</p>
-<aside>Laisser les VM allumées : on repart demain du cluster d'aujourd'hui. FestiPass est presque là : la partie B du TP 02 le déploie dès 9h10. Un participant en retard peut repartir de la branche tp-02-yaml.</aside>
-</section>
-<section id="j2-debut" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
-<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Jour 2 · 9h00</p>
-<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">FestiPass sur le cluster</h2>
-<div style="display:flex;gap:40px">
-<div style="width:560px;display:flex;flex-direction:column;gap:16px;background:#1D3557;border-radius:20px;padding:32px">
-<p style="font-size:26px;font-weight:700;color:#FFD166">OÙ EN EST FESTIPASS</p>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:36px;height:36px"></x-icon><p style="font-size:28px;line-height:1.35;color:#F1FAEE">Cluster de 3 nœuds Ready</p></div>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:36px;height:36px"></x-icon><p style="font-size:28px;line-height:1.35;color:#F1FAEE">Premiers Pod et Deployment</p></div>
-<p style="font-size:28px;line-height:1.4;color:#F1FAEE">FestiPass n'y tourne pas encore.</p>
-<p style="font-size:28px;line-height:1.4;color:#FFD166">Et son mot de passe est en clair partout.</p>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:12px">
-<p style="font-size:26px;font-weight:700;color:#2A9D8F">AUJOURD'HUI</p>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h00</p><p style="font-size:28px">Récapitulatif et quiz du jour 1</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h10</p><p style="font-size:28px">TP 02, partie B : déployer FestiPass</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">10h45</p><p style="font-size:28px">Ch. 3 · ConfigMap et Secret, TP 03</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">13h30</p><p style="font-size:28px">Ch. 4 · Mises à jour et surveillance, TP 04</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">15h15</p><p style="font-size:28px">Ch. 5 · Bonnes pratiques, TP 05</p></div>
-</div>
-</div>
-<aside>Récapitulatif rapide du jour 1 (10 min) : quiz oral sur l'architecture et le YAML. Vérifier que tous les clusters ont redémarré correctement (kubectl get nodes). Un participant en retard repart de la branche tp-02-yaml.</aside>
-</section>
-<section id="c2-tp-suite" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:560px 1fr;gap:72px;align-items:center">
-<div style="display:flex;flex-direction:column;gap:24px">
-<x-icon data-g="⚒" style="color:#FFD166;width:72px;height:72px"></x-icon>
-<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">On reprend</p>
-<h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 02 · B</h2>
-<p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">Déployer FestiPass</p>
-<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h 20 · on reprend la branche d'hier</p>
-<p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-02-yaml</p>
-</div>
-<div style="display:flex;flex-direction:column;gap:32px">
-<div style="display:flex;flex-direction:column;gap:14px">
-<h3 style="font-size:36px;font-weight:700;color:#FFD166">Vous allez</h3>
-<ul style="font-size:30px;line-height:1.45;color:#F1FAEE">
-<li>créer le namespace festipass, déployer PostgreSQL</li>
-<li>compléter les TODO du back et du front</li>
-<li>ouvrir le front sur le NodePort 30080</li>
-<li>scaler le back à 3, supprimer un pod, observer</li>
-</ul>
-</div>
-<div style="display:flex;flex-direction:column;gap:14px;background:#1C3540;border-radius:18px;padding:28px">
-<h3 style="font-size:36px;font-weight:700;color:#FFD166">C'est réussi quand</h3>
 <div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">un pass acheté depuis le navigateur de ClientWeb</p></div>
 <div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">le pod supprimé est remplacé tout seul</p></div>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">les pods du back sont répartis sur les 2 workers</p></div>
 </div>
 </div>
-<aside>Adresse à ouvrir sur ClientWeb : http://10.10.0.11:30080 (ou n'importe quel nœud). Faire observer kubectl get pods -o wide -w pendant la suppression d'un pod. Question à garder pour la suite : que se passe-t-il si c'est le pod PostgreSQL qu'on supprime ? (réponse au chapitre 6). Correction : solutions/02-yaml/.</aside>
+<aside>Énoncé pas à pas, avec des manifests à compléter (TODO) : il sert aussi de mise à niveau YAML. Partie A (YAML cassé, kubectl explain) avant la pause, puis écrire un Pod ; partie B (déploiement de FestiPass) jusqu'à 11h50. Adresse à ouvrir sur ClientWeb : http://10.10.0.20:30080 (ou n'importe quel nœud). Faire observer kubectl get pods -o wide -w pendant la suppression d'un pod. Question à garder pour la suite : que se passe-t-il si c'est le pod PostgreSQL qu'on supprime ? (réponse au chapitre 6). Correction : solutions/02-yaml/, dans la branche du TP.</aside>
 </section>
 <section id="pause-j2-matin" data-transition="fade" style="background:#E76F51;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
 <x-icon data-g="☕" style="color:#F1FAEE;width:110px;height:110px"></x-icon>
-<p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFE3D8;text-align:center">Jour 2 · 10h30</p>
+<p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFE3D8;text-align:center">Jour 2 · 10h00</p>
 <h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause café</h1>
-<p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 10h45</p>
-<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : un mot de passe a fuité (chapitre 3).</p>
-<aside>Avant la pause, chacun doit avoir vendu un pass sur le NodePort 30080. Le TP 03 modifie les manifests du TP 02.</aside>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 10h15</p>
+<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : un Pod, puis FestiPass sur le cluster (TP 02).</p>
+<aside>Avant la pause, chacun a réparé le YAML cassé de la partie A. Après la pause : écrire un Pod, Pod seul contre Deployment, puis la partie B, le déploiement de FestiPass.</aside>
 </section>
 <section id="c3-incident" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Chapitre 3 · L'incident</p>
@@ -787,7 +761,7 @@
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 03</h2>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">Configuration et Secret</p>
-<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h 25 · kubectl create --dry-run</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h 15 · kubectl create --dry-run</p>
 <p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-03-configuration</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:32px">
@@ -807,15 +781,15 @@
 <div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">la nouvelle limite PASS_MAX s'applique après le restart</p></div>
 </div>
 </div>
-<aside>Faire vérifier avec grep -r embruns-2026 sur le dossier des manifests : plus aucun résultat. Bonus : comparer kubectl describe secret (valeur masquée) et kubectl get secret -o yaml (valeur en base64). Correction : solutions/03-configuration/, dans la branche du TP.</aside>
+<aside>20 min avant le déjeuner (générer le Secret et la ConfigMap), 55 min après. Faire vérifier avec grep -r embruns-2026 sur le dossier des manifests : plus aucun résultat. Bonus : comparer kubectl describe secret (valeur masquée) et kubectl get secret -o yaml (valeur en base64). Correction : solutions/03-configuration/, dans la branche du TP.</aside>
 </section>
 <section id="dej-j2" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
 <x-icon data-g="⌂" style="color:#FFD166;width:110px;height:110px"></x-icon>
 <p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFD166;text-align:center">Jour 2 · 12h30</p>
 <h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause déjeuner</h1>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 13h30</p>
-<p style="font-size:30px;color:#C9D6E3;text-align:center">Cet après-midi : Yanis livre la version 1.2 (chapitre 4).</p>
-<aside>Vérifier avant la pause que le site fonctionne chez tout le monde avec le nouveau Secret : le TP 04 part de cet état.</aside>
+<p style="font-size:30px;color:#C9D6E3;text-align:center">Cet après-midi : la suite du TP 03, puis Yanis livre la version 1.2 (chapitre 4).</p>
+<aside>Le TP 03 reprend au retour (13h30 – 14h25) : les manifests utilisent la configuration. Vérifier avant la pause que le Secret et la ConfigMap sont créés chez tout le monde.</aside>
 </section>
 <section id="c4-incident" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Chapitre 4 · L'incident</p>
@@ -898,7 +872,7 @@
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 04</h2>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">Mises à jour et diagnostic</p>
-<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h 10 · avec metrics-server</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h 25 · avec metrics-server</p>
 <p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-04-cycle-de-vie</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:32px">
@@ -918,15 +892,61 @@
 <div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">vous nommez la panne mystère avec kubectl seul</p></div>
 </div>
 </div>
-<aside>metrics-server a besoin de --kubelet-insecure-tls sur un cluster kubeadm (certificats des kubelets auto-signés). Pendant la mise à jour, faire tourner une boucle curl sur le NodePort pour montrer qu'aucune requête n'échoue. La 1.2 n'existe pas sur ghcr.io : c'est voulu. Correction : solutions/04-cycle-de-vie/, dans la branche du TP.</aside>
+<aside>10 min avant la pause pour installer metrics-server, le reste après. metrics-server a besoin de --kubelet-insecure-tls sur un cluster kubeadm (certificats des kubelets auto-signés). Pendant la mise à jour, faire tourner une boucle curl sur le NodePort pour montrer qu'aucune requête n'échoue. La 1.2 n'existe pas sur ghcr.io : c'est voulu. Correction : solutions/04-cycle-de-vie/, dans la branche du TP.</aside>
 </section>
 <section id="pause-j2-aprem" data-transition="fade" style="background:#E76F51;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
 <x-icon data-g="☕" style="color:#F1FAEE;width:110px;height:110px"></x-icon>
 <p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFE3D8;text-align:center">Jour 2 · 15h00</p>
 <h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause café</h1>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 15h15</p>
-<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : la recette fait tomber la prod (chapitre 5).</p>
-<aside>Vérifier que tout le monde est revenu sur une version qui fonctionne (rollback fait) avant le chapitre 5.</aside>
+<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : de la 1.0 à la 1.1, puis la 1.2 (TP 04).</p>
+<aside>metrics-server doit être installé chez tout le monde (kubectl top nodes) : la suite du TP 04 s'en sert.</aside>
+</section>
+<section id="fin-j2" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Fin du jour 2 · 16h30</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1;color:#F1FAEE">FestiPass tourne sur le cluster</h2>
+<div style="display:flex;gap:40px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2A4A73;border-radius:20px;padding:32px">
+<p style="font-size:26px;font-weight:700;color:#FFD166">AUJOURD'HUI</p>
+<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Déployé, exposé, scalé</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Configuration et Secret hors de l'image</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Mises à jour sans coupure, rollback</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Diagnostiquer avec kubectl</p></div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#264653;border-radius:20px;padding:32px">
+<p style="font-size:26px;font-weight:700;color:#FFD166">DEMAIN, CHEZ FESTIPASS</p>
+<p style="font-size:30px;line-height:1.4;color:#F1FAEE">La recette fait tomber la prod.</p>
+<p style="font-size:30px;line-height:1.4;color:#F1FAEE">Une maintenance efface les billets.</p>
+<p style="font-size:30px;line-height:1.4;color:#F1FAEE">La sauvegarde n'a pas tourné.</p>
+<p style="font-size:30px;line-height:1.4;color:#F1FAEE">Vendredi 10h00 : le rush.</p>
+<p style="font-size:30px;line-height:1.4;color:#F1FAEE">Un audit de sécurité.</p>
+</div>
+</div>
+<p style="font-size:30px;color:#C9D6E3">Avant de partir : un tour de table, ce qui était clair et ce qui l'était moins.</p>
+<aside>Laisser les VM allumées. Demain matin, on commence par la recette qui fait tomber la prod (chapitre 5). Un participant en retard repart de la branche tp-04-cycle-de-vie, ou de tp-05-bonnes-pratiques demain.</aside>
+</section>
+<section id="j3-debut" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Jour 3 · 9h00</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Bonnes pratiques et gestion avancée</h2>
+<div style="display:flex;gap:40px">
+<div style="width:560px;display:flex;flex-direction:column;gap:16px;background:#1D3557;border-radius:20px;padding:32px">
+<p style="font-size:26px;font-weight:700;color:#FFD166">OÙ EN EST FESTIPASS</p>
+<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:36px;height:36px"></x-icon><p style="font-size:28px;line-height:1.35;color:#F1FAEE">Déployé, configuré, sans secret en clair</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:36px;height:36px"></x-icon><p style="font-size:28px;line-height:1.35;color:#F1FAEE">Mises à jour sans coupure</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:36px;height:36px"></x-icon><p style="font-size:28px;line-height:1.35;color:#F1FAEE">Diagnostic et rollback avec kubectl</p></div>
+<p style="font-size:28px;line-height:1.4;color:#FFD166">Mais rien ne sépare la recette de la prod.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<p style="font-size:26px;font-weight:700;color:#2A9D8F">AUJOURD'HUI</p>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h10</p><p style="font-size:28px">Ch. 5 · Bonnes pratiques, TP 05</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">10h35</p><p style="font-size:28px">Ch. 6 · Stockage persistant, TP 06</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">11h40</p><p style="font-size:28px">Ch. 7 · Contrôleurs et opérateurs, TP 07</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">13h40</p><p style="font-size:28px">Ch. 8 · Autoscaling, TP 08</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">14h45</p><p style="font-size:28px">Ch. 9 · Sécurité, TP 09</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">16h10</p><p style="font-size:28px">Épilogue, QCM final, évaluations</p></div>
+</div>
+</div>
+<aside>9h00 – 9h10 : récapitulatif et quiz du jour 2. Journée dense : cinq chapitres, la théorie est courte (15 min chacun), chaque chapitre enchaîne sur son TP. Un participant en retard repart de la branche tp-05-bonnes-pratiques.</aside>
 </section>
 <section id="c5-incident" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Chapitre 5 · L'incident</p>
@@ -1026,52 +1046,15 @@
 <div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">tous les pods de FestiPass ont requests et limits</p></div>
 </div>
 </div>
-<aside>Le pod mis en quarantaine reste en vie pour l'enquête : le ReplicaSet, qui ne le voit plus, en crée un nouveau. Penser à le supprimer ensuite. Correction : solutions/05-bonnes-pratiques/, dans la branche du TP.</aside>
+<aside>35 min avant la pause (labels, sélecteurs, quarantaine), 20 min après (namespace recette, LimitRange, ResourceQuota, requests/limits). Le pod mis en quarantaine reste en vie pour l'enquête : le ReplicaSet, qui ne le voit plus, en crée un nouveau. Penser à le supprimer ensuite. Correction : solutions/05-bonnes-pratiques/, dans la branche du TP.</aside>
 </section>
-<section id="fin-j2" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
-<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Fin du jour 2 · 16h30</p>
-<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1;color:#F1FAEE">FestiPass tourne sur le cluster</h2>
-<div style="display:flex;gap:40px">
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#2A4A73;border-radius:20px;padding:32px">
-<p style="font-size:26px;font-weight:700;color:#FFD166">AUJOURD'HUI</p>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Déployé, exposé, scalé</p></div>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Configuration et Secret hors de l'image</p></div>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Mises à jour sans coupure, rollback</p></div>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35;color:#F1FAEE">Des limites entre recette et prod</p></div>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#264653;border-radius:20px;padding:32px">
-<p style="font-size:26px;font-weight:700;color:#FFD166">DEMAIN, CHEZ FESTIPASS</p>
-<p style="font-size:30px;line-height:1.4;color:#F1FAEE">Une maintenance efface les billets.</p>
-<p style="font-size:30px;line-height:1.4;color:#F1FAEE">La sauvegarde n'a pas tourné.</p>
-<p style="font-size:30px;line-height:1.4;color:#F1FAEE">Vendredi 10h00 : le rush.</p>
-<p style="font-size:30px;line-height:1.4;color:#F1FAEE">Un audit de sécurité.</p>
-</div>
-</div>
-<p style="font-size:30px;color:#C9D6E3">Avant de partir : un tour de table, ce qui était clair et ce qui l'était moins.</p>
-<aside>Laisser les VM allumées. Demain matin, on commence par les données : préparer la question « où sont stockés les billets vendus, physiquement ? ». Un participant en retard repart de la branche tp-05-bonnes-pratiques, ou de tp-06-stockage demain.</aside>
-</section>
-<section id="j3-debut" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
-<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Jour 3 · 9h00</p>
-<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Prêts pour vendredi 10h00</h2>
-<div style="display:flex;gap:40px">
-<div style="width:560px;display:flex;flex-direction:column;gap:16px;background:#1D3557;border-radius:20px;padding:32px">
-<p style="font-size:26px;font-weight:700;color:#FFD166">OÙ EN EST FESTIPASS</p>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:36px;height:36px"></x-icon><p style="font-size:28px;line-height:1.35;color:#F1FAEE">Déployé, configuré, sans secret en clair</p></div>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:36px;height:36px"></x-icon><p style="font-size:28px;line-height:1.35;color:#F1FAEE">Mises à jour sans coupure</p></div>
-<div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:36px;height:36px"></x-icon><p style="font-size:28px;line-height:1.35;color:#F1FAEE">Des limites par namespace</p></div>
-<p style="font-size:28px;line-height:1.4;color:#FFD166">Mais les billets vivent dans le pod de la base.</p>
-</div>
-<div style="flex:1;display:flex;flex-direction:column;gap:12px">
-<p style="font-size:26px;font-weight:700;color:#2A9D8F">AUJOURD'HUI</p>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h10</p><p style="font-size:28px">Ch. 6 · Stockage persistant, TP 06</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">10h45</p><p style="font-size:28px">Ch. 7 · Contrôleurs et opérateurs, TP 07</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">12h00</p><p style="font-size:28px">Ch. 8 · Autoscaling</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">13h30</p><p style="font-size:28px">TP 08 : l'ouverture de la billetterie</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">14h30</p><p style="font-size:28px">Ch. 9 · Sécurité, TP 09</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">16h05</p><p style="font-size:28px">Épilogue, QCM final, évaluation</p></div>
-</div>
-</div>
-<aside>9h00 – 9h10 : récapitulatif et quiz du jour 2. Journée dense : la théorie est courte, chaque chapitre enchaîne sur son TP. Un participant en retard repart de la branche tp-06-stockage.</aside>
+<section id="pause-j3-matin" data-transition="fade" style="background:#E76F51;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
+<x-icon data-g="☕" style="color:#F1FAEE;width:110px;height:110px"></x-icon>
+<p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFE3D8;text-align:center">Jour 3 · 10h00</p>
+<h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause café</h1>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 10h15</p>
+<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : la recette dans son namespace, avec des quotas (TP 05).</p>
+<aside>Avant la pause : les labels recommandés sont posés et le pod mis en quarantaine a été examiné. Après la pause : namespace recette, LimitRange, ResourceQuota, requests/limits sur FestiPass.</aside>
 </section>
 <section id="c6-incident" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Chapitre 6 · L'incident</p>
@@ -1153,7 +1136,7 @@
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 06</h2>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">Stockage persistant</p>
-<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h · local-path-provisioner</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">50 min · local-path-provisioner</p>
 <p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-06-stockage</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:32px">
@@ -1174,14 +1157,6 @@
 </div>
 </div>
 <aside>Le PV local-path a une affinité de nœud : pendant le drain, postgres-0 reste Pending jusqu'à l'uncordon. C'est la limite d'un stockage local, à discuter. Penser à uncordon à la fin du TP. Correction : solutions/06-stockage/, dans la branche du TP.</aside>
-</section>
-<section id="pause-j3-matin" data-transition="fade" style="background:#E76F51;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
-<x-icon data-g="☕" style="color:#F1FAEE;width:110px;height:110px"></x-icon>
-<p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFE3D8;text-align:center">Jour 3 · 10h30</p>
-<h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause café</h1>
-<p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 10h45</p>
-<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : la sauvegarde n'a pas tourné (chapitre 7).</p>
-<aside>Avant la pause : tous les nœuds doivent être uncordon (kubectl get nodes, aucune mention SchedulingDisabled).</aside>
 </section>
 <section id="c7-incident" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Chapitre 7 · L'incident</p>
@@ -1261,7 +1236,7 @@
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 07</h2>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">Contrôleurs et opérateurs</p>
-<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h · Job, CronJob, DaemonSet</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">45 min · Job, CronJob, DaemonSet</p>
 <p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-07-controleurs</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:32px">
@@ -1281,7 +1256,15 @@
 <div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">vous savez qui possède un pod, et pourquoi</p></div>
 </div>
 </div>
-<aside>Bonus : restaurer la sauvegarde dans une base vide, la seule vraie preuve qu'une sauvegarde fonctionne. Correction : solutions/07-controleurs/, dans la branche du TP. Enchaîner directement sur le chapitre 8 à 12h00.</aside>
+<aside>35 min avant le déjeuner (contrôleurs, CronJob, Job déclenché à la main), 10 min après : le test de restauration dans une base vide, la seule vraie preuve qu'une sauvegarde fonctionne, et l'opérateur Calico au travail. Correction : solutions/07-controleurs/, dans la branche du TP. Enchaîner sur le chapitre 8 à 13h40.</aside>
+</section>
+<section id="dej-j3" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
+<x-icon data-g="⌂" style="color:#FFD166;width:110px;height:110px"></x-icon>
+<p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFD166;text-align:center">Jour 3 · 12h30</p>
+<h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause déjeuner</h1>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 13h30</p>
+<p style="font-size:30px;color:#C9D6E3;text-align:center">Cet après-midi : la restauration, puis l'ouverture de la billetterie (TP 08).</p>
+<aside>Le TP 07 reprend 10 min au retour : test de restauration et l'opérateur Calico. Vérifier que kubectl top pods fonctionne chez tout le monde (metrics-server du TP 04) : le TP 08 en a besoin.</aside>
 </section>
 <section id="c8-incident" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Chapitre 8 · L'incident</p>
@@ -1335,21 +1318,13 @@
 </div>
 <aside>Le Cluster Autoscaler ne regarde pas le CPU des nœuds : il réagit aux pods Pending que le scheduler n'arrive pas à placer, toujours à cause des requests. Le tiret final retire la taint. En production, on ne mettrait pas FestiPass sur le control plane : c'est seulement pour simuler un nœud de plus au TP 08. Penser à remettre la taint à la fin.</aside>
 </section>
-<section id="dej-j3" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
-<x-icon data-g="⌂" style="color:#FFD166;width:110px;height:110px"></x-icon>
-<p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFD166;text-align:center">Jour 3 · 12h30</p>
-<h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause déjeuner</h1>
-<p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 13h30</p>
-<p style="font-size:30px;color:#C9D6E3;text-align:center">Cet après-midi : on simule l'ouverture de la billetterie (TP 08).</p>
-<aside>Rien à préparer : le TP 08 démarre au retour. Vérifier que kubectl top pods fonctionne chez tout le monde (metrics-server du TP 04).</aside>
-</section>
 <section id="c8-tp" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:560px 1fr;gap:72px;align-items:center">
 <div style="display:flex;flex-direction:column;gap:24px">
 <x-icon data-g="⚒" style="color:#FFD166;width:72px;height:72px"></x-icon>
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 08</h2>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">Le rush de 10h00</p>
-<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h · générateur de charge</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">50 min · générateur de charge</p>
 <p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-08-autoscaling</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:32px">
@@ -1436,13 +1411,21 @@
 </div>
 <aside>Une NetworkPolicy ne fait rien sans un CNI qui l'applique : Calico le fait, d'autres CNI non. Dès qu'une policy sélectionne un pod, tout ce qui n'est pas autorisé est refusé pour lui. On ne filtre ici que l'entrée (Ingress) : la sortie reste libre, donc le DNS fonctionne. Les deux podSelector de from sont deux éléments de liste : c'est un OU. Le pod de sauvegarde doit porter le label app: sauvegarde dans le template du CronJob.</aside>
 </section>
+<section id="pause-j3-aprem" data-transition="fade" style="background:#E76F51;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
+<x-icon data-g="☕" style="color:#F1FAEE;width:110px;height:110px"></x-icon>
+<p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFE3D8;text-align:center">Jour 3 · 15h00</p>
+<h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause café</h1>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 15h15</p>
+<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : le TP 09, puis l'épilogue.</p>
+<aside>Le TP 09 se fait d'un bloc après la pause, de 15h15 à 16h10. Épilogue, QCM final et évaluations de 16h10 à 16h30.</aside>
+</section>
 <section id="c9-tp" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:560px 1fr;gap:72px;align-items:center">
 <div style="display:flex;flex-direction:column;gap:24px">
 <x-icon data-g="⚒" style="color:#FFD166;width:72px;height:72px"></x-icon>
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 09</h2>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">Sécurité</p>
-<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h · 10 min avant la pause, 50 min après</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">55 min · après la pause</p>
 <p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-09-securite</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:32px">
@@ -1462,15 +1445,7 @@
 <div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">FestiPass vend toujours des pass, en restricted</p></div>
 </div>
 </div>
-<aside>Avant la pause, seulement la première partie : depuis un pod busybox, lister ce qu'on peut joindre (API, base, autres namespaces). Après la pause : le reste. Appliquer les NetworkPolicies en dernier et tester un achat après chacune. Correction : solutions/09-securite/, dans la branche du TP.</aside>
-</section>
-<section id="pause-j3-aprem" data-transition="fade" style="background:#E76F51;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
-<x-icon data-g="☕" style="color:#F1FAEE;width:110px;height:110px"></x-icon>
-<p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFE3D8;text-align:center">Jour 3 · 15h00</p>
-<h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause café</h1>
-<p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 15h15</p>
-<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : on finit le TP 09, puis l'épilogue.</p>
-<aside>Le TP 09 reprend jusqu'à 16h05. Épilogue, QCM final et évaluations de 16h05 à 16h30.</aside>
+<aside>Le TP se fait d'un bloc après la pause, de 15h15 à 16h10. Commencer par ce que voit un pod : depuis un pod busybox, lister ce qu'on peut joindre (API, base, autres namespaces). Appliquer les NetworkPolicies en dernier et tester un achat après chacune. Correction : solutions/09-securite/, dans la branche du TP.</aside>
 </section>
 <section id="epilogue" data-transition="fade" style="background:#F6F1E9;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Épilogue</p>

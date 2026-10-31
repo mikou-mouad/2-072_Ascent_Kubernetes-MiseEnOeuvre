@@ -4,7 +4,7 @@
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 01</h2>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">Installer le cluster</p>
-<p style="font-size:30px;line-height:1.35;color:#C9D6E3">2 h 55 sur la journée · guide d'installation</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">3 h 30 sur la journée · guide d'installation</p>
 <p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-01-installation</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:32px">
@@ -12,17 +12,18 @@
 <h3 style="font-size:36px;font-weight:700;color:#FFD166">Vous allez</h3>
 <ul style="font-size:30px;line-height:1.45;color:#F1FAEE">
 <li>préparer les 3 nœuds : swap, modules, sysctl, containerd</li>
-<li>kubeadm init, puis Calico</li>
-<li>joindre worker1 et worker2, tester le réseau</li>
+<li>kubeadm init, Calico, join, tests réseau</li>
+<li>arrêter le scheduler : les nouveaux pods restent Pending</li>
 <li>labelliser, drainer puis rendre un nœud</li>
+<li>retirer un worker du cluster, puis le réintégrer</li>
 </ul>
 </div>
 <div style="display:flex;flex-direction:column;gap:14px;background:#1C3540;border-radius:18px;padding:28px">
 <h3 style="font-size:36px;font-weight:700;color:#FFD166">C'est réussi quand</h3>
-<div style="display:flex;gap:16px;align-items:center"><x-icon name="CheckCircle" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">3 nœuds Ready</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon name="CheckCircle" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">3 nœuds Ready, dont le worker réintégré</p></div>
 <div style="display:flex;gap:16px;align-items:center"><x-icon name="CheckCircle" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">un pod joint un service nginx par son nom</p></div>
 <div style="display:flex;gap:16px;align-items:center"><x-icon name="CheckCircle" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">HTTP 200 sur le NodePort des 3 nœuds</p></div>
 </div>
 </div>
-<aside>Le TP se poursuit jusqu'à 15h00, coupé par le déjeuner. Pendant les temps d'attente (apt, téléchargement des images), poser les questions de l'énoncé : swap, br_netfilter, driver cgroup, apt-mark hold. En fin de TP, faire un snapshot des 3 VM. Correction : solutions/01-installation/, dans la branche du TP.</aside>
+<aside>Le TP occupe le reste de la journée : préparation des nœuds avant le déjeuner ; kubeadm init, Calico, join, tests réseau et le control plane sans scheduler jusqu'à 15h00 ; gestion des nœuds après la pause. Sans scheduler : déplacer /etc/kubernetes/manifests/kube-scheduler.yaml hors du dossier, constater qu'un nouveau pod reste Pending, puis le remettre. Retirer un worker : kubectl drain, kubectl delete node, kubeadm reset sur le worker, kubeadm token create --print-join-command sur controlplane, puis kubeadm join. Pendant les temps d'attente (apt, images), poser les questions de l'énoncé : swap, br_netfilter, driver cgroup, apt-mark hold. En fin de TP, faire un snapshot des 3 VM. Correction : solutions/01-installation/, dans la branche du TP.</aside>
 </section>
