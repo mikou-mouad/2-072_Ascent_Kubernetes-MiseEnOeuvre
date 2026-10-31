@@ -9,9 +9,10 @@ Les sections 2 et 3 s'exécutent sur **tous les nœuds**, les suivantes comme in
 
 | Nœud         | Rôle          | Adresse IP                                |
 |--------------|---------------|-------------------------------------------|
-| controlplane | Control plane | 10.10.0.10                                |
-| worker1      | Worker        | 10.10.0.20                                |
-| worker2      | Worker        | 10.10.0.30 (à adapter à l'adresse réelle) |
+| controlplane | Control plane | 10.10.0.20                                |
+| worker1      | Worker        | 10.10.0.30                                |
+| worker2      | Worker        | 10.10.0.40 (à adapter à l'adresse réelle) |
+| ClientWeb    | Poste avec navigateur, hors cluster | 10.10.0.10            |
 
 | Composant             | Choix                                                                 |
 |-----------------------|-----------------------------------------------------------------------|
@@ -103,7 +104,7 @@ Vous pouvez aussi pré-télécharger les images avec `sudo kubeadm config images
 
 ```bash
 ip -4 addr show ens18        # ou : hostname -I
-ping -c 2 10.10.0.10         # depuis chaque worker vers le control plane
+ping -c 2 10.10.0.20         # depuis chaque worker vers le control plane
 ```
 
 ## 4. Initialiser le control plane
@@ -113,7 +114,7 @@ ping -c 2 10.10.0.10         # depuis chaque worker vers le control plane
 ```bash
 sudo kubeadm init \
   --pod-network-cidr=192.168.0.0/16 \
-  --apiserver-advertise-address=10.10.0.10
+  --apiserver-advertise-address=10.10.0.20
 
 mkdir -p $HOME/.kube
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -145,7 +146,7 @@ Utilisez `create` et non `apply` : les CRD sont trop volumineuses pour `apply`.
 Exécutez la commande sauvegardée sur **worker1** et **worker2**.
 
 ```bash
-sudo kubeadm join 10.10.0.10:6443 --token <token> \
+sudo kubeadm join 10.10.0.20:6443 --token <token> \
   --discovery-token-ca-cert-hash sha256:<hash>
 ```
 
@@ -167,11 +168,11 @@ kubectl run test --rm -it --image=public.ecr.aws/docker/library/busybox:1.36 --r
   wget -qO- http://nginx
 
 # NodePort sur chaque nœud (remplacer 31690 par votre port)
-curl -sI http://10.10.0.10:31690 | head -1
 curl -sI http://10.10.0.20:31690 | head -1
 curl -sI http://10.10.0.30:31690 | head -1
+curl -sI http://10.10.0.40:31690 | head -1
 
-# Nettoyage
+# Nettoyage : PAS PENDANT LE TP 01, qui réutilise ce déploiement nginx (il le supprime à la fin)
 kubectl delete svc nginx && kubectl delete deployment nginx
 ```
 
