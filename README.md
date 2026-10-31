@@ -5,7 +5,7 @@ Formation Ascent 2-072 de 3 jours (18 h, 74 % de pratique), racontée à travers
 - [programme-3-jours.md](programme-3-jours.md) : le programme détaillé et le fil rouge
 - [guide-installation-cluster.md](guide-installation-cluster.md) : installation du cluster de TP (kubeadm, containerd, Calico)
 - `app/` : l'application FestiPass (front nginx, back Python, PostgreSQL)
-- `presentation/` : les slides en HTML (ouvrir `presentation/index.html`)
+- `presentation/` : les slides en HTML, sur la branche `main` (ouvrir `presentation/index.html`)
 - `tp/` : les énoncés des TP (un dossier par TP, ajouté dans chaque branche)
 
 ## Les branches des TP
