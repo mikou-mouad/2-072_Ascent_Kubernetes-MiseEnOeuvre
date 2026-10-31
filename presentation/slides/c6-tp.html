@@ -1,0 +1,28 @@
+<section id="c6-tp" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:560px 1fr;gap:72px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:24px">
+<x-icon name="Wrench" style="color:#FFD166;width:72px;height:72px"></x-icon>
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 06</h2>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">Stockage persistant</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h · local-path-provisioner</p>
+<p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-06-stockage</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:14px">
+<h3 style="font-size:36px;font-weight:700;color:#FFD166">Vous allez</h3>
+<ul style="font-size:30px;line-height:1.45;color:#F1FAEE">
+<li>reproduire la perte : vendre, drainer, constater</li>
+<li>installer local-path-provisioner, classe par défaut</li>
+<li>passer PostgreSQL en StatefulSet</li>
+<li>supprimer le pod, drainer le nœud, compter les billets</li>
+</ul>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#1C3540;border-radius:18px;padding:28px">
+<h3 style="font-size:36px;font-weight:700;color:#FFD166">C'est réussi quand</h3>
+<div style="display:flex;gap:16px;align-items:center"><x-icon name="CheckCircle" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">data-postgres-0 est Bound</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon name="CheckCircle" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">les billets survivent à la suppression du pod</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon name="CheckCircle" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">vous expliquez pourquoi postgres-0 reste sur son nœud</p></div>
+</div>
+</div>
+<aside>Le PV local-path a une affinité de nœud : pendant le drain, postgres-0 reste Pending jusqu'à l'uncordon. C'est la limite d'un stockage local, à discuter. Penser à uncordon à la fin du TP. Correction : solutions/06-stockage/, dans la branche du TP.</aside>
+</section>

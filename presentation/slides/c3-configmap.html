@@ -1,0 +1,22 @@
+<section id="c3-configmap" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 3 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">ConfigMap : trois façons de la lire</h2>
+<div style="display:flex;gap:32px;align-items:stretch">
+<div style="width:600px;background:#14212E;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:22px;line-height:1.42;color:#F1FAEE;white-space:nowrap">apiVersion: v1<br>kind: ConfigMap<br>metadata:<br>&#160;&#160;name: <span style="color:#FFD166">back-config</span><br>data:<br>&#160;&#160;FESTIVAL: Festival des Embruns<br>&#160;&#160;PASS_MAX: "4"<br>---<br>apiVersion: v1<br>kind: ConfigMap<br>metadata:<br>&#160;&#160;name: <span style="color:#8FC1F0">front-annonce</span><br>data:<br>&#160;&#160;annonce.txt: |<br>&#160;&#160;&#160;&#160;Billetterie : vendredi 10h00 !</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:20px 22px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:16px"><h3 style="font-size:28px;font-weight:700">Une clé en variable</h3><p style="font-size:22px;background:#E76F51;color:#F1FAEE;padding:6px 14px;border-radius:20px">redémarrage nécessaire</p></div>
+<div style="background:#14212E;border-radius:16px;padding:14px 20px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:20px;line-height:1.4;color:#F1FAEE;white-space:nowrap">- name: PASS_MAX<br>&#160;&#160;valueFrom: {configMapKeyRef: {name: <span style="color:#FFD166">back-config</span>, key: PASS_MAX}}</p></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:20px 22px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:16px"><h3 style="font-size:28px;font-weight:700">Toutes les clés en variables</h3><p style="font-size:22px;background:#E76F51;color:#F1FAEE;padding:6px 14px;border-radius:20px">redémarrage nécessaire</p></div>
+<div style="background:#14212E;border-radius:16px;padding:14px 20px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:20px;line-height:1.4;color:#F1FAEE;white-space:nowrap">envFrom: [{configMapRef: {name: <span style="color:#FFD166">back-config</span>}}]</p></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:20px 22px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:16px"><h3 style="font-size:28px;font-weight:700">En fichier, dans un volume</h3><p style="font-size:22px;background:#2A9D8F;color:#F1FAEE;padding:6px 14px;border-radius:20px">mis à jour tout seul</p></div>
+<div style="background:#14212E;border-radius:16px;padding:14px 20px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:20px;line-height:1.4;color:#F1FAEE;white-space:nowrap">volumeMounts: [{name: config, mountPath: /usr/share/nginx/html/config}]<br>volumes: [{name: config, configMap: {name: <span style="color:#8FC1F0">front-annonce</span>}}]</p></div>
+</div>
+</div>
+</div>
+<aside>Une variable d'environnement est lue au démarrage du processus : après un kubectl edit configmap, il faut kubectl rollout restart. Un fichier monté est mis à jour par le kubelet, en une minute environ, sans redémarrage (sauf avec subPath). Le front de FestiPass relit /config/annonce.txt à chaque affichage : c'est ce qu'on verra au TP. Les valeurs d'une ConfigMap sont toujours des chaînes : d'où les guillemets autour de 4.</aside>
+</section>

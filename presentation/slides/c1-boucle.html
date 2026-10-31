@@ -1,0 +1,27 @@
+<section id="c1-boucle" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 1 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">La boucle de contrôle : état voulu, état réel</h2>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:24px"><div style="display:flex;gap:14px;align-items:center"><p style="font-size:28px;font-weight:700;color:#F1FAEE;background:#2A9D8F;padding:4px 16px;border-radius:30px">1</p><h3 style="font-size:32px;font-weight:700">Observer</h3></div><p style="font-size:26px;line-height:1.4;color:#4A5A6A">Combien de pods du back tournent vraiment ?</p></div>
+<x-shape kind="arrow-right" style="background:#2A9D8F;width:48px;height:28px"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:24px"><div style="display:flex;gap:14px;align-items:center"><p style="font-size:28px;font-weight:700;color:#F1FAEE;background:#2A9D8F;padding:4px 16px;border-radius:30px">2</p><h3 style="font-size:32px;font-weight:700">Comparer</h3></div><p style="font-size:26px;line-height:1.4;color:#4A5A6A">J'en veux 3 (spec), j'en vois 2 (status).</p></div>
+<x-shape kind="arrow-right" style="background:#2A9D8F;width:48px;height:28px"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:24px"><div style="display:flex;gap:14px;align-items:center"><p style="font-size:28px;font-weight:700;color:#F1FAEE;background:#2A9D8F;padding:4px 16px;border-radius:30px">3</p><h3 style="font-size:32px;font-weight:700">Agir</h3></div><p style="font-size:26px;line-height:1.4;color:#4A5A6A">Créer un pod pour combler l'écart.</p></div>
+</div>
+<div style="display:flex;align-items:center;gap:16px;padding:0 40px">
+<x-shape kind="arrow-left" style="background:#2A9D8F;width:48px;height:28px"></x-shape>
+<div style="flex:1;height:6px;background:#2A9D8F;border-radius:3px"></div>
+<p style="font-size:26px;font-weight:700;color:#2A9D8F">et on recommence, sans fin</p>
+<div style="flex:1;height:6px;background:#2A9D8F;border-radius:3px"></div>
+</div>
+</div>
+<div style="display:flex;gap:32px;align-items:stretch">
+<div style="width:760px;background:#14212E;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:24px;line-height:1.45;color:#F1FAEE;white-space:nowrap"><span style="color:#8A9BAD">$</span> kubectl get deployment back<br>NAME&#160;&#160;&#160;READY&#160;&#160;&#160;UP-TO-DATE&#160;&#160;&#160;AVAILABLE<br>back&#160;&#160;&#160;<span style="color:#FFD166">2/3</span>&#160;&#160;&#160;&#160;&#160;3&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;2<br><span style="color:#8A9BAD"># quelques secondes plus tard</span><br>back&#160;&#160;&#160;<span style="color:#8FC1F0">3/3</span>&#160;&#160;&#160;&#160;&#160;3&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;3</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;justify-content:center">
+<p style="font-size:30px;line-height:1.45;color:#4A5A6A">Un worker tombe ? Ses pods disparaissent de l'état réel : <span style="color:#1B2631"><b>le contrôleur en recrée</b></span>, le scheduler les place ailleurs.</p>
+<p style="font-size:30px;line-height:1.45;color:#4A5A6A">Personne n'a besoin d'être devant son clavier.</p>
+</div>
+</div>
+<aside>C'est l'idée la plus importante de la formation : tous les contrôleurs (Deployment, StatefulSet, Job, HPA…) suivent cette boucle. On la verra en vrai au TP 02 en supprimant un pod. Faire le lien avec le chapitre 7, où l'on verra qu'un opérateur n'est qu'une boucle de plus.</aside>
+</section>

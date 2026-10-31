@@ -1,0 +1,27 @@
+<section id="c0-conteneurs" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 0 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Image, conteneur, registre</h2>
+<div style="display:flex;align-items:center;gap:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FBF8F3;border:2px solid #E2D6C3;border-radius:16px;padding:22px"><p style="font-size:30px;font-weight:700;color:#1B2631">Dockerfile</p><p style="font-size:24px;line-height:1.35;color:#4A5A6A">la recette : base, dépendances, code</p></div>
+<p style="font-size:24px;color:#2A9D8F;font-weight:700">build</p><x-shape kind="arrow-right" style="background:#2A9D8F;width:44px;height:26px"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FBF8F3;border:2px solid #E2D6C3;border-radius:16px;padding:22px"><p style="font-size:30px;font-weight:700;color:#1B2631">Image</p><p style="font-size:24px;line-height:1.35;color:#4A5A6A">un modèle figé, en couches, avec un tag : back:1.0</p></div>
+<p style="font-size:24px;color:#2A9D8F;font-weight:700">push</p><x-shape kind="arrow-right" style="background:#2A9D8F;width:44px;height:26px"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FBF8F3;border:2px solid #E2D6C3;border-radius:16px;padding:22px"><p style="font-size:30px;font-weight:700;color:#1B2631">Registre</p><p style="font-size:24px;line-height:1.35;color:#4A5A6A">ghcr.io, Docker Hub, Harbor… on y stocke les images</p></div>
+<p style="font-size:24px;color:#2A9D8F;font-weight:700">pull</p><x-shape kind="arrow-right" style="background:#2A9D8F;width:44px;height:26px"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#264653;border:none;border-radius:16px;padding:22px"><p style="font-size:30px;font-weight:700;color:#F1FAEE">Conteneur</p><p style="font-size:24px;line-height:1.35;color:#C9D6E3">un processus isolé lancé depuis l'image</p></div>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:26px">
+<h3 style="font-size:30px;font-weight:700">L'image du back, couche par couche</h3>
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;background:#FBF8F3;color:#E76F51;padding:14px 20px;border-radius:10px;border:2px dashed #E76F51">couche du conteneur : éphémère</p>
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;background:#1D3557;color:#F1FAEE;padding:14px 20px;border-radius:10px">COPY app.py</p>
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;background:#1D3557;color:#F1FAEE;padding:14px 20px;border-radius:10px">RUN pip install "psycopg[binary]"</p>
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;background:#2A4A73;color:#F1FAEE;padding:14px 20px;border-radius:10px">FROM python:3.12-slim</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:26px"><h3 style="font-size:30px;font-weight:700;color:#1B2631">Docker</h3><p style="font-size:26px;line-height:1.4;color:#4A5A6A">L'outil du poste de travail : construire, lancer, docker compose. C'est ce qu'utilise FestiPass sur sa VM.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#E3F2EF;border-radius:16px;padding:26px"><h3 style="font-size:30px;font-weight:700;color:#1B2631">containerd</h3><p style="font-size:26px;line-height:1.4;color:#4A5A6A">Le runtime qui lance les conteneurs. Kubernetes lui parle directement (CRI), sans Docker. Même format d'image (OCI) : une image Docker y tourne telle quelle.</p></div>
+</div>
+</div>
+<aside>Faire le lien avec le Dockerfile de app/back : chaque instruction crée une couche en lecture seule, partagée entre conteneurs. Ce qu'un conteneur écrit va dans sa couche à lui, perdue quand on le supprime : c'est pour ça que les billets disparaîtront au TP 00, et au chapitre 6. Docker n'est plus le runtime de Kubernetes depuis la 1.24 (dockershim retiré), mais les images restent les mêmes.</aside>
+</section>

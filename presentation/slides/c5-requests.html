@@ -1,0 +1,28 @@
+<section id="c5-requests" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 5 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Requests pour placer, limits pour protéger</h2>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:26px;color:#4A5A6A">Mémoire allouable d'un worker : le scheduler additionne les <span style="color:#1B2631"><b>requests</b></span>, jamais la consommation réelle</p>
+<div style="display:flex;height:72px;border:2px solid #4A5A6A;border-radius:12px;overflow:hidden">
+<div style="width:16%;background:#4A5A6A;display:flex;align-items:center;justify-content:center"><p style="font-size:24px;color:#F1FAEE">système</p></div><div style="width:14%;background:#1D3557;display:flex;align-items:center;justify-content:center"><p style="font-size:24px;color:#F1FAEE">postgres</p></div><div style="width:8%;background:#264653;display:flex;align-items:center;justify-content:center"><p style="font-size:24px;color:#F1FAEE">back</p></div><div style="width:8%;background:#264653;display:flex;align-items:center;justify-content:center"><p style="font-size:24px;color:#F1FAEE">back</p></div><div style="width:6%;background:#2A9D8F;display:flex;align-items:center;justify-content:center"><p style="font-size:24px;color:#F1FAEE">front</p></div>
+<div style="flex:1;background:#E76F51;display:flex;align-items:center;justify-content:center"><p style="font-size:24px;color:#F1FAEE">stats de la recette, sans limite : tout le reste</p></div>
+</div>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#EFE6D8;border-radius:16px;padding:24px">
+<div style="background:#14212E;border-radius:16px;padding:18px 22px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:21px;line-height:1.45;color:#F1FAEE;white-space:nowrap">resources:<br>&#160;&#160;requests: {cpu: 250m, memory: 128Mi}&#160;&#160;&#160;<span style="color:#8A9BAD"># réservé</span><br>&#160;&#160;limits:&#160;&#160;&#160;{cpu: "1",&#160;&#160;memory: 256Mi}&#160;&#160;&#160;<span style="color:#8A9BAD"># plafond</span></p></div>
+<p style="font-size:26px;line-height:1.4;color:#4A5A6A">CPU au-delà de la limite : <span style="color:#1B2631"><b>ralenti</b></span> (throttling).</p>
+<p style="font-size:26px;line-height:1.4;color:#4A5A6A">Mémoire au-delà : <span style="color:#1B2631"><b>tué</b></span>, OOMKilled.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<table style="font-size:26px;color:#1B2631">
+<tr><th style="width:32%">Classe QoS</th><th style="width:38%">Quand</th><th style="width:30%">Expulsé</th></tr>
+<tr><td>BestEffort</td><td>rien de déclaré</td><td>en premier</td></tr>
+<tr><td>Burstable</td><td>requests &lt; limits</td><td>ensuite</td></tr>
+<tr><td>Guaranteed</td><td>requests = limits</td><td>en dernier</td></tr>
+</table>
+<p style="font-size:26px;line-height:1.4;color:#4A5A6A">Le calcul de la recette, sans rien : <span style="color:#1B2631"><b>BestEffort</b></span>.</p>
+</div>
+</div>
+<aside>Le scheduler ne regarde que les requests : un pod sans requests peut atterrir sur un nœud déjà plein. Quand la mémoire manque, le kubelet expulse d'abord les BestEffort, puis les Burstable qui dépassent leurs requests. 250m = un quart de CPU. Le throttling ralentit sans tuer : un back trop limité en CPU répond lentement, ce qui compte au rush de 10h00. Les requests du back serviront de référence au HPA du chapitre 8.</aside>
+</section>

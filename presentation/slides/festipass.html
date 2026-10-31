@@ -1,0 +1,20 @@
+<section id="festipass" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Il était une fois</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">FestiPass, la billetterie du Festival des Embruns</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#EFE6D8;padding:32px;border-radius:16px"><p style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:700;color:#E76F51">10h00</p><p style="font-size:30px;color:#4A5A6A">vendredi : la billetterie ouvre</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#EFE6D8;padding:32px;border-radius:16px"><p style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:700;color:#E76F51">12 000</p><p style="font-size:30px;color:#4A5A6A">pass à vendre en quelques minutes</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#EFE6D8;padding:32px;border-radius:16px"><p style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:700;color:#E76F51">1 VM</p><p style="font-size:30px;color:#4A5A6A">pour toute l'application</p></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;border:3px dashed #E76F51;border-radius:20px;padding:32px 40px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">VM « billetterie » · docker compose</p>
+<div style="display:flex;align-items:center;gap:28px">
+<div style="flex:1;background:#FFFFFF;border:2px solid #E2D6C3;border-radius:14px;padding:22px"><p style="font-size:32px;font-weight:700;text-align:center">front</p><p style="font-size:26px;color:#4A5A6A;text-align:center">nginx + page web</p></div>
+<x-shape kind="arrow-right" style="background:#E76F51;width:70px;height:36px"></x-shape>
+<div style="flex:1;background:#FFFFFF;border:2px solid #E2D6C3;border-radius:14px;padding:22px"><p style="font-size:32px;font-weight:700;text-align:center">back</p><p style="font-size:26px;color:#4A5A6A;text-align:center">API · signe chaque billet</p></div>
+<x-shape kind="arrow-right" style="background:#E76F51;width:70px;height:36px"></x-shape>
+<div style="flex:1;background:#FFFFFF;border:2px solid #E2D6C3;border-radius:14px;padding:22px"><p style="font-size:32px;font-weight:700;text-align:center">PostgreSQL</p><p style="font-size:26px;color:#4A5A6A;text-align:center">les billets vendus</p></div>
+</div>
+</div>
+<aside>Trois jours de concerts sur la plage de Saint-Malo, en juillet. Tout se joue à l'ouverture des ventes, vendredi 10h00, juste après l'annonce de la tête d'affiche. Chaque billet est signé par le back (PBKDF2) : c'est ce calcul qui consomme du CPU quand tout le monde achète en même temps. Le code est dans app/ du dépôt : docker compose up -d dans app/ montre l'application telle qu'elle tourne sur la VM.</aside>
+</section>

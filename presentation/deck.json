@@ -1,0 +1,157 @@
+{
+  "v": 4,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-31T12:00:00Z"
+  },
+  "lists": "css",
+  "title": "Kubernetes – Mise en œuvre : l'histoire de FestiPass",
+  "cover": "cover",
+  "order": [
+    "cover",
+    "festipass",
+    "personnages",
+    "principe",
+    "programme",
+    "branches",
+    "lab",
+    "j1-debut",
+    "c0-incident",
+    "c0-solution",
+    "c0-conteneurs",
+    "c0-orchestration",
+    "c0-ecosysteme",
+    "c0-tp",
+    "pause-j1-matin",
+    "c1-incident",
+    "c1-archi",
+    "c1-boucle",
+    "c1-etapes",
+    "c1-noeuds",
+    "c1-tp",
+    "dej-j1",
+    "pause-j1-aprem",
+    "c2-incident",
+    "c2-yaml",
+    "c2-manifest",
+    "c2-objets",
+    "c2-back-yaml",
+    "c2-tp",
+    "fin-j1",
+    "j2-debut",
+    "c2-tp-suite",
+    "pause-j2-matin",
+    "c3-incident",
+    "c3-solution",
+    "c3-configmap",
+    "c3-secret",
+    "c3-tp",
+    "dej-j2",
+    "c4-incident",
+    "c4-rolling",
+    "c4-probes",
+    "c4-kubectl",
+    "c4-tp",
+    "pause-j2-aprem",
+    "c5-incident",
+    "c5-labels",
+    "c5-requests",
+    "c5-quota",
+    "c5-tp",
+    "fin-j2",
+    "j3-debut",
+    "c6-incident",
+    "c6-solution",
+    "c6-pvc",
+    "c6-sts",
+    "c6-tp",
+    "pause-j3-matin",
+    "c7-incident",
+    "c7-controleurs",
+    "c7-cronjob",
+    "c7-operateurs",
+    "c7-tp",
+    "c8-incident",
+    "c8-hpa",
+    "c8-noeuds",
+    "dej-j3",
+    "c8-tp",
+    "c9-incident",
+    "c9-rbac",
+    "c9-pod",
+    "c9-netpol",
+    "c9-tp",
+    "pause-j3-aprem",
+    "epilogue",
+    "fin"
+  ],
+  "sections": {
+    "intro": {
+      "description": "FestiPass, ses personnages, le déroulé et le lab",
+      "start": "cover"
+    },
+    "ch0": {
+      "description": "Chapitre 0 : conteneurs, orchestration et écosystème",
+      "start": "j1-debut"
+    },
+    "ch1": {
+      "description": "Chapitre 1 : architecture et installation du cluster avec kubeadm",
+      "start": "c1-incident"
+    },
+    "ch2": {
+      "description": "Chapitre 2 : YAML, Pod, Deployment, Service",
+      "start": "c2-incident"
+    },
+    "ch2-suite": {
+      "description": "Jour 2 : déploiement de FestiPass (TP 02, partie B)",
+      "start": "j2-debut"
+    },
+    "ch3": {
+      "description": "Chapitre 3 : ConfigMap et Secret",
+      "start": "c3-incident"
+    },
+    "ch4": {
+      "description": "Chapitre 4 : rolling update, rollback, probes, surveillance",
+      "start": "c4-incident"
+    },
+    "ch5": {
+      "description": "Chapitre 5 : labels, requests/limits, LimitRange, ResourceQuota",
+      "start": "c5-incident"
+    },
+    "ch6": {
+      "description": "Chapitre 6 : PV, PVC, StorageClass, StatefulSet",
+      "start": "j3-debut"
+    },
+    "ch7": {
+      "description": "Chapitre 7 : contrôleurs, CronJob, opérateurs",
+      "start": "c7-incident"
+    },
+    "ch8": {
+      "description": "Chapitre 8 : autoscaling (HPA, nœuds)",
+      "start": "c8-incident"
+    },
+    "ch9": {
+      "description": "Chapitre 9 : RBAC, securityContext, Pod Security, NetworkPolicy",
+      "start": "c9-incident"
+    },
+    "fin": {
+      "description": "Épilogue et bilan",
+      "start": "epilogue"
+    }
+  },
+  "faces": {
+    "fraunces": {
+      "family": "Fraunces",
+      "href": "https://fonts.googleapis.com/css2?family=Fraunces:wght@400..800&display=swap"
+    },
+    "dm-sans": {
+      "family": "DM Sans",
+      "href": "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..700&display=swap"
+    },
+    "jetbrains-mono": {
+      "family": "JetBrains Mono",
+      "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+    }
+  },
+  "designSystems": []
+}

@@ -1,0 +1,13 @@
+<section id="c3-solution" data-transition="fade" style="background:#F6F1E9;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Chapitre 3 · La solution</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">Sortir la configuration de l'image et du dépôt</h2>
+<table style="font-size:30px;color:#1B2631;font-family:'DM Sans', Arial, sans-serif">
+<tr><th style="width:28%">Quoi</th><th style="width:34%">Aujourd'hui</th><th style="width:38%">Avec Kubernetes</th></tr>
+<tr><td>Mot de passe de la base</td><td>En clair dans le dépôt</td><td>Un Secret, créé sur le cluster</td></tr>
+<tr><td>PASS_MAX, nom du festival</td><td>En dur dans les manifests</td><td>Une ConfigMap, en variables</td></tr>
+<tr><td>L'annonce du site</td><td>Dans l'image du front</td><td>Une ConfigMap, montée en fichier</td></tr>
+<tr><td>Changer une valeur</td><td>Reconstruire, redéployer</td><td>Modifier l'objet, parfois redémarrer</td></tr>
+</table>
+<p style="font-size:32px;line-height:1.4;color:#4A5A6A">Une même image en recette et en prod : <span style="color:#1B2631"><b>seule la configuration change.</b></span></p>
+<aside>C'est le principe « config » des applications 12 facteurs : le code dans l'image, la configuration dans l'environnement. La dernière ligne du tableau prépare la slide suivante : selon la façon dont on consomme une ConfigMap, un changement arrive seul… ou pas.</aside>
+</section>

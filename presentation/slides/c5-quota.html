@@ -1,0 +1,16 @@
+<section id="c5-quota" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 5 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Des garde-fous par namespace</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<p style="font-size:28px;color:#4A5A6A"><span style="color:#1B2631"><b>LimitRange</b></span> : par conteneur, défauts et maximum</p>
+<div style="background:#14212E;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:22px;line-height:1.42;color:#F1FAEE;white-space:nowrap">apiVersion: v1<br>kind: LimitRange<br>metadata:<br>&#160;&#160;name: defauts<br>&#160;&#160;namespace: <span style="color:#FFD166">recette</span><br>spec:<br>&#160;&#160;limits:<br>&#160;&#160;- type: Container<br>&#160;&#160;&#160;&#160;defaultRequest: {cpu: 100m, memory: 128Mi}<br>&#160;&#160;&#160;&#160;default:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;{cpu: 500m, memory: 256Mi}<br>&#160;&#160;&#160;&#160;max:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;{cpu: "1",&#160;&#160;memory: 512Mi}</p></div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px">
+<p style="font-size:28px;color:#4A5A6A"><span style="color:#1B2631"><b>ResourceQuota</b></span> : un total pour tout le namespace</p>
+<div style="background:#14212E;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:22px;line-height:1.42;color:#F1FAEE;white-space:nowrap">apiVersion: v1<br>kind: ResourceQuota<br>metadata:<br>&#160;&#160;name: plafond<br>&#160;&#160;namespace: <span style="color:#FFD166">recette</span><br>spec:<br>&#160;&#160;hard:<br>&#160;&#160;&#160;&#160;requests.cpu: "2"<br>&#160;&#160;&#160;&#160;requests.memory: 2Gi<br>&#160;&#160;&#160;&#160;limits.memory: 4Gi<br>&#160;&#160;&#160;&#160;pods: "10"</p></div>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#4A5A6A">Au-delà du quota, <span style="color:#1B2631"><b>la création est refusée</b></span>. Le LimitRange complète les pods qui n'ont rien déclaré.</p>
+<aside>Avec un ResourceQuota sur la mémoire, tout pod du namespace doit déclarer requests et limits, sinon il est refusé : le LimitRange évite ce piège en posant des valeurs par défaut. Le refus apparaît dans les Events du ReplicaSet, pas du Deployment : faire chercher avec kubectl describe rs. kubectl describe quota -n recette montre la consommation.</aside>
+</section>

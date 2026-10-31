@@ -1,0 +1,16 @@
+<section id="c8-hpa" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 8 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">HPA : le nombre de pods suit la charge</h2>
+<div style="display:flex;gap:32px;align-items:stretch">
+<div style="width:1000px;background:#14212E;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:21px;line-height:1.42;color:#F1FAEE;white-space:nowrap">apiVersion: autoscaling/v2<br>kind: HorizontalPodAutoscaler<br>metadata: {name: back, namespace: festipass}<br>spec:<br>&#160;&#160;scaleTargetRef: {apiVersion: apps/v1, kind: Deployment, name: back}<br>&#160;&#160;minReplicas: <span style="color:#FFD166">2</span><br>&#160;&#160;maxReplicas: <span style="color:#FFD166">8</span><br>&#160;&#160;metrics:<br>&#160;&#160;- type: Resource<br>&#160;&#160;&#160;&#160;resource:<br>&#160;&#160;&#160;&#160;&#160;&#160;name: cpu<br>&#160;&#160;&#160;&#160;&#160;&#160;target: {type: Utilization, averageUtilization: <span style="color:#FFD166">60</span>}<br>&#160;&#160;behavior:<br>&#160;&#160;&#160;&#160;scaleDown:<br>&#160;&#160;&#160;&#160;&#160;&#160;stabilizationWindowSeconds: 120&#160;&#160;&#160;<span style="color:#8A9BAD"># descendre lentement</span></p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:10px;background:#264653;border-radius:16px;padding:24px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;line-height:1.5;color:#F1FAEE">desiredReplicas =<br>ceil(current × <span style="color:#FFD166">usage</span> / <span style="color:#8FC1F0">cible</span>)</p>
+<p style="font-size:23px;line-height:1.4;color:#C9D6E3">2 pods à 180 % de leurs requests :<br>ceil(2 × 180 / 60) = <span style="color:#FFD166"><b>6 pods</b></span></p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:20px"><h3 style="font-size:26px;font-weight:700;color:#1B2631">60 % de quoi ?</h3><p style="font-size:24px;line-height:1.4;color:#4A5A6A">Des requests CPU du pod : 60 % de 250m = 150m.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:20px"><h3 style="font-size:26px;font-weight:700;color:#1B2631">Prérequis</h3><p style="font-size:24px;line-height:1.4;color:#4A5A6A">metrics-server (TP 04) et des requests CPU (TP 05).</p></div>
+</div>
+</div>
+<aside>Le HPA est une boucle de plus : toutes les 15 secondes, il lit les métriques et ajuste replicas du Deployment. Sans requests, le pourcentage n'a pas de sens : le HPA affiche <unknown>. La montée est rapide, la descente amortie par stabilizationWindowSeconds (300 s par défaut) pour éviter le yo-yo. Ne plus fixer replicas dans le manifest du Deployment : un apply écraserait la valeur choisie par le HPA.</aside>
+</section>

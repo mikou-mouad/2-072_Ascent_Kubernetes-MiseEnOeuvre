@@ -1,0 +1,21 @@
+<section id="c8-noeuds" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 8 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Et quand les nœuds sont pleins ?</h2>
+<div style="display:flex;align-items:center;gap:12px">
+<div style="flex:1;background:#EFE6D8;border-radius:14px;padding:16px"><p style="font-size:24px;line-height:1.35;color:#1B2631;text-align:center">La charge monte</p></div><x-shape kind="arrow-right" style="background:#2A9D8F;width:36px;height:22px"></x-shape>
+<div style="flex:1;background:#EFE6D8;border-radius:14px;padding:16px"><p style="font-size:24px;line-height:1.35;color:#1B2631;text-align:center">Le HPA crée des pods</p></div><x-shape kind="arrow-right" style="background:#2A9D8F;width:36px;height:22px"></x-shape>
+<div style="flex:1;background:#1D3557;border-radius:14px;padding:16px"><p style="font-size:24px;line-height:1.35;color:#FFD166;text-align:center">Pending : Insufficient cpu</p></div><x-shape kind="arrow-right" style="background:#2A9D8F;width:36px;height:22px"></x-shape>
+<div style="flex:1;background:#EFE6D8;border-radius:14px;padding:16px"><p style="font-size:24px;line-height:1.35;color:#1B2631;text-align:center">Un nœud est ajouté</p></div><x-shape kind="arrow-right" style="background:#2A9D8F;width:36px;height:22px"></x-shape>
+<div style="flex:1;background:#2A9D8F;border-radius:14px;padding:16px"><p style="font-size:24px;line-height:1.35;color:#F1FAEE;text-align:center">Les pods démarrent</p></div>
+</div>
+<div style="display:flex;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:26px"><h3 style="font-size:30px;font-weight:700;color:#1B2631">VPA</h3><p style="font-size:25px;line-height:1.4;color:#4A5A6A">Des pods plus gros : il ajuste requests et limits d'après la consommation. À éviter avec un HPA sur le même CPU.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#E3F2EF;border-radius:16px;padding:26px"><h3 style="font-size:30px;font-weight:700;color:#1B2631">Cluster Autoscaler</h3><p style="font-size:25px;line-height:1.4;color:#4A5A6A">Des nœuds en plus quand des pods restent Pending, en moins quand des nœuds sont vides. Chez un fournisseur cloud.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:26px"><h3 style="font-size:30px;font-weight:700;color:#1B2631">Karpenter</h3><p style="font-size:25px;line-height:1.4;color:#4A5A6A">Crée directement la machine adaptée aux pods en attente, sans groupe de nœuds fixe.</p></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:28px;color:#4A5A6A"><span style="color:#1B2631"><b>Sur nos VM</b></span>, pas de fournisseur cloud : on simule l'ajout d'un nœud en ouvrant le control plane.</p>
+<div style="background:#14212E;border-radius:16px;padding:20px 28px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:22px;line-height:1.4;color:#F1FAEE;white-space:nowrap">kubectl taint node controlplane node-role.kubernetes.io/control-plane:NoSchedule<span style="color:#FFD166">-</span></p></div>
+</div>
+<aside>Le Cluster Autoscaler ne regarde pas le CPU des nœuds : il réagit aux pods Pending que le scheduler n'arrive pas à placer, toujours à cause des requests. Le tiret final retire la taint. En production, on ne mettrait pas FestiPass sur le control plane : c'est seulement pour simuler un nœud de plus au TP 08. Penser à remettre la taint à la fin.</aside>
+</section>

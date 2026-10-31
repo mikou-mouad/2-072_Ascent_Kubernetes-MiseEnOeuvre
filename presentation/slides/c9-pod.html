@@ -1,0 +1,17 @@
+<section id="c9-pod" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 9 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Ce qu'un pod a le droit de faire</h2>
+<div style="display:flex;gap:32px;align-items:stretch">
+<div style="width:940px;background:#14212E;border-radius:16px;padding:28px 32px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:22px;line-height:1.5;color:#F1FAEE;white-space:nowrap">spec:<br>&#160;&#160;serviceAccountName: back<br>&#160;&#160;automountServiceAccountToken: false&#160;&#160;<span style="color:#8A9BAD"># pas besoin de l'API</span><br>&#160;&#160;securityContext:<br>&#160;&#160;&#160;&#160;runAsNonRoot: true<br>&#160;&#160;&#160;&#160;seccompProfile: {type: RuntimeDefault}<br>&#160;&#160;containers:<br>&#160;&#160;- name: back<br>&#160;&#160;&#160;&#160;securityContext:<br>&#160;&#160;&#160;&#160;&#160;&#160;allowPrivilegeEscalation: false<br>&#160;&#160;&#160;&#160;&#160;&#160;readOnlyRootFilesystem: true<br>&#160;&#160;&#160;&#160;&#160;&#160;capabilities: {drop: [ALL]}</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#EFE6D8;border-radius:16px;padding:22px"><h3 style="font-size:28px;font-weight:700;color:#1B2631">ServiceAccount</h3><p style="font-size:24px;line-height:1.4;color:#4A5A6A">L'identité du pod face à l'API. Par défaut : default, avec un token monté dans le conteneur.</p></div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#EFE6D8;border-radius:16px;padding:22px">
+<h3 style="font-size:28px;font-weight:700">Pod Security Admission</h3>
+<div style="display:flex;gap:10px"><p style="font-size:22px;background:#4A5A6A;color:#F1FAEE;padding:6px 14px;border-radius:20px">privileged</p><p style="font-size:22px;background:#2A9D8F;color:#F1FAEE;padding:6px 14px;border-radius:20px">baseline</p><p style="font-size:22px;background:#264653;color:#FFD166;padding:6px 14px;border-radius:20px">restricted</p></div>
+<p style="font-size:24px;line-height:1.4;color:#4A5A6A">Un niveau par namespace, posé par un label :</p>
+<div style="background:#14212E;border-radius:16px;padding:16px 20px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:19px;line-height:1.45;color:#F1FAEE;white-space:nowrap">kubectl label ns festipass \<br>&#160;&#160;pod-security.kubernetes.io/enforce=restricted</p></div>
+</div>
+</div>
+</div>
+<aside>Le back n'appelle jamais l'API Kubernetes : inutile de lui monter un token. Les images de FestiPass sont déjà prêtes pour restricted : le back tourne en utilisateur 10001, le front avec nginx-unprivileged (utilisateur 101). privileged : aucune restriction ; baseline : bloque les dangers connus (privileged, hostPath, hostNetwork) ; restricted : impose le securityContext ci-contre. PostgreSQL demande un runAsUser explicite (999) et un fsGroup pour passer en restricted. Tester d'abord avec le mode warn au lieu de enforce.</aside>
+</section>

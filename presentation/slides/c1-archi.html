@@ -1,0 +1,35 @@
+<section id="c1-archi" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 1 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:72px;font-weight:600;line-height:1.1">L'architecture d'un cluster</h2>
+<div style="display:flex;align-items:center;gap:24px">
+<div style="display:flex;flex-direction:column;gap:8px;background:#14212E;padding:24px;border-radius:14px;width:200px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:28px;color:#FFD166;text-align:center">kubectl</p>
+<p style="font-size:24px;color:#C9D6E3;text-align:center">Camille, Yanis</p>
+</div>
+<x-shape kind="arrow-right" style="background:#2A9D8F;width:60px;height:30px"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#E3F2EF;border:3px solid #2A9D8F;border-radius:18px;padding:24px">
+<p style="font-size:26px;font-weight:700;color:#2A9D8F">CONTROL PLANE · 10.10.0.10</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+<div style="background:#2A9D8F;border:none;border-radius:12px;padding:16px"><p style="font-size:28px;font-weight:700;color:#F1FAEE">API server</p><p style="font-size:24px;color:#F1FAEE">la seule porte d'entrée</p></div>
+<div style="background:#FBF8F3;border:2px solid #A9D6CF;border-radius:12px;padding:16px"><p style="font-size:28px;font-weight:700;color:#1B2631">etcd</p><p style="font-size:24px;color:#4A5A6A">la mémoire du cluster</p></div>
+<div style="background:#FBF8F3;border:2px solid #A9D6CF;border-radius:12px;padding:16px"><p style="font-size:28px;font-weight:700;color:#1B2631">scheduler</p><p style="font-size:24px;color:#4A5A6A">choisit le nœud</p></div>
+<div style="background:#FBF8F3;border:2px solid #A9D6CF;border-radius:12px;padding:16px"><p style="font-size:28px;font-weight:700;color:#1B2631">controller-manager</p><p style="font-size:24px;color:#4A5A6A">corrige les écarts</p></div>
+</div>
+</div>
+<x-shape kind="arrow-right" style="background:#2A9D8F;width:60px;height:30px"></x-shape>
+<div style="display:flex;flex-direction:column;gap:16px;width:470px">
+<div style="background:#EFE6D8;border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px">
+<p style="font-size:26px;font-weight:700;color:#E76F51">WORKER1 · 10.10.0.11</p>
+<p style="font-size:26px">kubelet · containerd · kube-proxy</p>
+<div style="display:flex;gap:10px"><p style="font-size:24px;background:#E76F51;color:#F1FAEE;padding:6px 14px;border-radius:20px">front</p><p style="font-size:24px;background:#E76F51;color:#F1FAEE;padding:6px 14px;border-radius:20px">back</p></div>
+</div>
+<div style="background:#EFE6D8;border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px">
+<p style="font-size:26px;font-weight:700;color:#E76F51">WORKER2 · 10.10.0.12</p>
+<p style="font-size:26px">kubelet · containerd · kube-proxy</p>
+<div style="display:flex;gap:10px"><p style="font-size:24px;background:#E76F51;color:#F1FAEE;padding:6px 14px;border-radius:20px">back</p><p style="font-size:24px;background:#E76F51;color:#F1FAEE;padding:6px 14px;border-radius:20px">postgres</p></div>
+</div>
+</div>
+</div>
+<p style="font-size:30px;color:#4A5A6A">Le réseau entre les pods de tous les nœuds est fourni par le <span style="color:#1B2631"><b>CNI</b></span> : chez nous, <span style="color:#1B2631"><b>Calico</b></span>.</p>
+<aside>Tout passe par l'API server : kubectl, le scheduler, le kubelet. Seul l'API server parle à etcd. Le kubelet est l'agent de chaque nœud : il demande à containerd de lancer les conteneurs. kube-proxy programme les règles qui font fonctionner les Services. Sur un cluster kubeadm, les composants du control plane sont eux-mêmes des pods (static pods, /etc/kubernetes/manifests).</aside>
+</section>

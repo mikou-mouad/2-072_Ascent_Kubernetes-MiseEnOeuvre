@@ -1,0 +1,28 @@
+<section id="c7-tp" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:560px 1fr;gap:72px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:24px">
+<x-icon name="Wrench" style="color:#FFD166;width:72px;height:72px"></x-icon>
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 07</h2>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">Contrôleurs et opérateurs</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h · Job, CronJob, DaemonSet</p>
+<p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-07-controleurs</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:14px">
+<h3 style="font-size:36px;font-weight:700;color:#FFD166">Vous allez</h3>
+<ul style="font-size:30px;line-height:1.45;color:#F1FAEE">
+<li>écrire le CronJob de sauvegarde de PostgreSQL</li>
+<li>le déclencher à la main avec create job --from</li>
+<li>retrouver les DaemonSets et les propriétaires des pods</li>
+<li>regarder l'opérateur Calico réparer ce que vous cassez</li>
+</ul>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#1C3540;border-radius:18px;padding:28px">
+<h3 style="font-size:36px;font-weight:700;color:#FFD166">C'est réussi quand</h3>
+<div style="display:flex;gap:16px;align-items:center"><x-icon name="CheckCircle" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">un fichier .sql apparaît dans le volume de sauvegarde</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon name="CheckCircle" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">kubectl get jobs montre l'historique</p></div>
+<div style="display:flex;gap:16px;align-items:center"><x-icon name="CheckCircle" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">vous savez qui possède un pod, et pourquoi</p></div>
+</div>
+</div>
+<aside>Bonus : restaurer la sauvegarde dans une base vide, la seule vraie preuve qu'une sauvegarde fonctionne. Correction : solutions/07-controleurs/, dans la branche du TP. Enchaîner directement sur le chapitre 8 à 12h00.</aside>
+</section>
