@@ -114,10 +114,21 @@ kubectl label --dry-run=server --overwrite namespace festipass \
 
 ```bash
 kubectl apply -f k8s/
-kubectl get pods -w                       # Ctrl+C quand tout est prêt, postgres-0 compris
+kubectl rollout status deployment back
+kubectl rollout status deployment front
+kubectl rollout status statefulset postgres
+```
+
+La vérification porte sur **tous** les pods du namespace, y compris ceux des Jobs terminés (`Completed`) : les sauvegardes lancées au TP 07 tournaient en root. Supprimez ces Jobs (le CronJob, lui, reste), puis refaites la vérification :
+
+```bash
+kubectl delete jobs --all
+kubectl get pods                          # plus que les pods de FestiPass, tous récents
 kubectl label --dry-run=server --overwrite namespace festipass \
   pod-security.kubernetes.io/enforce=restricted
 ```
+
+Il reste un avertissement ? Le pod cité a été créé avant vos modifications : regardez son âge et son propriétaire (`kubectl get pod <nom> -o jsonpath='{.metadata.ownerReferences[0].name}'`).
 
 Vérifiez que le site fonctionne et que les billets sont toujours là, puis que la sauvegarde fonctionne encore : `kubectl create job --from=cronjob/sauvegarde sauvegarde-securisee`, puis ses logs.
 
