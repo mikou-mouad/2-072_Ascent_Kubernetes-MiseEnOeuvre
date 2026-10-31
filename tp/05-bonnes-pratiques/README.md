@@ -148,7 +148,7 @@ Ajoutez des `resources` aux conteneurs de la production :
 ```bash
 kubectl apply -f k8s/
 kubectl get pods -o custom-columns=NOM:.metadata.name,QOS:.status.qosClass
-kubectl describe node worker1 | sed -n '/Allocated resources/,/Events/p'
+kubectl describe node worker-1 | sed -n '/Allocated resources/,/Events/p'
 ```
 
 **Question 7 :** quelle classe QoS a chaque pod ? En cas de manque de mémoire sur un nœud, dans quel ordre le kubelet expulse-t-il les pods ?
