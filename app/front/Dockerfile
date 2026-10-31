@@ -1,5 +1,6 @@
-# Image nginx sans root : écoute sur 8080, utilisateur 101
-FROM public.ecr.aws/nginx/nginx-unprivileged:1.28-alpine
+# Image nginx sans root : écoute sur 8080, utilisateur 101.
+# Tirée depuis ghcr.io : le miroir public.ecr.aws limite les téléchargements anonymes depuis GitHub Actions.
+FROM ghcr.io/nginx/nginx-unprivileged:1.28-alpine
 
 ARG APP_VERSION=1.0
 ARG COULEUR=#1d3557
