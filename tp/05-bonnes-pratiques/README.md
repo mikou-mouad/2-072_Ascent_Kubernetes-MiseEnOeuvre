@@ -1,6 +1,6 @@
 # TP 05 – « Le test de la recette a fait tomber la prod »
 
-**Durée :** 55 min · **Branche :** `tp-05-bonnes-pratiques` · **Correction :** `solutions/05-bonnes-pratiques/`, dans cette branche
+**Durée :** 55 min (partie 1 avant la pause, partie 2 après) · **Branche :** `tp-05-bonnes-pratiques` · **Correction :** `solutions/05-bonnes-pratiques/`, dans cette branche
 
 ## L'incident
 
