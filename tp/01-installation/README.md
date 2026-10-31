@@ -26,7 +26,7 @@ Suivez le [guide d'installation](../../guide-installation-cluster.md), sections 
 
 > Le TP 00 s'est terminé par le redémarrage du control plane. Si vous ne l'avez pas fait, retirez Docker maintenant (TP 00, étape 9).
 >
-> Logs « shell integration » à chaque ligne sur une machine ? `unset PROMPT_COMMAND` puis `PS1='\u@\h:\w\$ '` (détail et version permanente : guide, section 2).
+> Logs « shell integration » à chaque ligne sur une machine ? `unset PROMPT_COMMAND`, `PS1='\u@\h:\w\$ '` et `PS0=''` (détail et version permanente : guide, section 2).
 
 ### 1. Préparation des nœuds (sections 2 et 3) – le matin
 
