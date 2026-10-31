@@ -15,7 +15,7 @@
 </div>
 <div style="display:flex;flex-direction:column;gap:12px">
 <p style="font-size:28px;color:#4A5A6A"><span style="color:#1B2631"><b>Sur nos VM</b></span>, pas de fournisseur cloud : on simule l'ajout d'un nœud en ouvrant le control plane.</p>
-<div style="background:#14212E;border-radius:16px;padding:20px 28px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:22px;line-height:1.4;color:#F1FAEE;white-space:nowrap">kubectl taint node controlplane node-role.kubernetes.io/control-plane:NoSchedule<span style="color:#FFD166">-</span></p></div>
+<div style="background:#14212E;border-radius:16px;padding:20px 28px;display:flex;flex-direction:column"><p style="font-family:'JetBrains Mono', monospace;font-size:22px;line-height:1.4;color:#F1FAEE;white-space:nowrap">kubectl taint node control-plane node-role.kubernetes.io/control-plane:NoSchedule<span style="color:#FFD166">-</span></p></div>
 </div>
 <aside>Le Cluster Autoscaler ne regarde pas le CPU des nœuds : il réagit aux pods Pending que le scheduler n'arrive pas à placer, toujours à cause des requests. Le tiret final retire la taint. En production, on ne mettrait pas FestiPass sur le control plane : c'est seulement pour simuler un nœud de plus au TP 08. Penser à remettre la taint à la fin.</aside>
 </section>

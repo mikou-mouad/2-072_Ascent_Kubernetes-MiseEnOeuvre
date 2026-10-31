@@ -9,9 +9,10 @@ Les sections 2 et 3 s'exécutent sur **tous les nœuds**, les suivantes comme in
 
 | Nœud         | Rôle          | Adresse IP                                |
 |--------------|---------------|-------------------------------------------|
-| controlplane | Control plane | 10.10.0.10                                |
-| worker1      | Worker        | 10.10.0.20                                |
-| worker2      | Worker        | 10.10.0.30 (à adapter à l'adresse réelle) |
+| control-plane | Control plane | 10.10.0.20                                |
+| worker-1      | Worker        | 10.10.0.30                                |
+| worker-2      | Worker        | 10.10.0.40 (à adapter à l'adresse réelle) |
+| ClientWeb    | Poste avec navigateur, hors cluster | 10.10.0.10            |
 
 | Composant             | Choix                                                                 |
 |-----------------------|-----------------------------------------------------------------------|
@@ -30,6 +31,34 @@ Ports à ouvrir entre les nœuds : TCP 6443, 2379-2380, 10250, 30000-32767 (Node
 > **Attention : les adresses IP sont attribuées ici par DHCP.** Si l'adresse du control plane change, le cluster ne fonctionne plus. Réservez les trois adresses dans le DHCP ou configurez des IP statiques **avant** de lancer `kubeadm init`.
 
 ## 2. Préparer les 3 nœuds
+
+> **Le terminal affiche des logs « shell integration » à chaque ligne ?** C'est le prompt de la session qui est mal configuré, pas un problème de la VM. Corrigez-le pour la session en cours :
+>
+> ```bash
+> unset PROMPT_COMMAND
+> PS1='\u@\h:\w\$ '
+> PS0=''
+> ```
+>
+> C'est à retaper à chaque nouvelle session SSH (et après chaque redémarrage), sauf si vous l'ajoutez une fois pour toutes à la fin de `~/.bashrc`, sur chaque machine :
+>
+> ```bash
+> echo 'unset PROMPT_COMMAND; PS1="\u@\h:\w\$ "' >> ~/.bashrc
+> echo 'PS0=""' >> ~/.bashrc
+> source ~/.bashrc
+> ```
+>
+> Les logs reviennent à la session suivante ? Un autre fichier redéfinit `PROMPT_COMMAND` après `~/.bashrc`. Trouvez-le :
+>
+> ```bash
+> grep -n "machineid\|PROMPT_COMMAND" ~/.bashrc ~/.profile /etc/profile.d/* 2>/dev/null
+> ```
+>
+> Ajoutez la même ligne à la fin du fichier trouvé (remplacez `<fichier>` par son nom ; `sudo` est nécessaire pour un fichier de `/etc`) :
+>
+> ```bash
+> echo 'unset PROMPT_COMMAND; PS1="\u@\h:\w\$ "; PS0=""' | sudo tee -a <fichier>
+> ```
 
 > **Docker a été installé au TP 00 sur le control plane ?** Il doit avoir été désinstallé, et la VM redémarrée (dernière étape du TP 00) : Docker modifie les règles iptables et gêne le réseau des pods.
 
@@ -103,17 +132,17 @@ Vous pouvez aussi pré-télécharger les images avec `sudo kubeadm config images
 
 ```bash
 ip -4 addr show ens18        # ou : hostname -I
-ping -c 2 10.10.0.10         # depuis chaque worker vers le control plane
+ping -c 2 10.10.0.20         # depuis chaque worker vers le control plane
 ```
 
 ## 4. Initialiser le control plane
 
-À exécuter **uniquement sur controlplane**.
+À exécuter **uniquement sur control-plane**.
 
 ```bash
 sudo kubeadm init \
   --pod-network-cidr=192.168.0.0/16 \
-  --apiserver-advertise-address=10.10.0.10
+  --apiserver-advertise-address=10.10.0.20
 
 mkdir -p $HOME/.kube
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -142,10 +171,10 @@ Utilisez `create` et non `apply` : les CRD sont trop volumineuses pour `apply`.
 
 ## 6. Joindre les workers
 
-Exécutez la commande sauvegardée sur **worker1** et **worker2**.
+Exécutez la commande sauvegardée sur **worker-1** et **worker-2**.
 
 ```bash
-sudo kubeadm join 10.10.0.10:6443 --token <token> \
+sudo kubeadm join 10.10.0.20:6443 --token <token> \
   --discovery-token-ca-cert-hash sha256:<hash>
 ```
 
@@ -167,12 +196,9 @@ kubectl run test --rm -it --image=public.ecr.aws/docker/library/busybox:1.36 --r
   wget -qO- http://nginx
 
 # NodePort sur chaque nœud (remplacer 31690 par votre port)
-curl -sI http://10.10.0.10:31690 | head -1
 curl -sI http://10.10.0.20:31690 | head -1
 curl -sI http://10.10.0.30:31690 | head -1
-
-# Nettoyage
-kubectl delete svc nginx && kubectl delete deployment nginx
+curl -sI http://10.10.0.40:31690 | head -1
 ```
 
 **Critères de réussite :** tous les nœuds sont `Ready`, la page d'accueil nginx est renvoyée par le test busybox, et les trois nœuds répondent `HTTP/1.1 200 OK`.
@@ -188,6 +214,7 @@ kubectl delete svc nginx && kubectl delete deployment nginx
 | Le NodePort ne répond que sur un nœud | Pare-feu bloquant le trafic Calico (UDP 4789, TCP 179, TCP 5473).                          |
 | `wget: bad address`                   | CoreDNS ne tourne pas. Vérifier `kubectl get pods -n kube-system`.                        |
 | Échecs étranges entre nœuds           | Le MTU est de 9000 sur ces VM. Vérifier que tous les nœuds utilisent le même MTU.         |
+| Logs « shell integration » à chaque ligne | Prompt mal configuré : `unset PROMPT_COMMAND`, `PS1='\u@\h:\w\$ '` et `PS0=''`, ou à la fin de `~/.bashrc` ; s'ils reviennent, chercher le fichier qui redéfinit `PROMPT_COMMAND` (section 2). |
 | `kubectl: localhost:8080 refused`     | Pas de kubeconfig sur cette machine. Exécuter kubectl sur le control plane.               |
 
 ## 9. Avant de commencer les TP
@@ -205,5 +232,5 @@ Le cluster est prêt tel quel. Gardez les éléments suivants pour le TP corresp
 
 1. Faire un snapshot des 3 VM maintenant, comme point de restauration propre.
 2. Réserver ou fixer les adresses IP des 3 nœuds.
-3. Supprimer les objets de test nginx.
+3. Supprimer les objets de test nginx (dernière étape du TP 01).
 4. Vérifier la RAM des workers (4 Go minimum, 8 Go idéalement).
