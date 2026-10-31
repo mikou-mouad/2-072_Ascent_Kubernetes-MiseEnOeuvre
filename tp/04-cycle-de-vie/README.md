@@ -94,7 +94,7 @@ kubectl rollout history deployment front
 kubectl get replicasets -l app=front
 ```
 
-Rechargez le site depuis ClientWeb : le bandeau est passé au corail.
+Rechargez le site depuis ClientWeb (ou l'adresse du tunnel, TP 02) : le bandeau est passé au corail.
 
 **Questions :**
 
