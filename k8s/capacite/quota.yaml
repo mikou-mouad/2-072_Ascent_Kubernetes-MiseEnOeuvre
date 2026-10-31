@@ -1,0 +1,10 @@
+# Le budget total de la recette.
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: budget
+  namespace: festipass-recette
+spec:
+  hard:
+    TODO: TODO     # requests.cpu : 1 CPU au total
+    # TODO : requests.memory 1Gi, limits.cpu 2, limits.memory 2Gi, 10 pods au maximum

@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: festipass
+  labels:
+    app: postgres
+    app.kubernetes.io/name: festipass
+    app.kubernetes.io/component: base-de-donnees
+    app.kubernetes.io/part-of: festival-des-embruns
+    environnement: production
+  annotations:
+    festipass.fr/equipe: exploitation
+    festipass.fr/contact: camille@festipass.example
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+        app.kubernetes.io/name: festipass
+        app.kubernetes.io/component: base-de-donnees
+        app.kubernetes.io/part-of: festival-des-embruns
+        environnement: production
+    spec:
+      containers:
+        - name: postgres
+          image: public.ecr.aws/docker/library/postgres:16
+          ports:
+            - name: postgres
+              containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: festipass
+          envFrom:
+            - secretRef:
+                name: festipass-db
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "festipass", "-d", "festipass"]
+            periodSeconds: 5
+          resources:            # requests = limits : classe QoS Guaranteed
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: festipass
+  labels:
+    app: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: postgres

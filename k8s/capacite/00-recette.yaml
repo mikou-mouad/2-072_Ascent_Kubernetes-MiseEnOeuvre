@@ -1,0 +1,7 @@
+# L'environnement de recette de Yanis : mêmes nœuds que la production.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: festipass-recette
+  labels:
+    environnement: recette

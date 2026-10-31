@@ -5,8 +5,15 @@ metadata:
   namespace: festipass
   labels:
     app: front
+  annotations:
+    kubernetes.io/change-cause: "front 1.1 : nouvelle charte corail"
 spec:
   replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels:
       app: front
@@ -17,7 +24,7 @@ spec:
     spec:
       containers:
         - name: front
-          image: ghcr.io/mikou-mouad/festipass-front:1.0
+          image: ghcr.io/mikou-mouad/festipass-front:1.1
           ports:
             - name: http
               containerPort: 8080

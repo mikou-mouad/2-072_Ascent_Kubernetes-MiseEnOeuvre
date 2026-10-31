@@ -1,0 +1,18 @@
+# Valeurs appliquées aux conteneurs de la recette qui n'en déclarent pas.
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: par-conteneur
+  namespace: festipass-recette
+spec:
+  limits:
+    - type: Container
+      defaultRequest:      # requests par défaut
+        cpu: TODO          # 100m
+        memory: TODO       # 128Mi
+      default:             # limits par défaut
+        cpu: TODO          # 500m
+        memory: TODO       # 256Mi
+      max:                 # aucun conteneur au-delà
+        cpu: TODO          # 1
+        memory: TODO       # 1Gi

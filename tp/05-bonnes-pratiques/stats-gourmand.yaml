@@ -1,0 +1,33 @@
+# Le recalcul des statistiques de Yanis : il charge toutes les ventes en mémoire… et calcule.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stats
+  namespace: festipass-recette
+  labels:
+    app: stats
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stats
+  template:
+    metadata:
+      labels:
+        app: stats
+    spec:
+      containers:
+        - name: stats
+          image: public.ecr.aws/docker/library/python:3.12-slim
+          env:
+            - name: MEMOIRE_MO
+              value: "1200"
+          command: ["python", "-c"]
+          args:
+            - |
+              import os
+              mo = int(os.environ["MEMOIRE_MO"])
+              ventes = b"x" * (mo * 1024 * 1024)   # la mémoire est réellement utilisée
+              print(f"stats : {mo} Mo chargés, calcul en cours…", flush=True)
+              while True:
+                  sum(range(10_000_000))
