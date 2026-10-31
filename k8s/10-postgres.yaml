@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: postgres
   namespace: festipass
@@ -13,6 +13,7 @@ metadata:
     festipass.fr/equipe: exploitation
     festipass.fr/contact: camille@festipass.example
 spec:
+  serviceName: postgres
   replicas: 1
   selector:
     matchLabels:
@@ -35,6 +36,8 @@ spec:
           env:
             - name: POSTGRES_DB
               value: festipass
+            - name: PGDATA                       # un sous-dossier du volume
+              value: /var/lib/postgresql/data/pgdata
           envFrom:
             - secretRef:
                 name: festipass-db
@@ -49,6 +52,18 @@ spec:
             limits:
               cpu: 500m
               memory: 512Mi
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
@@ -58,6 +73,7 @@ metadata:
   labels:
     app: postgres
 spec:
+  clusterIP: None
   selector:
     app: postgres
   ports:

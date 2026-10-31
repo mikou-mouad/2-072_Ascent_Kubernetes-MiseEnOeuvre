@@ -1,0 +1,56 @@
+# Une sauvegarde qu'on n'a jamais restaurée n'est pas une sauvegarde.
+# Ce Job restaure la dernière sauvegarde dans une base de test, compte les billets, puis supprime la base.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-restauration
+  namespace: festipass
+  labels:
+    app: sauvegarde
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600        # le Job s'efface 10 min après la fin
+  template:
+    metadata:
+      labels:
+        app: sauvegarde
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: restauration
+          image: public.ecr.aws/docker/library/postgres:16
+          env:
+            - name: PGHOST
+              value: postgres
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: festipass-db
+                  key: POSTGRES_USER
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: festipass-db
+                  key: POSTGRES_PASSWORD
+          command: ["sh", "-c"]
+          args:
+            - |
+              set -e
+              DERNIERE=$(ls -1t /sauvegardes/*.sql.gz | head -1)
+              echo "Restauration de $DERNIERE"
+              dropdb --if-exists festipass_test
+              createdb festipass_test
+              gunzip -c "$DERNIERE" | psql -q festipass_test
+              psql -d festipass_test -c 'select pass, count(*) as billets from billets group by pass'
+              dropdb festipass_test
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {cpu: 500m, memory: 256Mi}
+          volumeMounts:
+            - name: sauvegardes
+              mountPath: /sauvegardes
+              readOnly: true
+      volumes:
+        - name: sauvegardes
+          persistentVolumeClaim:
+            claimName: sauvegardes

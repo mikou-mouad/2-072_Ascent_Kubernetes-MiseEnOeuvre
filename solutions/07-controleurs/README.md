@@ -1,0 +1,20 @@
+# Correction du TP 07 – Contrôleurs et opérateurs
+
+Le fichier corrigé est `k8s/40-sauvegarde.yaml` (PVC `sauvegardes` et CronJob `sauvegarde`).
+Pour comparer : `diff solutions/07-controleurs/k8s/40-sauvegarde.yaml k8s/40-sauvegarde.yaml`.
+
+1. **kube-proxy :** le contrôleur des DaemonSets l'a recréé **sur le même nœud** : un DaemonSet garantit un pod par nœud (ou par nœud sélectionné). Le nombre de pods découle du nombre de nœuds, d'où l'absence de `replicas`. Un nouveau nœud reçoit automatiquement son pod.
+2. **Cron :** minute 0, heure 3, tous les jours du mois, tous les mois, tous les jours de la semaine : chaque jour à 3h00. `Forbid` : si une sauvegarde dure plus longtemps que prévu, la suivante n'est pas lancée en parallèle (deux `pg_dump` simultanés chargent la base et écrivent sur le même volume). `Replace` arrêterait l'ancienne, `Allow` les laisserait tourner ensemble.
+3. **Job terminé :** son pod reste, à l'état `Completed` (il ne consomme plus rien). On le garde pour lire les logs et le code de sortie. Le CronJob en garde 3 réussis et 1 échoué (`successfulJobsHistoryLimit`, `failedJobsHistoryLimit`) ; un Job seul se nettoie avec `ttlSecondsAfterFinished`.
+4. **Sauvegarde ratée :** `pg_dump` échoue (`password authentication failed`). Avec `restartPolicy: OnFailure`, le conteneur est relancé dans le même pod, avec un délai croissant ; au bout de 3 essais (`backoffLimit: 2`), le Job passe `Failed` avec la raison `BackoffLimitExceeded`. En production : une alerte sur les Jobs en échec (Prometheus et kube-state-metrics : `kube_job_status_failed`), ou une vérification de la date de la dernière sauvegarde.
+5. **Restauration :** oui, le nombre de billets par pass correspond à celui du site au moment de la sauvegarde. Une sauvegarde jamais restaurée peut être vide, corrompue, incomplète ou incompatible avec la version de la base : on ne le découvre que le jour où on en a besoin.
+6. **Opérateur :** le Deployment `calico-kube-controllers` est revenu à 1 réplica en quelques secondes. `tigera-operator` surveille les objets qu'il a créés et les remet dans l'état décrit par la ressource `Installation` : une modification manuelle est annulée.
+7. **État voulu du réseau :** l'objet `Installation` nommé `default` (avec le CIDR des pods, l'encapsulation…). Une **CRD** (*CustomResourceDefinition*) ajoute un nouveau type d'objet à l'API Kubernetes : on peut le créer, le lire, le modifier avec kubectl, comme un Deployment. Seule, elle ne fait rien : c'est un objet stocké dans etcd. L'**opérateur** est le contrôleur qui lit ces objets et agit (crée des DaemonSets, des Deployments, des certificats, met à jour…). CRD + contrôleur qui encode le savoir-faire d'un administrateur = opérateur.
+8. **Choix du contrôleur :** agent de logs → **DaemonSet** (un par nœud) ; migration de schéma → **Job** (une fois, jusqu'au succès) ; front → **Deployment** (sans état, interchangeable) ; statistiques nocturnes → **CronJob** ; PostgreSQL → **StatefulSet** (identité et volume stables), ou mieux, un opérateur dédié.
+9. **Vraie sauvegarde ?** Non : si le nœud ou son disque est perdu, la base **et** ses sauvegardes disparaissent ensemble. Une sauvegarde doit être copiée ailleurs : stockage objet (S3, Azure Blob), autre site. C'est ce que font les opérateurs de bases (CloudNativePG sauvegarde en continu vers un stockage objet) ou des outils comme Velero.
+
+## Bonus
+
+- **`*/2 * * * *` :** un Job toutes les 2 minutes ; seuls les 3 derniers réussis sont gardés, les plus anciens sont supprimés avec leurs pods. Dans le volume, le script ne garde que les 7 derniers fichiers.
+- **timeZone :** sans `timeZone`, le planning est interprété dans le fuseau du kube-controller-manager, en général UTC : `0 3 * * *` = 4h ou 5h à Paris selon la saison.
+- **CloudNativePG :** un objet `Cluster` (CRD) avec `instances: 2` suffit : l'opérateur crée les pods, les PVC, la réplication, les Services `-rw` (primaire) et `-ro` (réplicas), et bascule automatiquement si le primaire tombe. Notre StatefulSet ne fait rien de tout cela.
