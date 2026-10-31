@@ -79,10 +79,10 @@ docker history ghcr.io/mikou-mouad/festipass-back:1.0 | head
 
 ### 4. Panne : le back s'arrête
 
-Lancez une **sonde** en arrière-plan (`&` à la fin) : elle interroge le site toutes les 0,5 s et note chaque code HTTP dans un fichier.
+Lancez une **sonde** en arrière-plan (`&` à la fin) : elle interroge le site toutes les 0,5 s et note chaque code HTTP dans un fichier. `-m 2` limite chaque requête à 2 secondes : une requête sans réponse est notée `000`.
 
 ```bash
-while true; do curl -s -o /dev/null -w "%{http_code} " http://localhost:8000/api/version; sleep 0.5; done > /tmp/sonde.log &
+while true; do curl -s -m 2 -o /dev/null -w "%{http_code} " http://localhost:8000/api/version; sleep 0.5; done > /tmp/sonde.log &
 ```
 
 Simulez un plantage, puis regardez ce qu'a vu la sonde :
@@ -94,7 +94,7 @@ docker compose ps
 tail -c 120 /tmp/sonde.log; echo         # les derniers codes HTTP
 ```
 
-**Question 5 :** la sonde affiche `502`. Le conteneur redémarre-t-il seul ? Qui doit intervenir, et à 10h03 un vendredi, combien de temps cela prend-il ?
+**Question 5 :** la sonde n'affiche plus que des `000` (puis, au bout d'une minute, des `502` ou `504` renvoyés par nginx). Que s'est-il passé côté front ? Le conteneur redémarre-t-il seul ? Qui doit intervenir, et à 10h03 un vendredi, combien de temps cela prend-il ?
 
 Relancez-le : `docker compose up -d`.
 
