@@ -26,12 +26,14 @@ Ce TP se fait sur le **control plane** (`10.10.0.20`), **avant** l'installation 
 > ```bash
 > unset PROMPT_COMMAND
 > PS1='\u@\h:\w\$ '
+> PS0=''
 > ```
 >
 > C'est à retaper à chaque nouvelle session SSH (et après chaque redémarrage), sauf si vous l'ajoutez une fois pour toutes à la fin de `~/.bashrc`, sur chaque machine :
 >
 > ```bash
 > echo 'unset PROMPT_COMMAND; PS1="\u@\h:\w\$ "' >> ~/.bashrc
+> echo 'PS0=""' >> ~/.bashrc
 > source ~/.bashrc
 > ```
 >
@@ -44,7 +46,7 @@ Ce TP se fait sur le **control plane** (`10.10.0.20`), **avant** l'installation 
 > Ajoutez la même ligne à la fin du fichier trouvé (remplacez `<fichier>` par son nom ; `sudo` est nécessaire pour un fichier de `/etc`) :
 >
 > ```bash
-> echo 'unset PROMPT_COMMAND; PS1="\u@\h:\w\$ "' | sudo tee -a <fichier>
+> echo 'unset PROMPT_COMMAND; PS1="\u@\h:\w\$ "; PS0=""' | sudo tee -a <fichier>
 > ```
 
 ## Étapes
