@@ -31,11 +31,20 @@ Ce TP se fait sur le **control plane** (`10.10.0.20`), **avant** l'installation 
 > C'est à retaper à chaque nouvelle session SSH (et après chaque redémarrage), sauf si vous l'ajoutez une fois pour toutes à la fin de `~/.bashrc`, sur chaque machine :
 >
 > ```bash
-> cat >> ~/.bashrc <<'EOF'
-> unset PROMPT_COMMAND
-> PS1='\u@\h:\w\$ '
-> EOF
+> echo 'unset PROMPT_COMMAND; PS1="\u@\h:\w\$ "' >> ~/.bashrc
 > source ~/.bashrc
+> ```
+>
+> Les logs reviennent à la session suivante ? Un autre fichier redéfinit `PROMPT_COMMAND` après `~/.bashrc`. Trouvez-le :
+>
+> ```bash
+> grep -n "machineid\|PROMPT_COMMAND" ~/.bashrc ~/.profile /etc/profile.d/* 2>/dev/null
+> ```
+>
+> Ajoutez la même ligne à la fin du fichier trouvé (remplacez `<fichier>` par son nom ; `sudo` est nécessaire pour un fichier de `/etc`) :
+>
+> ```bash
+> echo 'unset PROMPT_COMMAND; PS1="\u@\h:\w\$ "' | sudo tee -a <fichier>
 > ```
 
 ## Étapes
