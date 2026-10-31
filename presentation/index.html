@@ -806,6 +806,20 @@
 </div>
 <aside>Faire remarquer le progrès : contrairement à la VM, le site n'est pas tombé, car Kubernetes n'a pas arrêté les anciens pods. Mais il faut savoir lire l'état d'un déploiement, diagnostiquer, et revenir en arrière. C'est tout le chapitre.</aside>
 </section>
+<section id="c4-strategies" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:96px 112px;display:flex;flex-direction:column;gap:22px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 4 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">Six façons de livrer une nouvelle version</h2>
+<table style="font-size:19px;line-height:1.3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;table-layout:fixed">
+<tr style="background:#1D3557;color:#F1FAEE"><th style="width:11%;padding:10px 12px">Stratégie</th><th style="width:7%;padding:10px 12px">Natif K8s</th><th style="width:24%;padding:10px 12px">Principe</th><th style="width:8%;padding:10px 12px">Downtime</th><th style="width:9%;padding:10px 12px">Coût en ressources</th><th style="width:13%;padding:10px 12px">Rollback</th><th style="width:28%;padding:10px 12px">Cas d'usage</th></tr>
+<tr><td style="padding:8px 12px;font-weight:700">Recreate</td><td style="padding:8px 12px;color:#2A9D8F;font-weight:700">Oui</td><td style="padding:8px 12px">Tous les anciens pods sont supprimés, puis les nouveaux sont créés</td><td style="padding:8px 12px;color:#E76F51;font-weight:700">Oui</td><td style="padding:8px 12px">Faible</td><td style="padding:8px 12px">Lent (redéployer l'ancienne version)</td><td style="padding:8px 12px">Environnements de dev/test, applications qui ne supportent pas deux versions en parallèle (migration de schéma incompatible, verrou exclusif sur une ressource)</td></tr>
+<tr style="background:#E3F1EF"><td style="padding:8px 12px;font-weight:700">RollingUpdate</td><td style="padding:8px 12px;color:#2A9D8F;font-weight:700">Oui (défaut)</td><td style="padding:8px 12px">Remplacement progressif des pods, par vagues (maxSurge, maxUnavailable)</td><td style="padding:8px 12px">Non</td><td style="padding:8px 12px">Faible à moyen</td><td style="padding:8px 12px">Assez rapide (kubectl rollout undo)</td><td style="padding:8px 12px">Cas général pour les applications stateless, mises à jour courantes en production</td></tr>
+<tr><td style="padding:8px 12px;font-weight:700">Blue/Green</td><td style="padding:8px 12px;color:#4A5A6A">Non (pattern)</td><td style="padding:8px 12px">Deux environnements complets (blue = actuel, green = nouveau). On bascule tout le trafic d'un coup en changeant le selector du Service ou la route de l'Ingress</td><td style="padding:8px 12px">Non</td><td style="padding:8px 12px">Élevé (×2 pendant la transition)</td><td style="padding:8px 12px">Très rapide (on rebascule)</td><td style="padding:8px 12px">Mises à jour critiques, besoin de tester la nouvelle version en conditions réelles avant bascule, rollback instantané exigé</td></tr>
+<tr><td style="padding:8px 12px;font-weight:700">Canary</td><td style="padding:8px 12px;color:#4A5A6A">Non (pattern)</td><td style="padding:8px 12px">La nouvelle version reçoit d'abord un faible pourcentage du trafic (5 %, 10 %…), puis augmente si les métriques sont bonnes</td><td style="padding:8px 12px">Non</td><td style="padding:8px 12px">Moyen</td><td style="padding:8px 12px">Rapide (on retire le canary)</td><td style="padding:8px 12px">Valider une version avec de vrais utilisateurs, limiter l'impact d'un bug, applications à fort trafic</td></tr>
+<tr><td style="padding:8px 12px;font-weight:700">A/B testing</td><td style="padding:8px 12px;color:#4A5A6A">Non (pattern)</td><td style="padding:8px 12px">Le trafic est routé selon des critères (header, cookie, géolocalisation, type d'utilisateur) vers des versions différentes</td><td style="padding:8px 12px">Non</td><td style="padding:8px 12px">Moyen</td><td style="padding:8px 12px">Rapide</td><td style="padding:8px 12px">Tester des fonctionnalités auprès de segments d'utilisateurs, décisions produit basées sur des données</td></tr>
+<tr><td style="padding:8px 12px;font-weight:700">Shadow (mirroring)</td><td style="padding:8px 12px;color:#4A5A6A">Non (pattern)</td><td style="padding:8px 12px">Le trafic réel est dupliqué vers la nouvelle version, dont les réponses sont ignorées</td><td style="padding:8px 12px">Non</td><td style="padding:8px 12px">Élevé</td><td style="padding:8px 12px">Sans objet (aucun impact utilisateur)</td><td style="padding:8px 12px">Tester les performances et la stabilité d'une nouvelle version sans risque, valider une refonte majeure ou une migration</td></tr>
+</table>
+<aside>Seules Recreate et RollingUpdate sont des valeurs de spec.strategy.type d'un Deployment. Les quatre autres sont des patterns : on les construit avec plusieurs Deployments et un Service (Blue/Green en changeant le selector), ou plus finement avec un Ingress controller, un service mesh (Istio, Linkerd) ou un outil comme Argo Rollouts ou Flagger, qui automatise Canary et Blue/Green d'après les métriques. Chez FestiPass, le front et le back sont stateless : RollingUpdate suffit, c'est ce qu'on fait au TP 04. Question à poser : quelle stratégie pour PostgreSQL, ou pour une migration de schéma incompatible ? (Recreate, ou une migration en plusieurs étapes compatibles.)</aside>
+</section>
 <section id="c4-rolling" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 4 · Le concept</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:64px;font-weight:600;line-height:1.1">Rolling update : pod par pod, sans coupure</h2>
@@ -824,6 +838,62 @@
 </div>
 </div>
 <aside>Chaque version correspond à un ReplicaSet : le Deployment fait monter le nouveau et descendre l'ancien. rollout undo ne fait que remettre l'ancien ReplicaSet à l'échelle. change-cause remplit la colonne CHANGE-CAUSE de rollout history (l'ancien --record est obsolète). Valeurs par défaut : maxSurge 25 %, maxUnavailable 25 %. Le bandeau du front passe du bleu marine (1.0) au corail (1.1) : on voit la bascule dans le navigateur.</aside>
+</section>
+<section id="c4-probes-tableau" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:96px 112px;display:flex;flex-direction:column;gap:22px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 4 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">Startup, readiness, liveness : qui fait quoi</h2>
+<table style="font-size:21px;line-height:1.3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;table-layout:fixed">
+<tr style="background:#1D3557;color:#F1FAEE"><th style="width:16%;padding:10px 12px"></th><th style="width:28%;padding:10px 12px;color:#8FC1F0">Startup</th><th style="width:28%;padding:10px 12px;color:#FFD166">Readiness</th><th style="width:28%;padding:10px 12px;color:#F4A28C">Liveness</th></tr>
+<tr><td style="padding:7px 12px;font-weight:700">Question posée</td><td style="padding:7px 12px;font-style:italic">« L'application a-t-elle fini de démarrer ? »</td><td style="padding:7px 12px;font-style:italic">« L'application peut-elle recevoir du trafic maintenant ? »</td><td style="padding:7px 12px;font-style:italic">« L'application est-elle encore en vie, ou bloquée ? »</td></tr>
+<tr><td style="padding:7px 12px;font-weight:700">Quand elle s'exécute</td><td style="padding:7px 12px">Au démarrage uniquement, jusqu'à son premier succès</td><td style="padding:7px 12px">Pendant toute la vie du container</td><td style="padding:7px 12px">Pendant toute la vie du container (après réussite de la startup probe)</td></tr>
+<tr><td style="padding:7px 12px;font-weight:700">Action en cas d'échec</td><td style="padding:7px 12px">Le container est redémarré (une fois failureThreshold atteint)</td><td style="padding:7px 12px">Le pod est retiré des endpoints du Service (plus de trafic), mais <b>pas redémarré</b></td><td style="padding:7px 12px">Le container est <b>redémarré</b> par le kubelet</td></tr>
+<tr><td style="padding:7px 12px;font-weight:700">Effet sur les autres probes</td><td style="padding:7px 12px">Désactive liveness et readiness tant qu'elle n'a pas réussi</td><td style="padding:7px 12px">Aucun</td><td style="padding:7px 12px">Aucun</td></tr>
+<tr><td style="padding:7px 12px;font-weight:700">Réversible ?</td><td style="padding:7px 12px">Une fois réussie, elle ne s'exécute plus</td><td style="padding:7px 12px">Oui : dès que la probe repasse, le pod est réintégré</td><td style="padding:7px 12px">Non : le redémarrage est la sanction</td></tr>
+<tr><td style="padding:7px 12px;font-weight:700">Rôle</td><td style="padding:7px 12px">Laisser du temps aux applications lentes à démarrer</td><td style="padding:7px 12px">Éviter d'envoyer du trafic à un pod pas prêt ou temporairement surchargé</td><td style="padding:7px 12px">Récupérer automatiquement d'un deadlock ou d'un état irrécupérable</td></tr>
+<tr><td style="padding:7px 12px;font-weight:700">Cas d'usage typique</td><td style="padding:7px 12px">Application Java/Spring, chargement d'un gros cache ou d'un modèle, migrations au boot</td><td style="padding:7px 12px">Attente de la connexion à la base, warm-up, dépendance indisponible, pod saturé</td><td style="padding:7px 12px">Boucle infinie, thread bloqué, application figée mais process toujours actif</td></tr>
+<tr style="background:#E3F1EF"><td style="padding:7px 12px;font-weight:700">Impact sur un rolling update</td><td style="padding:7px 12px">Aucun direct</td><td style="padding:7px 12px"><b>Déterminant</b> : un pod n'est considéré prêt (et l'ancien remplacé) qu'une fois la readiness OK</td><td style="padding:7px 12px">Aucun direct</td></tr>
+</table>
+<aside>La ligne surlignée fait le lien avec la slide précédente : c'est la readiness qui rend le rolling update sans coupure, et qui bloquera la 1.2 et la panne mystère au TP 04. Chez FestiPass : la readiness du back (/readyz) teste PostgreSQL, la liveness (/healthz) ne teste que le processus. Le back démarre en une seconde : pas besoin de startup probe (bonus du TP 04).</aside>
+</section>
+<section id="c4-probes-chronologie" data-transition="fade" style="background:#F6F1E9;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:96px 112px;display:flex;flex-direction:column;gap:28px">
+<p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 4 · Le concept</p>
+<h2 style="font-family:'Fraunces', Georgia, serif;font-size:56px;font-weight:600;line-height:1.1">La vie d'un container, probe par probe</h2>
+<div style="display:flex;gap:56px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:10px">
+<p style="font-size:26px;font-weight:700;background:#1D3557;color:#F1FAEE;padding:14px 32px;border-radius:12px">Démarrage du container</p>
+<p style="font-size:30px;color:#2A9D8F;line-height:1">▼</p>
+<div style="display:flex;align-items:center;gap:18px">
+<p style="width:330px;text-align:center;font-family:'JetBrains Mono', monospace;font-size:26px;font-weight:700;background:#FBF8F3;border:3px solid #2F6FB0;color:#2F6FB0;padding:14px 18px;border-radius:12px">Startup probe</p>
+<p style="font-size:22px;color:#4A5A6A">échecs répétés</p>
+<x-shape kind="arrow-right" style="background:#E76F51;width:56px;height:28px"></x-shape>
+<p style="font-size:24px;font-weight:700;color:#FBF8F3;background:#E76F51;padding:12px 20px;border-radius:12px">redémarrage</p>
+</div>
+<p style="font-size:22px;color:#4A5A6A;line-height:1">succès</p>
+<p style="font-size:30px;color:#2A9D8F;line-height:1">▼</p>
+<p style="font-size:24px;color:#4A5A6A">actives en parallèle, toute la vie du container</p>
+<div style="display:flex;gap:28px;width:100%">
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:10px;background:#FBF8F3;border:3px solid #E76F51;border-radius:16px;padding:20px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:26px;font-weight:700;color:#E76F51">Liveness</p>
+<p style="font-size:22px;color:#4A5A6A">échec</p>
+<p style="font-size:26px;color:#E76F51;line-height:1">▼</p>
+<p style="font-size:24px;font-weight:700;color:#FBF8F3;background:#E76F51;padding:10px 18px;border-radius:12px">restart du container</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:10px;background:#FBF8F3;border:3px solid #E9A23B;border-radius:16px;padding:20px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:26px;font-weight:700;color:#B7791F">Readiness</p>
+<p style="font-size:22px;color:#4A5A6A">échec</p>
+<p style="font-size:26px;color:#B7791F;line-height:1">▼</p>
+<p style="font-size:24px;font-weight:700;color:#1B2631;background:#FFD166;padding:10px 18px;border-radius:12px">retiré du Service (pas de restart)</p>
+</div>
+</div>
+</div>
+<div style="width:560px;display:flex;flex-direction:column;gap:20px;justify-content:center">
+<p style="font-size:24px;font-weight:700;color:#2A9D8F">LE PRINCIPE EN UNE PHRASE</p>
+<div style="background:#14212E;border-radius:16px;padding:22px 26px;display:flex;flex-direction:column;gap:8px"><p style="font-family:'JetBrains Mono', monospace;font-size:24px;font-weight:700;color:#8FC1F0">Startup</p><p style="font-size:24px;line-height:1.4;color:#F1FAEE">« Patiente, je démarre. » Elle protège la liveness d'un redémarrage prématuré.</p></div>
+<div style="background:#14212E;border-radius:16px;padding:22px 26px;display:flex;flex-direction:column;gap:8px"><p style="font-family:'JetBrains Mono', monospace;font-size:24px;font-weight:700;color:#FFD166">Readiness</p><p style="font-size:24px;line-height:1.4;color:#F1FAEE">« Je suis vivant mais pas disponible pour l'instant. » On coupe le trafic sans tuer le pod.</p></div>
+<div style="background:#14212E;border-radius:16px;padding:22px 26px;display:flex;flex-direction:column;gap:8px"><p style="font-family:'JetBrains Mono', monospace;font-size:24px;font-weight:700;color:#F4A28C">Liveness</p><p style="font-size:24px;line-height:1.4;color:#F1FAEE">« Je suis cassé, redémarre-moi. » Dernier recours.</p></div>
+</div>
+</div>
+<aside>Dérouler le schéma de haut en bas. Insister sur la différence entre les deux échecs du bas : la readiness est réversible (le pod revient dans le Service dès qu'elle repasse), la liveness ne l'est pas (le conteneur repart de zéro, et des échecs répétés mènent au CrashLoopBackOff). Sans startup probe, la liveness démarre tout de suite : une application lente risque d'être tuée avant d'avoir fini de démarrer.</aside>
 </section>
 <section id="c4-probes" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#2A9D8F">Chapitre 4 · Le concept</p>
