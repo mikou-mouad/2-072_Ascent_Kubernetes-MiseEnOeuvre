@@ -95,14 +95,14 @@ kubectl describe nodes | grep -A8 'Allocated resources'
 Sur un cloud, un **Cluster Autoscaler** verrait ces pods `Pending` et commanderait une VM de plus. Ici, Camille « ajoute un nœud » à la main : elle ouvre le control plane aux pods de l'application.
 
 ```bash
-kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule-
-kubectl get pods -l app=back -o wide                      # les Pending démarrent sur controlplane
+kubectl taint nodes control-plane node-role.kubernetes.io/control-plane:NoSchedule-
+kubectl get pods -l app=back -o wide                      # les Pending démarrent sur control-plane
 ```
 
 Remettez la protection tout de suite (les pods déjà placés restent, aucun nouveau n'arrivera) :
 
 ```bash
-kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule
+kubectl taint nodes control-plane node-role.kubernetes.io/control-plane:NoSchedule
 ```
 
 ### 5. 10h20 : retour au calme
