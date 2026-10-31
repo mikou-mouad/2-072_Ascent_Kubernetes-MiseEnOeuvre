@@ -133,7 +133,12 @@ kubectl -n festipass-recette get events --sort-by=.lastTimestamp | grep -i quota
 
 **Question 6 :** combien de pods ont été créés ? Quelle ressource du quota a bloqué ?
 
-Arrêtez l'expérience : `kubectl -n festipass-recette scale deployment stats --replicas=0`.
+Arrêtez l'expérience et libérez le budget de la recette (on s'en resservira au TP 09) :
+
+```bash
+kubectl -n festipass-recette delete deployment stats
+kubectl -n festipass-recette describe resourcequota budget     # Used revient à 0
+```
 
 ### 7. Réserver les ressources de la production
 
