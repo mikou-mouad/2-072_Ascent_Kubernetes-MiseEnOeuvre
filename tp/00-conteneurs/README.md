@@ -49,6 +49,14 @@ docker images
 
 Depuis la machine **ClientWeb** (bouton **Ouvrir la console** de votre environnement de TP), ouvrez un navigateur sur `http://10.10.0.10:8000` et achetez deux pass.
 
+> **Pas de machine ClientWeb dans votre environnement ?** Ouvrez un tunnel **sortant** depuis le control plane, dans un second terminal :
+>
+> ```bash
+> docker run --rm --network host cloudflare/cloudflared:latest tunnel --no-autoupdate --url http://localhost:8000
+> ```
+>
+> Au bout de quelques secondes, la commande affiche une adresse `https://<mots-au-hasard>.trycloudflare.com` : ouvrez-la dans le navigateur de **votre poste**. Laissez ce terminal ouvert pendant tout le TP (Ctrl+C ferme le tunnel). L'adresse change à chaque lancement.
+
 **Questions :**
 
 1. Combien de conteneurs tournent ? Lequel est exposé à l'extérieur, et sur quel port ?
@@ -132,7 +140,8 @@ Complétez le tableau (on le corrige ensemble, il servira de fil rouge jusqu'au 
 
 ### 9. Nettoyage (obligatoire)
 
-Docker modifie les règles réseau (iptables) de la VM et gênerait Kubernetes. On le retire **avant** le TP 01 :
+Docker modifie les règles réseau (iptables) de la VM et gênerait Kubernetes. On le retire **avant** le TP 01.
+Si vous avez ouvert le tunnel Cloudflare, fermez-le d'abord (Ctrl+C dans son terminal) : on en ouvrira un nouveau dans le cluster au TP 02.
 
 ```bash
 cd ~/festipass/app
