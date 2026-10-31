@@ -1,6 +1,6 @@
 # TP 08 – « Vendredi 10h00 : l'ouverture de la billetterie »
 
-**Durée :** 1 h · **Branche :** `tp-08-autoscaling` · **Correction :** `solutions/08-autoscaling/`, dans cette branche
+**Durée :** 50 min · **Branche :** `tp-08-autoscaling` · **Correction :** `solutions/08-autoscaling/`, dans cette branche
 
 ## L'incident
 

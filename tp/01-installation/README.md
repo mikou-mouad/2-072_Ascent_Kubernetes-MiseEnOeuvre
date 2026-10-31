@@ -1,6 +1,6 @@
 # TP 01 – « Camille, il nous faut un cluster »
 
-**Durée :** 2 h 55 (1 h 25 le matin, 1 h 30 l'après-midi) · **Branche :** `tp-01-installation` · **Correction :** `solutions/01-installation/`, dans cette branche
+**Durée :** 3 h 30 (45 min avant le déjeuner, 2 h 45 l'après-midi) · **Branche :** `tp-01-installation` · **Correction :** `solutions/01-installation/`, dans cette branche
 
 ## L'incident
 
@@ -12,7 +12,8 @@
 - Préparer des nœuds Linux pour Kubernetes et comprendre pourquoi chaque réglage est nécessaire.
 - Initialiser un control plane avec kubeadm et identifier les composants créés.
 - Installer un CNI et joindre des workers.
-- Gérer les nœuds : labels, cordon, drain, uncordon, taints.
+- Voir le rôle d'un composant du control plane en l'arrêtant.
+- Gérer les nœuds : labels, taints, cordon, drain, uncordon, retrait et réintégration.
 
 ## Étapes
 
@@ -28,7 +29,7 @@ Suivez le [guide d'installation](../../guide-installation-cluster.md), sections 
 3. Que se passe-t-il si containerd utilise le driver cgroup `cgroupfs` alors que le kubelet utilise `systemd` ?
 4. Pourquoi bloque-t-on les paquets avec `apt-mark hold` ?
 
-### 2. Control plane (section 4) – avant le déjeuner
+### 2. Control plane (section 4) – l'après-midi
 
 Après `kubeadm init` :
 
@@ -55,7 +56,29 @@ Réalisez les tests de la section 7, **sans faire le nettoyage final** : on gard
 - [ ] la page nginx est renvoyée par le test busybox (DNS + réseau des services)
 - [ ] `HTTP/1.1 200 OK` sur le NodePort des 3 nœuds
 
-### 5. Gérer les nœuds
+### 5. Le control plane sans scheduler
+
+Les composants du control plane sont des static pods : le kubelet les démarre à partir des fichiers de `/etc/kubernetes/manifests`. Retirez celui du scheduler :
+
+```bash
+sudo mv /etc/kubernetes/manifests/kube-scheduler.yaml /tmp/
+kubectl -n kube-system get pods -l component=kube-scheduler     # disparaît après quelques secondes
+kubectl scale deployment nginx --replicas=4
+kubectl get pods -o wide
+kubectl describe pod <un pod Pending> | tail -3
+```
+
+10. Les nouveaux pods existent mais restent `Pending`, sans nœud. Qui les a créés ? Pourquoi ne démarrent-ils pas ? Les pods qui tournaient déjà sont-ils touchés ?
+
+Remettez le scheduler et observez :
+
+```bash
+sudo mv /tmp/kube-scheduler.yaml /etc/kubernetes/manifests/
+kubectl get pods -o wide -w          # Ctrl+C quand tout est Running
+kubectl scale deployment nginx --replicas=2
+```
+
+### 6. Gérer les nœuds
 
 **Lire un nœud :**
 
@@ -65,8 +88,8 @@ kubectl get nodes --show-labels
 kubectl describe node controlplane | grep -A2 Taints
 ```
 
-10. Quelle différence entre `Capacity` et `Allocatable` ?
-11. Pourquoi aucun pod nginx ne tourne-t-il sur le control plane ?
+11. Quelle différence entre `Capacity` et `Allocatable` ?
+12. Pourquoi aucun pod nginx ne tourne-t-il sur le control plane ?
 
 **Donner un rôle et des labels aux workers :**
 
@@ -92,7 +115,7 @@ kubectl drain worker2 --ignore-daemonsets     # évacue worker2
 kubectl get pods -o wide                      # tous sur worker1
 ```
 
-12. Que sont devenus les pods `calico-node` et `kube-proxy` de worker2 ? Pourquoi faut-il `--ignore-daemonsets` ?
+13. Que sont devenus les pods `calico-node` et `kube-proxy` de worker2 ? Pourquoi faut-il `--ignore-daemonsets` ?
 
 La maintenance est finie :
 
@@ -101,9 +124,42 @@ kubectl uncordon worker2
 kubectl get pods -o wide
 ```
 
-13. Les pods nginx reviennent-ils seuls sur worker2 ? Comment les rééquilibrer ?
+14. Les pods nginx reviennent-ils seuls sur worker2 ? Comment les rééquilibrer ?
 
-### 6. Point de restauration
+### 7. Retirer puis réintégrer un worker
+
+Le disque de worker2 doit être changé : Camille le retire du cluster, puis le réintègre.
+
+Sur le **control plane** :
+
+```bash
+kubectl drain worker2 --ignore-daemonsets
+kubectl delete node worker2
+kubectl get nodes
+```
+
+Sur **worker2** : effacez tout ce que `kubeadm join` avait configuré.
+
+```bash
+sudo kubeadm reset -f
+sudo rm -rf /etc/cni/net.d
+```
+
+Sur le **control plane**, générez une nouvelle commande d'adhésion, puis lancez-la avec `sudo` sur **worker2** :
+
+```bash
+kubeadm token create --print-join-command
+```
+
+```bash
+kubectl get nodes -w                 # Ctrl+C quand worker2 est Ready
+kubectl get nodes -L festipass/scene
+```
+
+15. Quels labels worker2 a-t-il perdus ? Pourquoi ? Remettez-les (étape 6).
+16. Pourquoi générer une nouvelle commande `join` plutôt que de reprendre celle du matin ? Que contient-elle en plus du token ?
+
+### 8. Point de restauration
 
 - Supprimez les objets de test : `kubectl delete svc nginx && kubectl delete deployment nginx`.
 - Prenez un **snapshot des 3 VM**. Vous y reviendrez en cas de problème pendant la formation.
