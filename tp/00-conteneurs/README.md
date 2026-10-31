@@ -18,7 +18,7 @@ On rejoue l'application telle qu'elle tournait l'an dernier : **une VM, Docker C
 
 ## Où travailler
 
-Ce TP se fait sur le **control plane** (`10.10.0.10`), **avant** l'installation du cluster.
+Ce TP se fait sur le **control plane** (`10.10.0.20`), **avant** l'installation du cluster.
 À la fin du TP, Docker est désinstallé et la VM redémarrée : le TP 01 part d'une machine propre.
 
 ## Étapes
@@ -47,7 +47,7 @@ docker compose ps
 docker images
 ```
 
-Depuis la machine **ClientWeb** (bouton **Ouvrir la console** de votre environnement de TP), ouvrez un navigateur sur `http://10.10.0.10:8000` et achetez deux pass.
+Depuis la machine **ClientWeb** (bouton **Ouvrir la console** de votre environnement de TP), ouvrez un navigateur sur `http://10.10.0.20:8000` et achetez deux pass.
 
 > **Pas de machine ClientWeb dans votre environnement ?** Ouvrez un tunnel **sortant** depuis le control plane. Il tourne en arrière-plan (`-d`) : le terminal reste libre.
 >

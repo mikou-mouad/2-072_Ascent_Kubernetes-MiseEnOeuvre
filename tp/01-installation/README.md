@@ -18,6 +18,10 @@
 ## Étapes
 
 Suivez le [guide d'installation](../../guide-installation-cluster.md), sections 2 à 7.
+
+> **Attention, section 7 du guide : ne lancez pas le nettoyage** (`kubectl delete svc nginx && kubectl delete deployment nginx`).
+> Le déploiement `nginx` de test sert aux étapes 5 à 7 de ce TP (scheduler, cordon, drain). On le supprime à l'étape 8.
+> Vous l'avez déjà supprimé ? Recréez-le : `kubectl create deployment nginx --image=public.ecr.aws/docker/library/nginx:1.27 --replicas=2`.
 À chaque étape, répondez aux questions ci-dessous (on les corrige ensemble).
 
 > Le TP 00 s'est terminé par le redémarrage du control plane. Si vous ne l'avez pas fait, retirez Docker maintenant (TP 00, étape 9).
@@ -161,7 +165,7 @@ kubectl get nodes -L festipass/scene
 
 ### 8. Point de restauration
 
-- Supprimez les objets de test : `kubectl delete svc nginx && kubectl delete deployment nginx`.
+- Supprimez les objets de test : `kubectl delete service,deployment nginx --ignore-not-found`.
 - Prenez un **snapshot des 3 VM**. Vous y reviendrez en cas de problème pendant la formation.
 
 ## Bonus
