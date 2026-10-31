@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: festipass
+  labels:
+    app: postgres
+    app.kubernetes.io/name: festipass
+    app.kubernetes.io/component: base-de-donnees
+    app.kubernetes.io/part-of: festival-des-embruns
+    environnement: production
+  annotations:
+    festipass.fr/equipe: exploitation
+    festipass.fr/contact: camille@festipass.example
+spec:
+  serviceName: TODO          # le Service headless ci-dessous
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+        app.kubernetes.io/name: festipass
+        app.kubernetes.io/component: base-de-donnees
+        app.kubernetes.io/part-of: festival-des-embruns
+        environnement: production
+    spec:
+      containers:
+        - name: postgres
+          image: public.ecr.aws/docker/library/postgres:16
+          ports:
+            - name: postgres
+              containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: festipass
+            - name: PGDATA                       # un sous-dossier du volume
+              value: /var/lib/postgresql/data/pgdata
+          envFrom:
+            - secretRef:
+                name: festipass-db
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "festipass", "-d", "festipass"]
+            periodSeconds: 5
+          resources:            # requests = limits : classe QoS Guaranteed
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          # TODO : monter le volume « data » dans /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        # TODO : accès ReadWriteOnce, 1Gi de stockage (même structure qu'un PVC)
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: festipass
+  labels:
+    app: postgres
+spec:
+  clusterIP: TODO            # Service « headless » : pas d'IP virtuelle
+  selector:
+    app: postgres
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: postgres

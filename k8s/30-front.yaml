@@ -5,8 +5,15 @@ metadata:
   namespace: festipass
   labels:
     app: front
+    app.kubernetes.io/name: festipass
+    app.kubernetes.io/component: front
+    app.kubernetes.io/part-of: festival-des-embruns
+    app.kubernetes.io/version: "1.1"
+    environnement: production
   annotations:
     kubernetes.io/change-cause: "front 1.1 : nouvelle charte corail"
+    festipass.fr/equipe: developpement
+    festipass.fr/contact: yanis@festipass.example
 spec:
   replicas: 2
   strategy:
@@ -21,6 +28,11 @@ spec:
     metadata:
       labels:
         app: front
+        app.kubernetes.io/name: festipass
+        app.kubernetes.io/component: front
+        app.kubernetes.io/part-of: festival-des-embruns
+        app.kubernetes.io/version: "1.1"
+        environnement: production
     spec:
       containers:
         - name: front
@@ -37,6 +49,13 @@ spec:
             - name: annonce
               mountPath: /usr/share/nginx/html/config
               readOnly: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
       volumes:
         - name: annonce
           configMap:

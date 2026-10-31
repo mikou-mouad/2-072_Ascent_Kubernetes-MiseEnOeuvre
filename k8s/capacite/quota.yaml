@@ -6,5 +6,8 @@ metadata:
   namespace: festipass-recette
 spec:
   hard:
-    TODO: TODO     # requests.cpu : 1 CPU au total
-    # TODO : requests.memory 1Gi, limits.cpu 2, limits.memory 2Gi, 10 pods au maximum
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu: "2"
+    limits.memory: 2Gi
+    pods: "10"

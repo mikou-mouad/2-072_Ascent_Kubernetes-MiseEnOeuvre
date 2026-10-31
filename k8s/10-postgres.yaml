@@ -5,6 +5,13 @@ metadata:
   namespace: festipass
   labels:
     app: postgres
+    app.kubernetes.io/name: festipass
+    app.kubernetes.io/component: base-de-donnees
+    app.kubernetes.io/part-of: festival-des-embruns
+    environnement: production
+  annotations:
+    festipass.fr/equipe: exploitation
+    festipass.fr/contact: camille@festipass.example
 spec:
   replicas: 1
   selector:
@@ -14,6 +21,10 @@ spec:
     metadata:
       labels:
         app: postgres
+        app.kubernetes.io/name: festipass
+        app.kubernetes.io/component: base-de-donnees
+        app.kubernetes.io/part-of: festival-des-embruns
+        environnement: production
     spec:
       containers:
         - name: postgres
@@ -31,6 +42,13 @@ spec:
             exec:
               command: ["pg_isready", "-U", "festipass", "-d", "festipass"]
             periodSeconds: 5
+          resources:            # requests = limits : classe QoS Guaranteed
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
 ---
 apiVersion: v1
 kind: Service
