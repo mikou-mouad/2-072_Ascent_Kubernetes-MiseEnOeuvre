@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FestiPass</title>
+  <style>
+    :root { --accent: __COULEUR__; }
+    body { font-family: system-ui, sans-serif; margin: 0; background: #f6f1e9; color: #1b2631; }
+    header { background: var(--accent); color: #fff; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    header h1 { margin: 0; font-size: 1.6rem; }
+    .badge { background: rgba(255,255,255,.2); border-radius: 12px; padding: 4px 10px; font-size: .85rem; }
+    #annonce { background: #ffd166; color: #1b2631; padding: 10px 24px; font-weight: 600; }
+    #annonce:empty { display: none; }
+    main { max-width: 860px; margin: 24px auto; padding: 0 16px; display: grid; gap: 24px; }
+    section { background: #fff; border-radius: 10px; padding: 16px 20px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    label { display: block; margin: 8px 0 4px; font-weight: 600; }
+    input, select, button { font: inherit; padding: 8px; border-radius: 6px; border: 1px solid #c9c2b6; }
+    button { background: var(--accent); color: #fff; border: none; cursor: pointer; margin-top: 12px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 6px; border-bottom: 1px solid #eee; font-size: .9rem; }
+    code { font-size: .85rem; }
+    #message { margin-top: 10px; min-height: 1.2em; }
+    .erreur { color: #b00020; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎫 FestiPass · <span id="festival">…</span></h1>
+    <span class="badge">front v__VERSION__ · <span id="pod">…</span></span>
+  </header>
+  <div id="annonce"></div>
+  <main>
+    <section>
+      <h2>Acheter un pass</h2>
+      <label for="nom">Votre nom</label>
+      <input id="nom" placeholder="Léa">
+      <label for="pass">Pass</label>
+      <select id="pass"></select>
+      <label for="quantite">Nombre de billets (<span id="max">…</span> maximum)</label>
+      <input id="quantite" type="number" min="1" value="2">
+      <br><button id="acheter">Acheter</button>
+      <div id="message"></div>
+    </section>
+    <section>
+      <h2>Derniers billets vendus</h2>
+      <table>
+        <thead><tr><th>Code</th><th>Nom</th><th>Pass</th><th>Signature</th><th>Heure</th></tr></thead>
+        <tbody id="billets"></tbody>
+      </table>
+    </section>
+  </main>
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    async function charger() {
+      try {
+        const a = await fetch('/config/annonce.txt', { cache: 'no-store' });
+        $('annonce').textContent = a.ok ? (await a.text()).trim() : '';
+      } catch { $('annonce').textContent = ''; }
+
+      try {
+        const v = await (await fetch('/api/version')).json();
+        $('festival').textContent = v.festival;
+        $('max').textContent = v.pass_max;
+        $('pod').textContent = 'back v' + v.version + ' sur ' + v.pod;
+      } catch { $('pod').textContent = 'back injoignable'; }
+
+      if (!$('pass').options.length) {
+        const passes = await (await fetch('/api/passes')).json();
+        for (const p of passes) $('pass').add(new Option(`${p.nom} (${p.prix.toFixed(2)} €)`, p.id));
+      }
+
+      const r = await fetch('/api/billets');
+      const corps = $('billets');
+      corps.innerHTML = '';
+      if (!r.ok) { corps.innerHTML = '<tr><td colspan="5" class="erreur">Base de données indisponible</td></tr>'; return; }
+      for (const b of await r.json()) {
+        const tr = document.createElement('tr');
+        for (const val of [b.code, b.nom, b.pass, b.signature, new Date(b.vendu_le).toLocaleTimeString('fr-FR')]) {
+          const td = document.createElement('td'); td.textContent = val; tr.appendChild(td);
+        }
+        corps.appendChild(tr);
+      }
+    }
+
+    $('acheter').onclick = async () => {
+      const r = await fetch('/api/billets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nom: $('nom').value, pass: $('pass').value, quantite: Number($('quantite').value) }),
+      });
+      const corps = await r.json();
+      $('message').className = r.ok ? '' : 'erreur';
+      $('message').textContent = r.ok ? `Billets ${corps.codes.join(', ')} émis !` : `Erreur : ${corps.erreur}`;
+      charger();
+    };
+
+    charger();
+    setInterval(charger, 5000);
+  </script>
+</body>
+</html>

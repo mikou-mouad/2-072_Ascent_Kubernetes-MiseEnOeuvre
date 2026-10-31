@@ -1,0 +1,24 @@
+# FestiPass « avant Kubernetes » : tout tourne sur une seule machine.
+# docker compose up -d   puis   http://<IP de la machine>:8000
+# Pour construire les images en local : docker compose build
+services:
+  postgres:
+    image: public.ecr.aws/docker/library/postgres:16
+    environment:
+      POSTGRES_DB: festipass
+      POSTGRES_USER: festipass
+      POSTGRES_PASSWORD: embruns-2026
+  back:
+    image: ghcr.io/mikou-mouad/festipass-back:1.0
+    build: ./back
+    environment:
+      DB_HOST: postgres
+      DB_USER: festipass
+      DB_PASSWORD: embruns-2026
+      CLE_SIGNATURE: cle-de-dev
+    depends_on: [postgres]
+  front:
+    image: ghcr.io/mikou-mouad/festipass-front:1.0
+    build: ./front
+    ports: ["8000:8080"]
+    depends_on: [back]
