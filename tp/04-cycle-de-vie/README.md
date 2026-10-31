@@ -139,6 +139,9 @@ bash tp/04-cycle-de-vie/panne-mystere.sh
 ```
 
 Le site fonctionne-t-il ? Le rollout du back aboutit-il (`kubectl rollout status deployment back --timeout=30s`) ?
+
+> **Le site marche toujours, la panne a-t-elle raté ?** Non : ne vous fiez pas qu'au navigateur. Regardez si la livraison est allée au bout, et l'état de **tous** les pods du back (`kubectl get pods -l app=back`), y compris le plus récent.
+
 Trouvez la cause **uniquement avec kubectl** : `get`, `describe`, `logs`, `events`, `exec`… Puis corrigez **à partir des fichiers du dépôt**, sans écrire de nouvelle valeur à la main.
 
 **Questions :**
