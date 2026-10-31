@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: back-config
+  namespace: festipass
+data:
+  DB_HOST: postgres
+  DB_NAME: festipass
+  FESTIVAL: Festival des Embruns
+  PASS_MAX: "6"
