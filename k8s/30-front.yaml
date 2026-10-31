@@ -34,9 +34,18 @@ spec:
         app.kubernetes.io/version: "1.1"
         environnement: production
     spec:
+      serviceAccountName: front
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: front
           image: ghcr.io/mikou-mouad/festipass-front:1.1
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
           ports:
             - name: http
               containerPort: 8080

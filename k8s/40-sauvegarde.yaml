@@ -40,9 +40,21 @@ spec:
             app: sauvegarde
         spec:
           restartPolicy: OnFailure
+          serviceAccountName: sauvegarde
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 999          # l'utilisateur postgres de l'image
+            runAsGroup: 999
+            fsGroup: 999
+            seccompProfile:
+              type: RuntimeDefault
           containers:
             - name: pg-dump
               image: public.ecr.aws/docker/library/postgres:16
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop: ["ALL"]
               env:
                 - name: PGHOST
                   value: postgres
