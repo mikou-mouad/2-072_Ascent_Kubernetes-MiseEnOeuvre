@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back
+  namespace: festipass
+  labels:
+    app: back
+    app.kubernetes.io/name: festipass
+    app.kubernetes.io/component: back
+    app.kubernetes.io/part-of: festival-des-embruns
+    app.kubernetes.io/version: "1.0"
+    environnement: production
+  annotations:
+    festipass.fr/equipe: developpement
+    festipass.fr/contact: yanis@festipass.example
+spec:
+  # pas de « replicas » : c'est l'HPA (50-hpa.yaml) qui décide du nombre de pods
+  selector:
+    matchLabels:
+      app: back
+  template:
+    metadata:
+      labels:
+        app: back
+        app.kubernetes.io/name: festipass
+        app.kubernetes.io/component: back
+        app.kubernetes.io/part-of: festival-des-embruns
+        app.kubernetes.io/version: "1.0"
+        environnement: production
+    spec:
+      containers:
+        - name: back
+          image: ghcr.io/mikou-mouad/festipass-back:1.0
+          ports:
+            - name: http
+              containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: back-config
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: festipass-db
+                  key: POSTGRES_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: festipass-db
+                  key: POSTGRES_PASSWORD
+            - name: CLE_SIGNATURE
+              valueFrom:
+                secretKeyRef:
+                  name: back-signature
+                  key: CLE_SIGNATURE
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 250m
+              memory: 128Mi
+            limits:
+              cpu: "1"
+              memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: back
+  namespace: festipass
+  labels:
+    app: back
+spec:
+  selector:
+    app: back
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http

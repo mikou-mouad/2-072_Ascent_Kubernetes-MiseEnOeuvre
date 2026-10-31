@@ -1,0 +1,38 @@
+# Vendredi 10h00 : des festivaliers achètent des pass 3 jours en boucle, en passant par le front.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: charge
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: festivaliers
+  namespace: charge
+  labels:
+    app: festivaliers
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: festivaliers
+  template:
+    metadata:
+      labels:
+        app: festivaliers
+    spec:
+      containers:
+        - name: achat
+          image: public.ecr.aws/docker/library/busybox:1.36
+          command: ["sh", "-c"]
+          args:
+            - |
+              while true; do
+                wget -q -O /dev/null -T 10 \
+                  --header 'Content-Type: application/json' \
+                  --post-data '{"nom":"festivalier","pass":"3-jours","quantite":4}' \
+                  http://front.festipass.svc.cluster.local:8080/api/billets || sleep 1
+              done
+          resources:
+            requests: {cpu: 10m, memory: 16Mi}
+            limits: {cpu: 100m, memory: 32Mi}
