@@ -1,0 +1,14 @@
+# Le premier manifest de Yanis. kubectl le refuse : trouvez et corrigez les 6 erreurs.
+apiVersion: v1
+kind: pod
+metadata:
+  name: premier-pod
+  labels:
+    app:premier
+spec:
+  containers:
+    name: web
+    image: public.ecr.aws/docker/library/nginx:1.27
+	ports:
+      - containerPort: "80"
+   resources: {}

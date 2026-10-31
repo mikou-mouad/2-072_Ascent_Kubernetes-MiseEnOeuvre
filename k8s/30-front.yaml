@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front
+  namespace: festipass
+  labels:
+    app: front
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: TODO
+  template:
+    metadata:
+      labels:
+        app: TODO
+    spec:
+      containers:
+        - name: front
+          image: TODO   # l'image du front, tag 1.0
+          ports:
+            - name: http
+              containerPort: 8080
+          # TODO : readinessProbe HTTP sur /healthz (port "http")
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front
+  namespace: festipass
+  labels:
+    app: front
+spec:
+  type: TODO        # le site doit être joignable depuis l'extérieur du cluster
+  selector:
+    app: front
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+      nodePort: TODO  # 30080

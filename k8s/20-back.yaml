@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back
+  namespace: festipass
+  labels:
+    app: back
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: back
+  template:
+    metadata:
+      labels:
+        app: back
+    spec:
+      containers:
+        - name: back
+          image: TODO   # l'image du back, tag 1.0 (voir README.md à la racine du dépôt)
+          ports:
+            - name: http
+              containerPort: TODO   # port d'écoute de l'API (voir app/back/app.py)
+          env:
+            - name: DB_HOST
+              value: TODO   # comment le back joint-il PostgreSQL ? (voir 10-postgres.yaml)
+            - name: DB_NAME
+              value: festipass
+            - name: DB_USER
+              value: festipass
+            - name: DB_PASSWORD
+              value: embruns-2026
+            - name: FESTIVAL
+              value: Festival des Embruns
+            - name: CLE_SIGNATURE
+              value: cle-de-dev
+          # TODO : livenessProbe HTTP sur /healthz et readinessProbe HTTP sur /readyz (port "http")
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: back
+  namespace: festipass
+  labels:
+    app: back
+spec:
+  selector:
+    TODO: TODO   # quels pods ce Service doit-il cibler ?
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http

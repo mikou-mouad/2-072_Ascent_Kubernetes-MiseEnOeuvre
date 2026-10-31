@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod                    # 1. les kinds sont sensibles à la casse : Pod
+metadata:
+  name: premier-pod
+  labels:
+    app: premier             # 2. une espace après les deux-points (sinon c'est une chaîne, pas une clé/valeur)
+spec:
+  containers:
+    - name: web              # 3. containers est une liste : chaque conteneur commence par « - »
+      image: public.ecr.aws/docker/library/nginx:1.27
+      ports:                 # 4. une tabulation était utilisée : YAML n'accepte que des espaces
+        - containerPort: 80  # 5. un port est un entier, pas une chaîne
+      resources: {}          # 6. mal indenté : resources appartient au conteneur
