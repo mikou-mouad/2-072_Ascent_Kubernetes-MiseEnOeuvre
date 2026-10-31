@@ -49,6 +49,8 @@
     "c4-incident",
     "c4-strategies",
     "c4-rolling",
+    "c4-probes-tableau",
+    "c4-probes-chronologie",
     "c4-probes",
     "c4-kubectl",
     "c4-tp",
