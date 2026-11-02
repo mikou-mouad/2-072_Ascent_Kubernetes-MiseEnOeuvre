@@ -1,6 +1,6 @@
 # TP 01 – « Camille, il nous faut un cluster »
 
-**Durée :** 3 h 30 (45 min avant le déjeuner, 2 h 45 l'après-midi) · **Branche :** `tp-01-installation` · **Correction :** `solutions/01-installation/`, dans cette branche
+**Durée :** 3 h 15 (45 min avant le déjeuner, 2 h 30 l'après-midi, jusqu'au QCM de 16h15) · **Branche :** `tp-01-installation` · **Correction :** `solutions/01-installation/`, dans cette branche
 
 ## L'incident
 
