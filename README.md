@@ -1,11 +1,12 @@
 # Kubernetes – Mise en œuvre : supports de formation
 
-Formation Ascent 2-072 de 3 jours (18 h, 75 % de pratique), racontée à travers l'histoire de **FestiPass**, la billetterie du Festival des Embruns, qui passe d'une VM Docker Compose à Kubernetes avant l'ouverture des ventes, vendredi à 10h00.
+Formation Ascent 2-072 de 3 jours (18 h, 72 % de pratique), racontée à travers l'histoire de **FestiPass**, la billetterie du Festival des Embruns, qui passe d'une VM Docker Compose à Kubernetes avant l'ouverture des ventes, vendredi à 10h00.
 
 - [programme-3-jours.md](programme-3-jours.md) : le programme détaillé et le fil rouge
 - [guide-installation-cluster.md](guide-installation-cluster.md) : installation du cluster de TP (kubeadm, containerd, Calico)
 - `app/` : l'application FestiPass (front nginx, back Python, PostgreSQL)
 - `presentation/` : les slides en HTML, sur la branche `main` (ouvrir `presentation/index.html`)
+- `qcm/` : les QCM de fin de journée (10 questions, autocorrigés), publiés sur https://mikou-mouad.github.io/2-072_Ascent_Kubernetes-MiseEnOeuvre/qcm/
 - `tp/` : les énoncés des TP (un dossier par TP, ajouté dans chaque branche)
 
 ## Les branches des TP
