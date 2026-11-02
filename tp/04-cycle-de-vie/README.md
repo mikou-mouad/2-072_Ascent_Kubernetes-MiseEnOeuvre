@@ -1,6 +1,6 @@
 # TP 04 – « La version 1.2 est cassée, et personne ne sait pourquoi »
 
-**Durée :** 1 h 25 (metrics-server avant la pause, le reste après) · **Branche :** `tp-04-cycle-de-vie` · **Correction :** `solutions/04-cycle-de-vie/`, dans cette branche
+**Durée :** 1 h 10 (metrics-server avant la pause, le reste après, jusqu'au QCM de 16h15) · **Branche :** `tp-04-cycle-de-vie` · **Correction :** `solutions/04-cycle-de-vie/`, dans cette branche
 
 ## L'incident
 
