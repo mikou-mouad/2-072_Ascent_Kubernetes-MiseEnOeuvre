@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QCM du jour 3 – Bonnes pratiques et gestion avancée</title>
+<style>
+  :root {
+    --fond: #F6F1E9;
+    --carte: #ffffff;
+    --texte: #1b2631;
+    --secondaire: #4a5a6a;
+    --accent: #E76F51;
+    --sombre: #1D3557;
+    --bon: #2a9d8f;
+    --faux: #c0392b;
+    --bord: #ded6c8;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fond); color: var(--texte); font: 17px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { background: var(--sombre); color: #fff; padding: 28px 16px; }
+  header > div, main, .actions, #score { max-width: 860px; margin: 0 auto; }
+  .surtitre { margin: 0; font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+  h1 { margin: 6px 0 8px; font-size: 30px; line-height: 1.2; }
+  header p.consigne { margin: 0; color: #d7dee6; }
+  main { padding: 24px 16px 8px; display: grid; gap: 16px; }
+  .question { background: var(--carte); border: 1px solid var(--bord); border-radius: 12px; padding: 18px 20px; }
+  .question h2 { margin: 0 0 4px; font-size: 18px; line-height: 1.4; }
+  .question .num { color: var(--accent); margin-right: 6px; }
+  .question .plusieurs { margin: 0 0 8px; font-size: 14px; color: var(--secondaire); }
+  label.choix { display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; margin: 4px 0; border-radius: 8px; cursor: pointer; }
+  label.choix:hover { background: #f4efe6; }
+  label.choix input { margin-top: 5px; flex: none; }
+  code { font: 15px/1.4 ui-monospace, Consolas, monospace; background: #f1ece3; padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+  .corrige label.choix { cursor: default; }
+  .corrige label.choix:hover { background: none; }
+  label.choix.attendue { background: #e3f2ef; font-weight: 600; }
+  label.choix.erreur { background: #fbe9e7; text-decoration: line-through; }
+  .question.juste { border-left: 6px solid var(--bon); }
+  .question.fausse { border-left: 6px solid var(--faux); }
+  .verdict { font-weight: 700; margin: 10px 0 4px; }
+  .juste .verdict { color: var(--bon); }
+  .fausse .verdict { color: var(--faux); }
+  .explication { margin: 0; color: var(--secondaire); }
+  .actions { padding: 8px 16px 0; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  button { font: inherit; font-weight: 700; border: 0; border-radius: 10px; padding: 12px 22px; cursor: pointer; background: var(--accent); color: #fff; }
+  button.secondaire { background: var(--sombre); }
+  #rappel { color: var(--faux); margin: 0; }
+  #score { margin: 20px auto 48px; padding: 20px 16px; background: var(--sombre); color: #fff; border-radius: 14px; text-align: center; }
+  #score .note { font-size: 44px; font-weight: 800; margin: 0; }
+  #score p { margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<header><div>
+  <p class="surtitre">Kubernetes – Mise en œuvre · FestiPass · Jour 3</p>
+  <h1>QCM du jour 3 – Bonnes pratiques et gestion avancée</h1>
+  <p class="consigne">Une seule bonne réponse par question, sauf mention contraire. Le score et les explications s'affichent quand vous validez.</p>
+</div></header>
+<main id="qcm"></main>
+<div class="actions">
+  <button id="valider" type="button">Valider mes réponses</button>
+  <button id="recommencer" class="secondaire" type="button" hidden>Recommencer</button>
+  <p id="rappel" hidden></p>
+</div>
+<section id="score" hidden aria-live="polite"></section>
+<script>
+  // Les questions sont encodées pour ne pas lire les réponses d'un coup d'œil dans la source.
+  const DONNEES = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob("eyJxdWVzdGlvbnMiOiBbeyJxIjogIlN1ciBxdW9pIGxlIHNjaGVkdWxlciBzJ2FwcHVpZS10LWlsIHBvdXIgZMOpY2lkZXIgc2kgdW4gcG9kIHRpZW50IHN1ciB1biBuxZN1ZCA/IiwgImNob2l4IjogWyJTdXIgbGEgY29uc29tbWF0aW9uIHLDqWVsbGUgZHUgbsWTdWQsIG1lc3Vyw6llIHBhciBtZXRyaWNzLXNlcnZlciIsICJTdXIgbGVzIHJlcXVlc3RzIGRlcyBwb2RzLCBjb21wYXLDqWVzIMOgIGwnQWxsb2NhdGFibGUgZHUgbsWTdWQiLCAiU3VyIGxlcyBsaW1pdHMgZGVzIHBvZHMiLCAiU3VyIGxlIG5vbWJyZSBkZSBwb2RzIGTDqWrDoCBwcsOpc2VudHMiXSwgImJvbm5lcyI6IFsxXSwgImV4cGxpY2F0aW9uIjogIkxlIHNjaGVkdWxlciBhZGRpdGlvbm5lIGxlcyByZXF1ZXN0cy4gVW4gcG9kIHNhbnMgcmVxdWVzdCAobGUgY2FsY3VsIGRlIHN0YXRpc3RpcXVlcyBkdSBUUCAwNSkgZXN0IGludmlzaWJsZSBwb3VyIGx1aSwgbcOqbWUgcydpbCBjb25zb21tZSB0b3V0IGxlIG7Fk3VkLiJ9LCB7InEiOiAiVW4gY29udGVuZXVyIGTDqXBhc3NlIHNhIGxpbWl0ZSBkZSBtw6ltb2lyZS4gUXVlIHNlIHBhc3NlLXQtaWwgPyIsICJjaG9peCI6IFsiSWwgZXN0IHJhbGVudGkiLCAiSWwgZXN0IHR1w6kgKGBPT01LaWxsZWRgKSBwdWlzIHJlZMOpbWFycsOpIiwgIklsIHBhc3NlIGVuIHN3YXAiLCAiTGUgcG9kIGVzdCBkw6lwbGFjw6kgc3VyIHVuIGF1dHJlIG7Fk3VkIl0sICJib25uZXMiOiBbMV0sICJleHBsaWNhdGlvbiI6ICJNw6ltb2lyZSBkw6lwYXNzw6llID0gY29udGVuZXVyIHR1w6kgKGNvZGUgMTM3LCBgQ3Jhc2hMb29wQmFja09mZmAgcydpbCByZWNvbW1lbmNlKS4gQ1BVIGTDqXBhc3PDqSA9IGNvbnRlbmV1ciByYWxlbnRpLCBqYW1haXMgdHXDqS4ifSwgeyJxIjogIlVuIHBvZCBkb250IGNoYXF1ZSBjb250ZW5ldXIgYSBkZXMgcmVxdWVzdHMgw6lnYWxlcyDDoCBzZXMgbGltaXRzLCBwb3VyIGxlIENQVSBldCBsYSBtw6ltb2lyZSwgZXN0IGRlIGNsYXNzZSBRb1MgOiIsICJjaG9peCI6IFsiQmVzdEVmZm9ydCIsICJCdXJzdGFibGUiLCAiR3VhcmFudGVlZCIsICJDcml0aWNhbCJdLCAiYm9ubmVzIjogWzJdLCAiZXhwbGljYXRpb24iOiAiR3VhcmFudGVlZCAoUG9zdGdyZVNRTCBhdSBUUCAwNSkgOiBleHB1bHPDqSBlbiBkZXJuaWVyIGVuIGNhcyBkZSBtYW5xdWUgZGUgbcOpbW9pcmUgc3VyIGxlIG7Fk3VkLiBSZXF1ZXN0cyA8IGxpbWl0cyA9IEJ1cnN0YWJsZSwgYXVjdW5lIHJlcXVlc3QgbmkgbGltaXQgPSBCZXN0RWZmb3J0LiJ9LCB7InEiOiAiUG91cnF1b2kgbGVzIGJpbGxldHMgb250LWlscyBkaXNwYXJ1IHF1YW5kIENhbWlsbGUgYSBkcmFpbsOpIGxlIG7Fk3VkIGRlIFBvc3RncmVTUUwgPyIsICJjaG9peCI6IFsiYGRyYWluYCBzdXBwcmltZSBsZXMgYmFzZXMgZGUgZG9ubsOpZXMiLCAiTGVzIGRvbm7DqWVzIHZpdmFpZW50IGRhbnMgbGUgY29udGVuZXVyIDogbGUgcG9kIHJlY3LDqcOpIHN1ciBsJ2F1dHJlIG7Fk3VkIGVzdCByZXBhcnRpIGQndW5lIGJhc2UgdmlkZSIsICJMZSBtb3QgZGUgcGFzc2UgYSBjaGFuZ8OpIHBlbmRhbnQgbGUgZHJhaW4iLCAiTGUgU2VydmljZSBgcG9zdGdyZXNgIGEgY2hhbmfDqSBkJ2FkcmVzc2UgSVAiXSwgImJvbm5lcyI6IFsxXSwgImV4cGxpY2F0aW9uIjogIlNhbnMgdm9sdW1lIHBlcnNpc3RhbnQsIGxlcyBkb25uw6llcyBtZXVyZW50IGF2ZWMgbGUgY29udGVuZXVyLiBVbiBQVkMgKGF2ZWMgdW5lIFN0b3JhZ2VDbGFzcykgZMOpY291cGxlIGxlcyBkb25uw6llcyBkdSBjeWNsZSBkZSB2aWUgZHUgcG9kIChUUCAwNikuIn0sIHsicSI6ICJRdSdhcHBvcnRlIHVuIFN0YXRlZnVsU2V0IHBhciByYXBwb3J0IMOgIHVuIERlcGxveW1lbnQgcG91ciBQb3N0Z3JlU1FMID8iLCAiY2hvaXgiOiBbIklsIHLDqXBsaXF1ZSBhdXRvbWF0aXF1ZW1lbnQgbGVzIGRvbm7DqWVzIGVudHJlIGxlcyBwb2RzIiwgIlVuZSBpZGVudGl0w6kgc3RhYmxlIChgcG9zdGdyZXMtMGApIGV0IHVuIFBWQyBwcm9wcmUgw6AgY2hhcXVlIHLDqXBsaWNhLCByZXRyb3V2w6kgw6AgY2hhcXVlIHJlZMOpbWFycmFnZSIsICJJbCByZW5kIGxlIHBvZCBpbXBvc3NpYmxlIMOgIHN1cHByaW1lciIsICJJbCBwZXJtZXQgZGUgc2UgcGFzc2VyIGRlIFNlcnZpY2UiXSwgImJvbm5lcyI6IFsxXSwgImV4cGxpY2F0aW9uIjogImB2b2x1bWVDbGFpbVRlbXBsYXRlc2AgY3LDqWUgYGRhdGEtcG9zdGdyZXMtMGAsIHF1ZSBgcG9zdGdyZXMtMGAgcmV0cm91dmUgdG91am91cnMuIExhIHLDqXBsaWNhdGlvbiwgZWxsZSwgcmVzdGUgbCdhZmZhaXJlIGRlIFBvc3RncmVTUUwgb3UgZCd1biBvcMOpcmF0ZXVyLiJ9LCB7InEiOiAiRGFucyBsZSBDcm9uSm9iIGRlIHNhdXZlZ2FyZGUsIMOgIHF1b2kgc2VydCBgY29uY3VycmVuY3lQb2xpY3k6IEZvcmJpZGAgPyIsICJjaG9peCI6IFsiw4AgaW50ZXJkaXJlIGxlIGxhbmNlbWVudCBtYW51ZWwgYXZlYyBga3ViZWN0bCBjcmVhdGUgam9iIC0tZnJvbT1jcm9uam9iL+KApmAiLCAiw4AgbmUgcGFzIGxhbmNlciB1bmUgbm91dmVsbGUgc2F1dmVnYXJkZSBzaSBsYSBwcsOpY8OpZGVudGUgdG91cm5lIGVuY29yZSIsICLDgCBlbXDDqmNoZXIgbGEgc3VwcHJlc3Npb24gZGVzIGFuY2llbm5lcyBzYXV2ZWdhcmRlcyIsICLDgCBpbnRlcmRpcmUgYXUgSm9iIGRlIHJlZMOpbWFycmVyIGVuIGNhcyBkJ8OpY2hlYyJdLCAiYm9ubmVzIjogWzFdLCAiZXhwbGljYXRpb24iOiAiRGV1eCBgcGdfZHVtcGAgZW4gcGFyYWxsw6hsZSBjaGFyZ2VyYWllbnQgbGEgYmFzZSBldCDDqWNyaXJhaWVudCBzdXIgbGUgbcOqbWUgdm9sdW1lLiBgUmVwbGFjZWAgYXJyw6p0ZXJhaXQgbCdhbmNpZW5uZSBleMOpY3V0aW9uLCBgQWxsb3dgIGxlcyBsYWlzc2VyYWl0IHRvdXJuZXIgZW5zZW1ibGUgKFRQIDA3KS4ifSwgeyJxIjogIlF1J2VzdC1jZSBxdSd1biBvcMOpcmF0ZXVyIEt1YmVybmV0ZXMgPyIsICJjaG9peCI6IFsiVW4gYWRtaW5pc3RyYXRldXIgZHUgY2x1c3RlciBhdmVjIGxlIHLDtGxlIGNsdXN0ZXItYWRtaW4iLCAiVW4gdHlwZSBkJ29iamV0IGFqb3V0w6kgw6AgbCdBUEkgKENSRCkgZXQgdW4gY29udHLDtGxldXIgcXVpIGFnaXQgcG91ciBhbWVuZXIgbGUgc3lzdMOobWUgZGFucyBsJ8OpdGF0IGTDqWNyaXQiLCAiVW4gcGx1Z2luIGRlIGt1YmVjdGwiLCAiVW4gRGFlbW9uU2V0IHF1aSB0b3VybmUgc3VyIGNoYXF1ZSBuxZN1ZCJdLCAiYm9ubmVzIjogWzFdLCAiZXhwbGljYXRpb24iOiAiQ1JEICsgY29udHLDtGxldXIgcXVpIGVuY29kZSBsZSBzYXZvaXItZmFpcmUgZCd1biBhZG1pbmlzdHJhdGV1ci4gTGUgYHRpZ2VyYS1vcGVyYXRvcmAgcmVtZXR0YWl0IGBjYWxpY28ta3ViZS1jb250cm9sbGVyc2Agw6AgMSByw6lwbGljYSBxdWFuZCBvbiBsZSBwYXNzYWl0IMOgIDAgKFRQIDA3KS4ifSwgeyJxIjogIkwnSFBBIGR1IGJhY2sgdmlzZSA2MCAlIGRlIENQVS4gQXZlYyAyIHLDqXBsaWNhcyDDoCAyNDAgJSwgY29tYmllbiBkZSByw6lwbGljYXMgZGVtYW5kZS10LWlsID8iLCAiY2hvaXgiOiBbIjQiLCAiNiIsICI4IiwgIjEwIl0sICJib25uZXMiOiBbMl0sICJleHBsaWNhdGlvbiI6ICJSw6lwbGljYXMgdm91bHVzID0gYXJyb25kaSBzdXDDqXJpZXVyICgyIMOXIDI0MCAvIDYwKSA9IDgsIGRhbnMgbGEgbGltaXRlIGRlIGBtYXhSZXBsaWNhc2AuIExlIHBvdXJjZW50YWdlIGVzdCBjYWxjdWzDqSBwYXIgcmFwcG9ydCBhdXggcmVxdWVzdHMgQ1BVIChUUCAwOCkuIn0sIHsicSI6ICJRdWVsIG9iamV0IGVtcMOqY2hlIHVuIHBvZCBkJ3VuIGF1dHJlIG5hbWVzcGFjZSBkZSBzZSBjb25uZWN0ZXIgw6AgUG9zdGdyZVNRTCA/IiwgImNob2l4IjogWyJVbiBSb2xlIGV0IHVuIFJvbGVCaW5kaW5nIiwgIlVuZSBOZXR3b3JrUG9saWN5IiwgIlVuIFJlc291cmNlUXVvdGEiLCAiVW4gU2VydmljZUFjY291bnQiXSwgImJvbm5lcyI6IFsxXSwgImV4cGxpY2F0aW9uIjogIlJCQUMgY29udHLDtGxlIGxlcyBhcHBlbHMgw6AgbCdBUEkgS3ViZXJuZXRlcywgcGFzIGxlIHRyYWZpYyByw6lzZWF1IGVudHJlIHBvZHMuIEF1IFRQIDA5IDogcmVmdXMgcGFyIGTDqWZhdXQsIHB1aXMgcG9zdGdyZXMgbidhY2NlcHRlIHF1ZSBsZSBiYWNrIGV0IGxhIHNhdXZlZ2FyZGUuIn0sIHsicSI6ICJRdWUgbGUgcHJvZmlsIFBvZCBTZWN1cml0eSDCqyByZXN0cmljdGVkIMK7IGV4aWdlLXQtaWwgZCd1biBwb2QgPyIsICJjaG9peCI6IFsiYHJ1bkFzTm9uUm9vdDogdHJ1ZWAiLCAiYGFsbG93UHJpdmlsZWdlRXNjYWxhdGlvbjogZmFsc2VgIiwgImBjYXBhYmlsaXRpZXM6IGRyb3A6IFtcIkFMTFwiXWAiLCAiYHJlYWRPbmx5Um9vdEZpbGVzeXN0ZW06IHRydWVgIiwgImBzZWNjb21wUHJvZmlsZTogUnVudGltZURlZmF1bHRgIl0sICJib25uZXMiOiBbMCwgMSwgMiwgNF0sICJleHBsaWNhdGlvbiI6ICJDJ2VzdCBleGFjdGVtZW50IGNlIHF1ZSBga3ViZWN0bCBsYWJlbCAtLWRyeS1ydW49c2VydmVyIOKApiBlbmZvcmNlPXJlc3RyaWN0ZWRgIHNpZ25hbGFpdCBhdSBUUCAwOS4gYHJlYWRPbmx5Um9vdEZpbGVzeXN0ZW1gIGVzdCB1bmUgYm9ubmUgcHJhdGlxdWUgKG9uIGwnYSBtaXNlIHN1ciBsZSBiYWNrKSwgbWFpcyBsZSBwcm9maWwgbmUgbCdleGlnZSBwYXMuIn1dfQ=="), c => c.charCodeAt(0))));
+  const $ = id => document.getElementById(id);
+  const echapper = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  // `code` entre accents graves
+  const enrichir = s => echapper(s).replace(/`([^`]+)`/g, "<code>$1</code>");
+
+  function afficher() {
+    $("qcm").innerHTML = DONNEES.questions.map((q, i) => {
+      const multiple = q.bonnes.length > 1;
+      const type = multiple ? "checkbox" : "radio";
+      return `<section class="question" id="q${i}">
+        <h2><span class="num">${i + 1}.</span>${enrichir(q.q)}</h2>
+        ${multiple ? `<p class="plusieurs">Plusieurs réponses attendues (${q.bonnes.length}).</p>` : ""}
+        ${q.choix.map((c, j) => `<label class="choix" id="q${i}c${j}"><input type="${type}" name="q${i}" value="${j}"> <span>${enrichir(c)}</span></label>`).join("")}
+        <div class="retour"></div>
+      </section>`;
+    }).join("");
+  }
+
+  function reponses(i) {
+    return [...document.querySelectorAll(`input[name="q${i}"]:checked`)].map(e => Number(e.value));
+  }
+
+  function valider() {
+    const vides = DONNEES.questions.filter((_, i) => reponses(i).length === 0).length;
+    if (vides && $("rappel").dataset.vu !== "1") {
+      $("rappel").textContent = `${vides} question(s) sans réponse. Cliquez de nouveau pour valider quand même.`;
+      $("rappel").hidden = false;
+      $("rappel").dataset.vu = "1";
+      return;
+    }
+    let total = 0;
+    DONNEES.questions.forEach((q, i) => {
+      const r = reponses(i).sort().join(",");
+      const juste = r === [...q.bonnes].sort().join(",");
+      if (juste) total++;
+      const bloc = $(`q${i}`);
+      bloc.classList.add("corrige", juste ? "juste" : "fausse");
+      q.choix.forEach((_, j) => {
+        const l = $(`q${i}c${j}`);
+        l.querySelector("input").disabled = true;
+        if (q.bonnes.includes(j)) l.classList.add("attendue");
+        else if (l.querySelector("input").checked) l.classList.add("erreur");
+      });
+      bloc.querySelector(".retour").innerHTML =
+        `<p class="verdict">${juste ? "Bonne réponse" : (r ? "Réponse incorrecte" : "Pas de réponse")}</p>` +
+        `<p class="explication">${enrichir(q.explication)}</p>`;
+    });
+    const n = DONNEES.questions.length;
+    const message = total === n ? "Parfait !" : total >= Math.ceil(n * 0.7) ? "Bien joué : relisez les explications des questions manquées."
+      : "Relisez les explications : on reprend ces points ensemble.";
+    $("score").innerHTML = `<p class="note">${total} / ${n}</p><p>${message}</p>`;
+    $("score").hidden = false;
+    $("rappel").hidden = true;
+    $("valider").hidden = true;
+    $("recommencer").hidden = false;
+    $("score").scrollIntoView({ behavior: "smooth" });
+  }
+
+  function recommencer() {
+    afficher();
+    $("score").hidden = true;
+    $("valider").hidden = false;
+    $("recommencer").hidden = true;
+    $("rappel").dataset.vu = "";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  $("valider").addEventListener("click", valider);
+  $("recommencer").addEventListener("click", recommencer);
+  afficher();
+</script>
+</body>
+</html>
