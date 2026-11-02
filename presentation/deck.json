@@ -31,6 +31,7 @@
     "c1-tp",
     "dej-j1",
     "pause-j1-aprem",
+    "qcm-j1",
     "fin-j1",
     "j2-debut",
     "c2-incident",
@@ -55,6 +56,7 @@
     "c4-kubectl",
     "c4-tp",
     "pause-j2-aprem",
+    "qcm-j2",
     "fin-j2",
     "j3-debut",
     "c5-incident",
@@ -85,6 +87,7 @@
     "pause-j3-aprem",
     "c9-tp",
     "epilogue",
+    "qcm-j3",
     "fin"
   ],
   "sections": {
