@@ -38,7 +38,7 @@
 <div style="display:flex;gap:24px">
 <p style="font-size:28px;color:#1D3557;background:#FFD166;padding:10px 24px;border-radius:40px;font-weight:700">10 chapitres</p>
 <p style="font-size:28px;color:#F1FAEE;border:2px solid #FFD166;padding:10px 24px;border-radius:40px">10 TP</p>
-<p style="font-size:28px;color:#F1FAEE;border:2px solid #FFD166;padding:10px 24px;border-radius:40px">75 % de pratique</p>
+<p style="font-size:28px;color:#F1FAEE;border:2px solid #FFD166;padding:10px 24px;border-radius:40px">72 % de pratique</p>
 </div>
 <aside>Accueil, tour de table : niveau de chacun en conteneurs et en Linux, attentes. Présenter le fil rouge : FestiPass, la billetterie d'un festival, qui quitte sa VM unique pour Kubernetes avant l'ouverture des ventes. Chaque chapitre part d'un incident.</aside>
 </section>
@@ -116,7 +116,7 @@
 </div>
 </div>
 <p style="font-size:32px;line-height:1.4;color:#4A5A6A">L'application déployée au TP 02 sert jusqu'au dernier TP : <span style="color:#1B2631"><b>chaque TP repart de l'état laissé par le précédent.</b></span></p>
-<aside>75 % du temps est en TP. La théorie reste courte : on montre le problème, le concept, puis on pratique. Pour certains chapitres, l'incident mène directement au concept, sans slide « solution ». Chaque participant travaille seul, sur son propre cluster.</aside>
+<aside>72 % du temps est en TP. La théorie reste courte : on montre le problème, le concept, puis on pratique. Pour certains chapitres, l'incident mène directement au concept, sans slide « solution ». Chaque participant travaille seul, sur son propre cluster.</aside>
 </section>
 <section id="programme" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Le programme</p>
@@ -152,7 +152,7 @@
 </div>
 </div>
 <p style="font-size:28px;color:#4A5A6A">Horaires : 9h00 – 12h30 et 13h30 – 16h30 · pauses à 10h00 et 15h00</p>
-<aside>Le détail minute par minute est dans programme-3-jours.md du dépôt. Une journée = 6 h = deux modules du programme officiel : Introduction et Installation le jour 1, YAML et Gestion des ressources le jour 2, Bonnes pratiques et Gestion avancée le jour 3. 75 % du temps est en TP. Chaque participant travaille seul, sur son propre cluster.</aside>
+<aside>Le détail minute par minute est dans programme-3-jours.md du dépôt. Une journée = 6 h = deux modules du programme officiel : Introduction et Installation le jour 1, YAML et Gestion des ressources le jour 2, Bonnes pratiques et Gestion avancée le jour 3. 72 % du temps est en TP, et chaque journée se termine par un QCM de 10 questions. Chaque participant travaille seul, sur son propre cluster.</aside>
 </section>
 <section id="branches" data-transition="fade" style="background:#FBF8F3;color:#1B2631;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#E76F51">Le dépôt des TP</p>
@@ -211,7 +211,7 @@
 <div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">10h15</p><p style="font-size:28px">TP 00 : FestiPass comme l'an dernier</p></div>
 <div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">11h15</p><p style="font-size:28px">Ch. 1 · Il nous faut un cluster</p></div>
 <div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">11h45</p><p style="font-size:28px">TP 01 : installer le cluster</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">15h15</p><p style="font-size:28px">TP 01 : gérer les nœuds (jusqu'à 16h30)</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">15h15</p><p style="font-size:28px">TP 01 : gérer les nœuds, QCM à 16h15</p></div>
 </div>
 </div>
 <aside>Horaires : 9h00 – 12h30, 13h30 – 16h30, pauses à 10h00 et 15h00. Ce soir, chacun a son propre cluster de 3 nœuds, sait le gérer (labels, taints, drain, retrait et réintégration d'un worker) et a fait un snapshot de ses VM. FestiPass arrive sur le cluster demain matin, avec le YAML.</aside>
@@ -477,7 +477,7 @@
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 01</h2>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">Installer le cluster</p>
-<p style="font-size:30px;line-height:1.35;color:#C9D6E3">3 h 30 sur la journée · guide d'installation</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">3 h 15 sur la journée · guide d'installation</p>
 <p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-01-installation</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:32px">
@@ -498,7 +498,7 @@
 <div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">HTTP 200 sur le NodePort des 3 nœuds</p></div>
 </div>
 </div>
-<aside>Le TP occupe le reste de la journée : préparation des nœuds avant le déjeuner ; kubeadm init, Calico, join, tests réseau et le control plane sans scheduler jusqu'à 15h00 ; gestion des nœuds après la pause. Sans scheduler : déplacer /etc/kubernetes/manifests/kube-scheduler.yaml hors du dossier, constater qu'un nouveau pod reste Pending, puis le remettre. Retirer un worker : kubectl drain, kubectl delete node, kubeadm reset sur le worker, kubeadm token create --print-join-command sur control-plane, puis kubeadm join. Pendant les temps d'attente (apt, images), poser les questions de l'énoncé : swap, br_netfilter, driver cgroup, apt-mark hold. En fin de TP, faire un snapshot des 3 VM. Correction : solutions/01-installation/, dans la branche du TP.</aside>
+<aside>Le TP occupe le reste de la journée : préparation des nœuds avant le déjeuner ; kubeadm init, Calico, join, tests réseau et le control plane sans scheduler jusqu'à 15h00 ; gestion des nœuds après la pause, jusqu'à 16h15 (QCM du jour 1). Sans scheduler : déplacer /etc/kubernetes/manifests/kube-scheduler.yaml hors du dossier, constater qu'un nouveau pod reste Pending, puis le remettre. Retirer un worker : kubectl drain, kubectl delete node, kubeadm reset sur le worker, kubeadm token create --print-join-command sur control-plane, puis kubeadm join. Pendant les temps d'attente (apt, images), poser les questions de l'énoncé : swap, br_netfilter, driver cgroup, apt-mark hold. En fin de TP, faire un snapshot des 3 VM. Correction : solutions/01-installation/, dans la branche du TP.</aside>
 </section>
 <section id="dej-j1" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
 <x-icon data-g="⌂" style="color:#FFD166;width:110px;height:110px"></x-icon>
@@ -513,8 +513,17 @@
 <p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFE3D8;text-align:center">Jour 1 · 15h00</p>
 <h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause café</h1>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 15h15</p>
-<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : gérer les nœuds (fin du TP 01).</p>
+<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : gérer les nœuds, puis le QCM du jour 1 à 16h15.</p>
 <aside>Avant la pause : 3 nœuds Ready chez tout le monde et le scheduler remis en place. Sinon, aider pendant la pause. Après la pause : labels, taints, cordon, drain, retrait et réintégration d'un worker, snapshot des VM.</aside>
+</section>
+<section id="qcm-j1" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
+<x-icon data-g="✔" style="color:#FFD166;width:110px;height:110px"></x-icon>
+<p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFD166;text-align:center">Jour 1 · 16h15</p>
+<h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">QCM du jour 1</h1>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">10 questions · 15 minutes · chapitres 0 et 1</p>
+<p style="font-family:'JetBrains Mono', monospace;font-size:34px;color:#1D3557;background:#FFD166;padding:14px 28px;border-radius:14px;text-align:center">mikou-mouad.github.io/2-072_Ascent_Kubernetes-MiseEnOeuvre/qcm/jour-1.html</p>
+<p style="font-size:30px;color:#C9D6E3;text-align:center">Seul, dans le navigateur de ClientWeb ou de votre poste. Le score et les explications s'affichent quand vous validez.</p>
+<aside>Laisser 10 minutes pour répondre, puis 5 minutes pour les questions les plus ratées (scores à main levée). Les explications de la page renvoient au TP où chaque notion a été vue. On reprend les points faibles demain à 9h00.</aside>
 </section>
 <section id="fin-j1" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Fin du jour 1 · 16h30</p>
@@ -550,15 +559,15 @@
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:12px">
 <p style="font-size:26px;font-weight:700;color:#2A9D8F">AUJOURD'HUI</p>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h00</p><p style="font-size:28px">Récapitulatif et quiz du jour 1</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h00</p><p style="font-size:28px">Récapitulatif : retour sur le QCM du jour 1</p></div>
 <div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h10</p><p style="font-size:28px">Ch. 2 · YAML, Pod, Deployment, Service</p></div>
 <div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">9h35</p><p style="font-size:28px">TP 02 : premiers manifests, puis FestiPass</p></div>
 <div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">11h50</p><p style="font-size:28px">Ch. 3 · ConfigMap et Secret, TP 03</p></div>
 <div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">14h25</p><p style="font-size:28px">Ch. 4 · Mises à jour et surveillance</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">14h50</p><p style="font-size:28px">TP 04 : boîte à outils kubectl, rollback</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">14h50</p><p style="font-size:28px">TP 04 : kubectl, rollback ; QCM à 16h15</p></div>
 </div>
 </div>
-<aside>Récapitulatif rapide du jour 1 (10 min) : quiz oral sur l'architecture et la gestion des nœuds. Vérifier que tous les clusters ont redémarré correctement (kubectl get nodes). Un cluster cassé : restaurer le snapshot fait en fin de TP 01. Un participant en retard sur le dépôt repart de la branche tp-02-yaml.</aside>
+<aside>Récapitulatif rapide du jour 1 (10 min) : on part des questions les plus ratées au QCM du jour 1 (scores à main levée). Vérifier que tous les clusters ont redémarré correctement (kubectl get nodes). Un cluster cassé : restaurer le snapshot fait en fin de TP 01. Un participant en retard sur le dépôt repart de la branche tp-02-yaml.</aside>
 </section>
 <section id="c2-incident" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Chapitre 2 · L'incident</p>
@@ -942,7 +951,7 @@
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">À vous de jouer</p>
 <h2 style="font-family:'Fraunces', Georgia, serif;font-size:96px;font-weight:700;line-height:1.0;color:#F1FAEE">TP 04</h2>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:44px;line-height:1.2;color:#F1FAEE">Mises à jour et diagnostic</p>
-<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h 25 · avec metrics-server</p>
+<p style="font-size:30px;line-height:1.35;color:#C9D6E3">1 h 10 · avec metrics-server</p>
 <p style="font-family:'JetBrains Mono', monospace;font-size:26px;color:#264653;background:#F1FAEE;padding:10px 20px;border-radius:12px;align-self:flex-start">tp-04-cycle-de-vie</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:32px">
@@ -962,15 +971,24 @@
 <div style="display:flex;gap:16px;align-items:center"><x-icon data-g="✔" style="color:#FFD166;width:40px;height:40px"></x-icon><p style="font-size:29px;line-height:1.35;color:#F1FAEE">vous nommez la panne mystère avec kubectl seul</p></div>
 </div>
 </div>
-<aside>10 min avant la pause pour installer metrics-server, le reste après. metrics-server a besoin de --kubelet-insecure-tls sur un cluster kubeadm (certificats des kubelets auto-signés). Pendant la mise à jour, faire tourner une boucle curl sur le NodePort pour montrer qu'aucune requête n'échoue. La 1.2 n'existe pas sur ghcr.io : c'est voulu. Correction : solutions/04-cycle-de-vie/, dans la branche du TP.</aside>
+<aside>10 min avant la pause pour installer metrics-server, le reste après, jusqu'à 16h15 (QCM du jour 2). metrics-server a besoin de --kubelet-insecure-tls sur un cluster kubeadm (certificats des kubelets auto-signés). Pendant la mise à jour, faire tourner une boucle curl sur le NodePort pour montrer qu'aucune requête n'échoue. La 1.2 n'existe pas sur ghcr.io : c'est voulu. Correction : solutions/04-cycle-de-vie/, dans la branche du TP.</aside>
 </section>
 <section id="pause-j2-aprem" data-transition="fade" style="background:#E76F51;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
 <x-icon data-g="☕" style="color:#F1FAEE;width:110px;height:110px"></x-icon>
 <p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFE3D8;text-align:center">Jour 2 · 15h00</p>
 <h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause café</h1>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 15h15</p>
-<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : de la 1.0 à la 1.1, puis la 1.2 (TP 04).</p>
+<p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : fin du TP 04, puis le QCM du jour 2 à 16h15.</p>
 <aside>metrics-server doit être installé chez tout le monde (kubectl top nodes) : la suite du TP 04 s'en sert.</aside>
+</section>
+<section id="qcm-j2" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
+<x-icon data-g="✔" style="color:#FFD166;width:110px;height:110px"></x-icon>
+<p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFD166;text-align:center">Jour 2 · 16h15</p>
+<h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">QCM du jour 2</h1>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">10 questions · 15 minutes · chapitres 2 à 4</p>
+<p style="font-family:'JetBrains Mono', monospace;font-size:34px;color:#1D3557;background:#FFD166;padding:14px 28px;border-radius:14px;text-align:center">mikou-mouad.github.io/2-072_Ascent_Kubernetes-MiseEnOeuvre/qcm/jour-2.html</p>
+<p style="font-size:30px;color:#C9D6E3;text-align:center">Seul, dans le navigateur de ClientWeb ou de votre poste. Le score et les explications s'affichent quand vous validez.</p>
+<aside>Même déroulé qu'hier : 10 minutes de réponses, 5 minutes sur les questions les plus ratées. Les pièges classiques : base64 n'est pas un chiffrement, la readiness ne redémarre pas un pod, une variable d'environnement exige un redémarrage.</aside>
 </section>
 <section id="fin-j2" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Fin du jour 2 · 16h30</p>
@@ -1013,10 +1031,10 @@
 <div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">11h40</p><p style="font-size:28px">Ch. 7 · Contrôleurs et opérateurs, TP 07</p></div>
 <div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">13h40</p><p style="font-size:28px">Ch. 8 · Autoscaling, TP 08</p></div>
 <div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">14h45</p><p style="font-size:28px">Ch. 9 · Sécurité, TP 09</p></div>
-<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">16h10</p><p style="font-size:28px">Épilogue, QCM final, évaluations</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#EFE6D8;border-radius:12px;padding:12px 20px"><p style="width:110px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#E76F51">16h10</p><p style="font-size:28px">Épilogue, QCM du jour 3, évaluations</p></div>
 </div>
 </div>
-<aside>9h00 – 9h10 : récapitulatif et quiz du jour 2. Journée dense : cinq chapitres, la théorie est courte (15 min chacun), chaque chapitre enchaîne sur son TP. Un participant en retard repart de la branche tp-05-bonnes-pratiques.</aside>
+<aside>9h00 – 9h10 : récapitulatif du jour 2, à partir des questions les plus ratées au QCM. Journée dense : cinq chapitres, la théorie est courte (15 min chacun), chaque chapitre enchaîne sur son TP. Un participant en retard repart de la branche tp-05-bonnes-pratiques.</aside>
 </section>
 <section id="c5-incident" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
 <p style="font-size:26px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#FFD166">Chapitre 5 · L'incident</p>
@@ -1487,7 +1505,7 @@
 <h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">Pause café</h1>
 <p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">Reprise à 15h15</p>
 <p style="font-size:30px;color:#FFE3D8;text-align:center">Au retour : le TP 09, puis l'épilogue.</p>
-<aside>Le TP 09 se fait d'un bloc après la pause, de 15h15 à 16h10. Épilogue, QCM final et évaluations de 16h10 à 16h30.</aside>
+<aside>Le TP 09 se fait d'un bloc après la pause, de 15h15 à 16h10. Épilogue, QCM du jour 3 et évaluations de 16h10 à 16h30.</aside>
 </section>
 <section id="c9-tp" data-transition="fade" style="background:#264653;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:grid;grid-template-columns:560px 1fr;gap:72px;align-items:center">
 <div style="display:flex;flex-direction:column;gap:24px">
@@ -1548,6 +1566,15 @@
 </div>
 <aside>Reprendre la liste notée au tableau au chapitre 0 et au TP 00 (ce qui manquait à une seule machine) et cocher chaque ligne avec le chapitre qui l'a réglée. Demander à chacun ce qu'il appliquera en premier chez lui. Pistes pour aller plus loin : Ingress ou Gateway API, Helm, supervision avec Prometheus, haute disponibilité du control plane.</aside>
 </section>
+<section id="qcm-j3" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
+<x-icon data-g="✔" style="color:#FFD166;width:110px;height:110px"></x-icon>
+<p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFD166;text-align:center">Jour 3 · 16h10</p>
+<h1 style="font-family:'Fraunces', Georgia, serif;font-size:150px;font-weight:700;line-height:1.0;color:#F1FAEE;text-align:center">QCM du jour 3</h1>
+<p style="font-family:'Fraunces', Georgia, serif;font-size:52px;font-style:italic;color:#F1FAEE;text-align:center">10 questions · 15 minutes · chapitres 5 à 9</p>
+<p style="font-family:'JetBrains Mono', monospace;font-size:34px;color:#1D3557;background:#FFD166;padding:14px 28px;border-radius:14px;text-align:center">mikou-mouad.github.io/2-072_Ascent_Kubernetes-MiseEnOeuvre/qcm/jour-3.html</p>
+<p style="font-size:30px;color:#C9D6E3;text-align:center">Seul, dans le navigateur de ClientWeb ou de votre poste. Le score et les explications s'affichent quand vous validez.</p>
+<aside>Dans le bilan, après l'épilogue. Garder 5 minutes pour les évaluations ensuite. La question 10 (Pod Security) attend 4 réponses : c'est la plus ratée en général.</aside>
+</section>
 <section id="fin" data-transition="fade" style="background:#1D3557;color:#F1FAEE;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:44px">
 <p style="font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#FFD166">Fin de l'histoire… pour cette année</p>
 <h1 style="font-family:'Fraunces', Georgia, serif;font-size:140px;font-weight:700;line-height:1.0;color:#F1FAEE">Merci !</h1>
@@ -1555,7 +1582,7 @@
 <div style="display:flex;gap:32px">
 <div style="flex:1;display:flex;flex-direction:column;gap:10px;border:2px solid #FFD166;border-radius:18px;padding:28px">
 <x-icon data-g="✔" style="color:#FFD166;width:48px;height:48px"></x-icon>
-<p style="font-size:30px;color:#F1FAEE">QCM final</p>
+<p style="font-size:30px;color:#F1FAEE">QCM du jour 3</p>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:10px;border:2px solid #FFD166;border-radius:18px;padding:28px">
 <x-icon data-g="✉" style="color:#FFD166;width:48px;height:48px"></x-icon>

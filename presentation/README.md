@@ -1,6 +1,6 @@
 # La présentation
 
-75 slides : pour chaque chapitre, l'incident chez FestiPass, la solution, le concept (schémas et YAML), puis le TP.
+81 slides : pour chaque chapitre, l'incident chez FestiPass, la solution, le concept (schémas et YAML), puis le TP.
 Les pauses, les déjeuners, les débuts et fins de journée suivent les horaires de `programme-3-jours.md`
 (9h00 – 12h30, 13h30 – 16h30, pauses à 10h00 et 15h00).
 
