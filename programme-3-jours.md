@@ -13,9 +13,9 @@
 
 | Type        | Durée   | Part   |
 |-------------|---------|--------|
-| Pratique (TP) | 13 h 25 | **75 %** |
+| Pratique (TP) | 12 h 55 | **72 %** |
 | Théorie (incident + concept) | 3 h 40 | 20 % |
-| Accueil, récapitulatifs, quiz, bilan | 55 min | 5 % |
+| Accueil, récapitulatifs, QCM, bilan | 1 h 25 | 8 % |
 
 **Une journée = 6 h = deux modules du programme officiel :**
 
@@ -76,7 +76,7 @@ Un participant bloqué consulte la correction, ou fait `git checkout tp-NN` pour
 
 ## Jour 1 – Conteneurs et mise en place du cluster
 
-**Modules officiels :** Introduction (2 h) + Installation et configuration (4 h) · **Théorie 1 h 15 · Pratique 4 h 30 · Autre 15 min**
+**Modules officiels :** Introduction (2 h) + Installation et configuration (4 h) · **Théorie 1 h 15 · Pratique 4 h 15 · Autre 30 min**
 
 | Horaire       | Type | Contenu |
 |---------------|------|---------|
@@ -89,17 +89,18 @@ Un participant bloqué consulte la correction, ou fait `git checkout tp-NN` pour
 | 12h30 – 13h30 | | *Déjeuner* |
 | 13h30 – 15h00 | **TP 01** | `kubeadm init`, Calico, `kubeadm join`, tests réseau, le control plane sans scheduler |
 | 15h00 – 15h15 | | *Pause* |
-| 15h15 – 16h30 | **TP 01** | Gestion des nœuds : labels, taints, cordon, drain, uncordon, retirer et réintégrer un worker, snapshot des VM |
+| 15h15 – 16h15 | **TP 01** | Gestion des nœuds : labels, taints, cordon, drain, uncordon, retirer et réintégrer un worker, snapshot des VM |
+| 16h15 – 16h30 | QCM | QCM du jour 1 : 10 questions, page autocorrigée |
 
 ---
 
 ## Jour 2 – YAML et gestion des ressources
 
-**Modules officiels :** Fichiers descriptifs YAML (3 h) + Gestion des ressources et applications (3 h) · **Théorie 1 h 10 · Pratique 4 h 40 · Autre 10 min**
+**Modules officiels :** Fichiers descriptifs YAML (3 h) + Gestion des ressources et applications (3 h) · **Théorie 1 h 10 · Pratique 4 h 25 · Autre 25 min**
 
 | Horaire       | Type | Contenu |
 |---------------|------|---------|
-| 9h00 – 9h10   | Récap | Récapitulatif et quiz du jour 1 |
+| 9h00 – 9h10   | Récap | Récapitulatif du jour 1, en partant des questions les plus ratées au QCM |
 | 9h10 – 9h35   | Théorie | **Ch. 2 – « Yanis n'a jamais écrit de YAML »** · Syntaxe YAML, structure d'un manifest (apiVersion, kind, metadata, spec), Pod, Deployment, Service |
 | 9h35 – 10h00  | **TP 02** | Partie A : réparer un YAML cassé, `kubectl explain` |
 | 10h00 – 10h15 | | *Pause* |
@@ -111,7 +112,8 @@ Un participant bloqué consulte la correction, ou fait `git checkout tp-NN` pour
 | 14h25 – 14h50 | Théorie | **Ch. 4 – « La 1.2 est cassée »** · Rolling update, stratégies, historique et rollback, probes, surveiller avec kubectl (get -w, describe, logs, events, top, exec, port-forward) |
 | 14h50 – 15h00 | **TP 04** | metrics-server |
 | 15h00 – 15h15 | | *Pause* |
-| 15h15 – 16h30 | **TP 04** | La boîte à outils kubectl, mise à jour 1.0 → 1.1 sans coupure, version 1.2 introuvable, panne mystère à diagnostiquer, rollback |
+| 15h15 – 16h15 | **TP 04** | La boîte à outils kubectl, mise à jour 1.0 → 1.1 sans coupure, version 1.2 introuvable, panne mystère à diagnostiquer, rollback |
+| 16h15 – 16h30 | QCM | QCM du jour 2 : 10 questions, page autocorrigée |
 
 ---
 
@@ -123,7 +125,7 @@ Les deux modules s'entremêlent dans la journée : la sauvegarde automatique (co
 
 | Horaire       | Type | Contenu |
 |---------------|------|---------|
-| 9h00 – 9h10   | Récap | Récapitulatif et quiz du jour 2 |
+| 9h00 – 9h10   | Récap | Récapitulatif du jour 2, en partant des questions les plus ratées au QCM |
 | 9h10 – 9h25   | Théorie | **Ch. 5 – « La recette a fait tomber la prod »** · Labels, annotations, sélecteurs ; requests/limits, QoS, LimitRange, ResourceQuota |
 | 9h25 – 10h00  | **TP 05** | Labels recommandés, sélecteurs, pod mis en quarantaine |
 | 10h00 – 10h15 | | *Pause* |
@@ -139,7 +141,7 @@ Les deux modules s'entremêlent dans la journée : la sauvegarde automatique (co
 | 14h45 – 15h00 | Théorie | **Ch. 9 – « Je lis votre base depuis n'importe quel pod »** · ServiceAccount, RBAC, securityContext, Pod Security Admission, NetworkPolicy |
 | 15h00 – 15h15 | | *Pause* |
 | 15h15 – 16h10 | **TP 09** | Ce que voit un pod, droits de Yanis (RBAC), ServiceAccounts, securityContext, Pod Security « restricted », NetworkPolicies |
-| 16h10 – 16h30 | Bilan | Épilogue (l'ouverture de la billetterie, architecture finale contre VM de départ), QCM final, évaluations |
+| 16h10 – 16h30 | Bilan | Épilogue (l'ouverture de la billetterie, architecture finale contre VM de départ), QCM du jour 3, évaluations |
 
 ---
 
@@ -155,17 +157,28 @@ Les deux modules s'entremêlent dans la journée : la sauvegarde automatique (co
 2. Lancer le workflow `images` (onglet Actions) pour publier `festipass-back:1.0`, `festipass-front:1.0` et `festipass-front:1.1` sur `ghcr.io`, puis rendre les paquets publics.
    La version `festipass-front:1.2` **ne doit pas exister** : elle sert à la panne du TP 04.
 3. Prévoir 3 VM Ubuntu par participant (2 CPU, 4 Go de RAM minimum, idéalement 8 Go sur les workers), plus la machine **ClientWeb** pour le navigateur. Sans ClientWeb, les participants ouvrent un tunnel sortant Cloudflare (`cloudflared`, sans compte) et utilisent le navigateur de leur poste : la commande est dans les TP 00 et 02.
+4. Activer **GitHub Pages** sur la branche `main` (Settings > Pages > Deploy from a branch > `main` / racine) pour publier les QCM : `https://mikou-mouad.github.io/2-072_Ascent_Kubernetes-MiseEnOeuvre/qcm/`. Les pages `qcm/jour-N.html` s'ouvrent dans n'importe quel navigateur (ClientWeb ou poste du participant), sans connexion au lab.
+
+## Les QCM
+
+Un QCM de 10 questions à la fin de chaque journée, sur les chapitres du jour : `qcm/jour-1.html`, `qcm/jour-2.html`, `qcm/jour-3.html`.
+Chaque participant répond seul ; à la validation, la page affiche son score et l'explication de chaque question, avec le TP où la notion a été vue.
+Le lendemain matin, le récapitulatif part des questions les plus ratées (demander les scores à main levée).
+
+Les réponses sont encodées dans la page (pas lisibles d'un coup d'œil, mais pas secrètes).
+Pour modifier un QCM : extraire ses questions en JSON, les modifier, régénérer la page (script `generer-qcm.py` du skill `preparer-formation`).
 
 ## Correspondance avec le programme officiel
 
 | Jour | Module officiel                                        | Durée officielle | Durée prévue (dont TP) |
 |------|--------------------------------------------------------|------------------|------------------------|
 | 1    | Introduction à Kubernetes et à l'orchestration         | 2 h              | 2 h (1 h) : accueil, ch. 0, TP 00 |
-| 1    | Installation et configuration de Kubernetes            | 4 h              | 4 h (3 h 30) : ch. 1, TP 01 |
+| 1    | Installation et configuration de Kubernetes            | 4 h              | 3 h 45 (3 h 15) : ch. 1, TP 01 |
 | 2    | Introduction aux fichiers descriptifs YAML             | 3 h              | 3 h (2 h 15) : ch. 2, TP 02 partie A, ch. 3, TP 03 |
-| 2    | Gestion des ressources et applications                 | 3 h              | 3 h (2 h 25) : récap, TP 02 partie B, ch. 4, TP 04 |
+| 2    | Gestion des ressources et applications                 | 3 h              | 2 h 45 (2 h 10) : récap, TP 02 partie B, ch. 4, TP 04 |
+| 1, 2 | QCM de fin de journée (le QCM du jour 3 est dans le bilan) | –            | 30 min                 |
 | 3    | Mise en œuvre des bonnes pratiques                     | 3 h              | 2 h 40 (1 h 40) : récap, ch. 5, TP 05, ch. 7, TP 07, bilan |
 | 3    | Gestion avancée (volumes, autoscaling, sécurité)       | 3 h              | 3 h 20 (2 h 35) : ch. 6, TP 06, ch. 8, TP 08, ch. 9, TP 09 |
-| **Total (hors pauses)** |                                     | **18 h**         | **18 h (13 h 25)**     |
+| **Total (hors pauses)** |                                     | **18 h**         | **18 h (12 h 55)**     |
 
 Le jour 3 fait bien 6 h : la gestion avancée prend 20 minutes de plus que prévu, au profit du TP de sécurité, qui conclut la formation.
